@@ -31,6 +31,66 @@
             }
         </style>
         <script>
+            let appPriceFloat;
+            let bevPriceFloat;
+            let mainPriceFloat;
+            let subtotalFloat;
+
+            function calculateSubtotal()
+            {
+                if (selectedAppetizer == 'None $0.00')
+                {
+                    appPriceFloat = 0;
+                }
+                else if (selectedAppetizer == 'Veg Spring Rolls $5.00')
+                {
+                    appPriceFloat = 5;
+                }
+                else if (selectedAppetizer == 'Paneer Tikka $5.50')
+                {
+                    appPriceFloat = 5.50;
+                }
+                else if (selectedAppetizer == 'Veg Samosa $4.00')
+                {
+                    appPriceFloat = 4;
+                }
+                if (selectedMain == 'None $0.00')
+                {
+                    mainPriceFloat = 0;
+                }
+                else if (selectedMain == 'Chole Bhature $14.00')
+                {
+                    mainPriceFloat = 14;
+                }
+                else if (selectedMain == 'Biryani $15.00')
+                {
+                    mainPriceFloat = 15;
+                }
+                else if (selectedMain == 'Naan with Paneer Curry $15.00')
+                {
+                    mainPriceFloat = 15;
+                }
+                if (selectedBeverage == 'Water $0.00')
+                {
+                    bevPriceFloat = 0;
+                }
+                else if (selectedBeverage == 'Chai $2.00')
+                {
+                    bevPriceFloat = 2;
+                }
+                else if (selectedBeverage == 'Mango Lassi $3.75')
+                {
+                    bevPriceFloat = 3.75;
+                }
+                else if (selectedBeverage == 'Masala Coffee $2.50')
+                {
+                    bevPriceFloat = 2.50;
+                }
+                subtotalFloat = appPriceFloat;
+                subtotalFloat += mainPriceFloat;
+                subtotalFloat += bevPriceFloat;
+            }
+
             let selectedAppetizer = 'none';
             let selectedMain = 'none';
             let selectedBeverage = 'none';
@@ -113,11 +173,39 @@
             }
             function submitOrder()
             {
-                let tempOutput = ""; //PLACEHOLDER CODE
-                tempOutput += "<h2>Your order has "; //PLACEHOLDER CODE
-                tempOutput += "been submitted</h2>"; //PLACEHOLDER CODE
+                let name = document.getElementById('nameId').value;
+                let phone = document.getElementById('phoneId').value;
+                let tip = document.getElementById('tipId').value;
 
-                document.getElementById('orderSummaryId').innerHTML = tempOutput; //PLACEHOLDER CODE
+                let isChecked = document.getElementById('checkId').checked;
+                let textAlertsMessage;
+
+                if (isChecked)
+                {
+                    textAlertsMessage = "we will text you when your order is ready"
+                }
+                else
+                {
+                    textAlertsMessage = "You have opted out of text alerts. Orders";
+                    textAlertsMessage += "are usually ready for pickup in 30 minutes."
+                }
+                textAlertsMessage += "Please pay for your order in store."
+
+                calculateSubtotal();
+                tipPercent = parseFloat(tip);
+                let tipAmount = subtotalFloat*(tip/100);
+                let totalFloat = subtotalFloat + tipAmount;
+
+                let orderSummary = "";
+                orderSummary += "Customer Name:" + name + "<br>";
+                orderSummary += "Customer Phone:" + phone + "<br>";
+                orderSummary += "Appetizer: $" + appPriceFloat.toFized(2) + "<br>";
+                
+                
+                
+                
+                
+                document.getElementById('orderSummaryId').innerHTML = orderSummary;
             }
         </script>
     </head>
@@ -128,7 +216,7 @@
         <br>
             Appetizer:
             <select id="appetizerId" onChange="selectItem('appetizer')">
-                <option>None, price $0.00</option>
+                <option>None $0.00</option>
                 <option>Veg Spring Rolls $5.00</option>
                 <option>Paneer Tikka $5.50</option>
                 <option>Veg Samosa $4.00</option>
