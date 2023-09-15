@@ -31,6 +31,9 @@
             }
         </style>
         <script>
+            let selectedAppetizer = 'None $0.00';
+            let selectedMain = 'None $0.00';
+            let selectedBeverage = 'Water $0.00';
             let appPriceFloat;
             let bevPriceFloat;
             let mainPriceFloat;
@@ -90,10 +93,6 @@
                 subtotalFloat += mainPriceFloat;
                 subtotalFloat += bevPriceFloat;
             }
-
-            let selectedAppetizer = 'none';
-            let selectedMain = 'none';
-            let selectedBeverage = 'none';
 
             function selectItem(foodType)
             {
@@ -182,14 +181,14 @@
 
                 if (isChecked)
                 {
-                    textAlertsMessage = "we will text you when your order is ready"
+                    textAlertsMessage = "We will text you when your order is ready."
                 }
                 else
                 {
                     textAlertsMessage = "You have opted out of text alerts. Orders";
                     textAlertsMessage += "are usually ready for pickup in 30 minutes."
                 }
-                textAlertsMessage += "Please pay for your order in store."
+                textAlertsMessage += " Please pay for your order in store."
 
                 calculateSubtotal();
                 tipPercent = parseFloat(tip);
@@ -197,14 +196,16 @@
                 let totalFloat = subtotalFloat + tipAmount;
 
                 let orderSummary = "";
-                orderSummary += "Customer Name:" + name + "<br>";
-                orderSummary += "Customer Phone:" + phone + "<br>";
-                orderSummary += "Appetizer: $" + appPriceFloat.toFized(2) + "<br>";
-                
-                
-                
-                
-                
+                orderSummary += "Customer Name: " + name + "<br>";
+                orderSummary += "Customer Phone: " + phone + "<br>";
+                orderSummary += "Appetizer: $" + appPriceFloat.toFixed(2) + "<br>";
+                orderSummary += "Main: $" + mainPriceFloat.toFixed(2) + "<br>";
+                orderSummary += "Beverage: $" + bevPriceFloat.toFixed(2) + "<br>";
+                orderSummary += "Subtotal: $" + subtotalFloat.toFixed(2) + "<br>";
+                orderSummary += "Tip Amount: $" + tipAmount.toFixed(2) + "<br>";
+                orderSummary += "Total: $" + totalFloat.toFixed(2) + "<br>";
+                orderSummary += "<h4>Note: " + textAlertsMessage + "</h4>";
+
                 document.getElementById('orderSummaryId').innerHTML = orderSummary;
             }
         </script>
