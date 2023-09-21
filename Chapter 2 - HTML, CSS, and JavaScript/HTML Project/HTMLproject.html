@@ -15,11 +15,59 @@
             }
             h2
             {
-                color: ;
+                color: #2D3142;
             }
         </style>
-        <script>
+        <script> 
 
+            function submit()
+            {
+                let firstname = document.getElementById('firstnameId').value;
+                let lastname = document.getElementById('lastnameId').value;
+                let year = document.getElementById('yearId').value;
+
+                let checkboxnum = 0;
+
+                if (document.getElementById('check1Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check2Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check3Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check4Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check5Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check6Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check7Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check8Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+                if (document.getElementById('check9Id').checked);
+                {
+                    checkboxnum =++ 1;
+                }
+
+                idOutputdiv.innerHTML = checkboxnum;
+
+            }
         </script>
     </head>
     <body>
@@ -42,22 +90,26 @@
         <br>
         Which of the following activities do you think have improved, or become easier since the invention of the internet?
         <br>
-        <input type="checkbox" id="Option1Id"> Keeping in touch with family and/or friends
+        <input type="checkbox" id="check1Id"> Keeping in touch with family and/or friends
         <br>
-        <input type="checkbox" id="Option2Id"> Organizing parties, dinners, or events
+        <input type="checkbox" id="check2Id"> Organizing parties, dinners, or events
         <br>
-        <input type="checkbox" id="Option3Id"> Researching information on a particular topic
+        <input type="checkbox" id="check3Id"> Researching information on a particular topic
         <br>
-        <input type="checkbox" id="Option4Id"> Following current events
+        <input type="checkbox" id="check4Id"> Following current events
         <br>
-        <input type="checkbox" id="Option5Id"> Make a phone call (from work, home, hotel, or public place)
+        <input type="checkbox" id="check5Id"> Make a phone call (from work, home, hotel, or public place)
         <br>
-        <input type="checkbox" id="Option6Id"> Watching a movie
+        <input type="checkbox" id="check6Id"> Watching a movie
         <br>
-        <input type="checkbox" id="Option7Id"> Keeping track of finances
+        <input type="checkbox" id="check7Id"> Keeping track of finances
         <br>
-        <input type="checkbox" id="Option8Id"> Shopping for goods and services
+        <input type="checkbox" id="check8Id"> Shopping for goods and services
         <br>
-        <input type="checkbox" id="Option9Id"> Other
+        <input type="checkbox" id="check9Id"> Other
+        <br>
+        <br>
+        <input type="button" value="Submit" onClick="submitOrder()">
+        <div id="idOutputdiv"></div>
     </body>
 </html>
