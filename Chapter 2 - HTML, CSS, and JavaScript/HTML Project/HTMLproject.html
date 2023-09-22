@@ -19,54 +19,61 @@
             }
         </style>
         <script> 
-
-            function submit()
-            {
-                let firstname = document.getElementById('firstnameId').value;
-                let lastname = document.getElementById('lastnameId').value;
-                let year = document.getElementById('yearId').value;
-
                 let checkboxnum = 0;
-
-                if (document.getElementById('check1Id').checked);
+                function checkBox()
                 {
-                    checkboxnum =++ 1;
-                }
-                if (document.getElementById('check2Id').checked);
+                    if (document.getElementById('check1Id').checked);
+                    {
+                    checkboxnum += 1;
+                    }
+                    if (document.getElementById('check2Id').checked);
+                    {
+                    checkboxnum += 1;
+                    }
+                    if (document.getElementById('check3Id').checked);
+                    {
+                    checkboxnum += 1;
+                    }
+                    if (document.getElementById('check4Id').checked);
                 {
-                    checkboxnum =++ 1;
-                }
-                if (document.getElementById('check3Id').checked);
-                {
-                    checkboxnum =++ 1;
-                }
-                if (document.getElementById('check4Id').checked);
-                {
-                    checkboxnum =++ 1;
+                    checkboxnum += 1;
                 }
                 if (document.getElementById('check5Id').checked);
                 {
-                    checkboxnum =++ 1;
+                    checkboxnum += 1;
                 }
                 if (document.getElementById('check6Id').checked);
                 {
-                    checkboxnum =++ 1;
+                    checkboxnum += 1;
                 }
                 if (document.getElementById('check7Id').checked);
                 {
-                    checkboxnum =++ 1;
+                    checkboxnum += 1;
                 }
                 if (document.getElementById('check8Id').checked);
                 {
-                    checkboxnum =++ 1;
+                    checkboxnum += 1;
                 }
                 if (document.getElementById('check9Id').checked);
                 {
-                    checkboxnum =++ 1;
+                    checkboxnum += 1;
+                }
+                
+                
                 }
 
-                idOutputdiv.innerHTML = checkboxnum;
+            function submit()
+            {
+                let firstname = document.getElementById("firstnameId").value;
+                console.log(firstname)
+                let lastname = document.getElementById("lastnameId").value;
+                let year = document.getElementById("yearId").value;
 
+                let output = "";
+                output += "Hello" + firstname + "<br>";
+                output += lastname + "<br>";
+
+                document.getElementById('idOutputdiv').innerHTML = output;
             }
         </script>
     </head>
@@ -109,7 +116,7 @@
         <input type="checkbox" id="check9Id"> Other
         <br>
         <br>
-        <input type="button" value="Submit" onClick="submitOrder()">
-        <div id="idOutputdiv"></div>
+        <input type="button" value="Submit" onClick="submit()">
+        <div id='idOutputdiv'></div>
     </body>
 </html>
