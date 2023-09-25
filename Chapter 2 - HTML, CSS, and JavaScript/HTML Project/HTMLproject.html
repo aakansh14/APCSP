@@ -8,6 +8,8 @@
             {
                 text-align: center;
                 background: #63ADF2;
+                border-style:solid;
+                border-color: #F5FFC6;
             }
             h1
             {
@@ -19,57 +21,7 @@
             }
         </style>
         <script> 
-            var checkboxnum = 0;
-            function checkBox()
-            {
-                check1 = document.getElementById('check1Id').checked
-                check2 = document.getElementById('check2Id').checked
-                check3 = document.getElementById('check3Id').checked
-                check4 = document.getElementById('check4Id').checked
-                check5 = document.getElementById('check5Id').checked
-                check6 = document.getElementById('check6Id').checked
-                check7 = document.getElementById('check7Id').checked
-                check8 = document.getElementById('check8Id').checked
-                check9 = document.getElementById('check9Id').checked
-
-                if (check1);
-                {
-                    checkboxnum ++;
-                }
-                if (check2);
-                {
-                    checkboxnum ++;
-                }
-                if (check3);
-                {
-                    checkboxnum ++;
-                }
-                if (check4);
-                {
-                    checkboxnum ++;
-                }
-                if (check5);
-                {
-                    checkboxnum ++;
-                }
-                if (check6);
-                {
-                    checkboxnum ++;
-                }
-                if (check7);
-                {
-                    checkboxnum ++;
-                }
-                if (check8);
-                {
-                    checkboxnum ++;
-                }
-                if (check9);
-                {
-                    checkboxnum ++;
-                }
-            }
-
+            let checkboxnum = 0;
             function submit()
             {
                 let firstname = document.getElementById("firstnameId").value;
@@ -77,16 +29,74 @@
                 let years = 2023 - yearId.value
                 let text = document.getElementById("textAreaId").value;
                 let textLength = text.length
-                checkBox();
-            
+                let check1 = document.getElementById("check1Id").checked
+                let check2 = document.getElementById("check2Id").checked
+                let check3 = document.getElementById("check3Id").checked
+                let check4 = document.getElementById("check4Id").checked
+                let check5 = document.getElementById("check5Id").checked
+                let check6 = document.getElementById("check6Id").checked
+                let check7 = document.getElementById("check7Id").checked
+                let check8 = document.getElementById("check8Id").checked
+                let check9 = document.getElementById("check9Id").checked
+                let exp;
+
+                if (check1)
+                {
+                    checkboxnum ++
+                }
+                if (check2)
+                {
+                    checkboxnum ++
+                }
+                if (check3)
+                {
+                    checkboxnum ++
+                }
+                if (check4)
+                {
+                    checkboxnum ++
+                }
+                if (check5)
+                {
+                    checkboxnum ++
+                }
+                if (check6)
+                {
+                    checkboxnum ++
+                }
+                if (check7)
+                {
+                    checkboxnum ++
+                }
+                if (check8)
+                {
+                    checkboxnum ++
+                }
+                if (check9)
+                {
+                    checkboxnum ++
+                }
+
+                if (checkboxnum <= 2)
+                {
+                    exp = "LOW"
+                }
+                else if (checkboxnum >=3 && checkboxnum <= 5)
+                {
+                    exp = "MEDIUM"
+                }
+                else if (checkboxnum > 5)
+                {
+                    exp = "HIGH"
+                }
 
                 let output = "";
                 output += "Hello " + firstname + " ";
                 output += lastname;
                 output += ", you have been on the internet for " + years + " years!" + "<br>"
                 output += "Your written response has " + textLength + " characters in it!" + "<br>"
-                output += "You have checked off " + checkboxnum + " items, indicating the internet has had a "
-
+                output += "You have checked off " + checkboxnum + " item(s), indicating the internet has had a " + 
+                "<br>" + exp + "<br>" + " impact on your life."
                 document.getElementById('idOutputdiv').innerHTML = output;
             }
         </script>
