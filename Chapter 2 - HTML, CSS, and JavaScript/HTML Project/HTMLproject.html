@@ -19,59 +19,73 @@
             }
         </style>
         <script> 
-                let checkboxnum = 0;
-                function checkBox()
+            var checkboxnum = 0;
+            function checkBox()
+            {
+                check1 = document.getElementById('check1Id').checked
+                check2 = document.getElementById('check2Id').checked
+                check3 = document.getElementById('check3Id').checked
+                check4 = document.getElementById('check4Id').checked
+                check5 = document.getElementById('check5Id').checked
+                check6 = document.getElementById('check6Id').checked
+                check7 = document.getElementById('check7Id').checked
+                check8 = document.getElementById('check8Id').checked
+                check9 = document.getElementById('check9Id').checked
+
+                if (check1);
                 {
-                    if (document.getElementById('check1Id').checked);
-                    {
-                    checkboxnum += 1;
-                    }
-                    if (document.getElementById('check2Id').checked);
-                    {
-                    checkboxnum += 1;
-                    }
-                    if (document.getElementById('check3Id').checked);
-                    {
-                    checkboxnum += 1;
-                    }
-                    if (document.getElementById('check4Id').checked);
+                    checkboxnum ++;
+                }
+                if (check2);
                 {
-                    checkboxnum += 1;
+                    checkboxnum ++;
                 }
-                if (document.getElementById('check5Id').checked);
+                if (check3);
                 {
-                    checkboxnum += 1;
+                    checkboxnum ++;
                 }
-                if (document.getElementById('check6Id').checked);
+                if (check4);
                 {
-                    checkboxnum += 1;
+                    checkboxnum ++;
                 }
-                if (document.getElementById('check7Id').checked);
+                if (check5);
                 {
-                    checkboxnum += 1;
+                    checkboxnum ++;
                 }
-                if (document.getElementById('check8Id').checked);
+                if (check6);
                 {
-                    checkboxnum += 1;
+                    checkboxnum ++;
                 }
-                if (document.getElementById('check9Id').checked);
+                if (check7);
                 {
-                    checkboxnum += 1;
+                    checkboxnum ++;
                 }
-                
-                
+                if (check8);
+                {
+                    checkboxnum ++;
                 }
+                if (check9);
+                {
+                    checkboxnum ++;
+                }
+            }
 
             function submit()
             {
                 let firstname = document.getElementById("firstnameId").value;
-                console.log(firstname)
                 let lastname = document.getElementById("lastnameId").value;
-                let year = document.getElementById("yearId").value;
+                let years = 2023 - yearId.value
+                let text = document.getElementById("textAreaId").value;
+                let textLength = text.length
+                checkBox();
+            
 
                 let output = "";
-                output += "Hello" + firstname + "<br>";
-                output += lastname + "<br>";
+                output += "Hello " + firstname + " ";
+                output += lastname;
+                output += ", you have been on the internet for " + years + " years!" + "<br>"
+                output += "Your written response has " + textLength + " characters in it!" + "<br>"
+                output += "You have checked off " + checkboxnum + " items, indicating the internet has had a "
 
                 document.getElementById('idOutputdiv').innerHTML = output;
             }
@@ -92,7 +106,7 @@
         <h2>Questions</h2>
         Briefly describe what you remember from your first experience with the internet:
         <br>
-        <textarea rows="10" cols="50"></textarea>
+        <textarea id="textAreaId"rows="10" cols="50"></textarea>
         <br>
         <br>
         Which of the following activities do you think have improved, or become easier since the invention of the internet?
