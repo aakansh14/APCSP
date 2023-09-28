@@ -20,14 +20,60 @@
             }
         </style>
         <script>
+            // Image Citations:
+            // Black Panther: https://www.amazon.com/PosterOffice-Black-Panther-Movie-Poster/dp/B079Z2DNDR/ref=asc_df_B079Z2DNDR/?tag=hyprod-20&linkCode=df0&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627&psc=1&tag=&ref=&adgrpid=64520921227&hvpone=&hvptwo=&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627
+            // Captain Marvel: https://www.amazon.com/CAPTAIN-MARVEL-POSTER-ORIGINAL-Version/dp/B07NNT8K3P
+            // Shang Chi: https://www.amazon.com/Trends-International-Shang-Chi-Rings-Teaser-Unframed/dp/B09BK3YVP9/ref=asc_df_B09BK3YVP9/?tag=hyprod-20&linkCode=df0&hvadid=540971280956&hvpos=&hvnetw=g&hvrand=2168267742501781273&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-1410488457331&psc=1  
+            // Captain America: https://www.amazon.com/POSTER-STOP-ONLINE-Captain-America/dp/B08Z82QX9Y
+            // Black Widow: https://www.amazon.com/Black-Widow-Movie-Poster-Authenticity/dp/B08B4CFVTJ
+            // Guardians: https://www.amazon.com/Guardians-Galaxy-Movie-24x36-Poster/dp/B00LM3PI1U
             let imageArray = ["blackpanther.jpg", "blackwidow.jpg", "captainamerica.jpg", "captainmarvel.jpg", "guardians.jpg", "shangchi.jpg"];
             let movieArray = ["Black Panther", "Black Widow", "Captain America", "Captain Marvel", "Guardians of the Galaxy", "Shang-Chi"];
             let yearArray = [2018, 2021, 2011, 2019, 2014, 2021]
             function displayRandomQuestion()
+            {
+                console.log('To Do: Implement displayRandomQuestions()');
+            }
             function checkAnswer()
+            {
+                console.log('To Do: Implement checkAnswer()');
+            }
+            function formatImage(inputArray, index)
+            {
+                let fileName = inputArray[index];
+
+                let output = "<img src='posters/" + fileName + " ' width=200 height=300>";
+                
+                return output;
+            }
+            function viewAnswerKey()
+            {
+                let displayOutput = "This is the full answer key. Refresh the page when you are done: <br>";
+
+                for (let i = 0; i < imageArray.length; i++)
+                {
+                    displayOutput += formatImage(imageArray, i);
+                    displayOutput += "<br>";
+                    displayOutput += yearArray[i];
+                    displayOutput += "<br> <br>";
+                }
+
+                document.getElementById('divIdFullAnswerKey').innerHTML = displayOutput;
+            }
         </script>
     </head>
     <body>
             <h1>Marvel Movie Trivia</h1>
+            <p>Write the year in which the Marvel movie was released.</p>
+            <div id="divIdPic"></div>
+            <div id="divIdQuestion"></div>
+            <input type="text" id="txtIdAnswer" placeholder="Type your answer here">
+            <input type="button" value="Check Answer" onclick="checkAnswer()">
+            <input type="button" value="Next Question" onclick="displayRandomQuestion()">
+            <input type="button" value="View Answer Key" onclick="viewAnswerKey()">
+            <div id="divIdAnswer"></div>
+            <br>
+            <div id="divIdFullAnswerKey"></div>
+            <br>
     </body>
 </html>
