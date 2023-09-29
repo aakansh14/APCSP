@@ -20,6 +20,7 @@
             }
         </style>
         <script>
+            let questionNumber
             // Image Citations:
             // Black Panther: https://www.amazon.com/PosterOffice-Black-Panther-Movie-Poster/dp/B079Z2DNDR/ref=asc_df_B079Z2DNDR/?tag=hyprod-20&linkCode=df0&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627&psc=1&tag=&ref=&adgrpid=64520921227&hvpone=&hvptwo=&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627
             // Captain Marvel: https://www.amazon.com/CAPTAIN-MARVEL-POSTER-ORIGINAL-Version/dp/B07NNT8K3P
@@ -30,14 +31,32 @@
             let imageArray = ["blackpanther.jpg", "blackwidow.jpg", "captainamerica.jpg", "captainmarvel.jpg", "guardians.jpg", "shangchi.jpg"];
             let movieArray = ["Black Panther", "Black Widow", "Captain America", "Captain Marvel", "Guardians of the Galaxy", "Shang-Chi"];
             let yearArray = [2018, 2021, 2011, 2019, 2014, 2021]
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function displayRandomQuestion()
             {
-                console.log('To Do: Implement displayRandomQuestions()');
+                let arrayLength = movieArray.length
+                questionNumber = randomInt(0, arrayLength - 1);
+                let picture = formatImage(imageArray, questionNumber);
+                let question = formatQuestion(movieArray, questionNumber);
+                divIdPic.innerHTML = picture;
+                divIdQuestion.innerHTML = question;
+                divIdAnswer.innerHTML = "";
             }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function checkAnswer()
             {
                 console.log('To Do: Implement checkAnswer()');
             }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function formatImage(inputArray, index)
             {
                 let fileName = inputArray[index];
@@ -46,6 +65,10 @@
                 
                 return output;
             }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function viewAnswerKey()
             {
                 let displayOutput = "This is the full answer key. Refresh the page when you are done: <br>";
@@ -60,9 +83,33 @@
 
                 document.getElementById('divIdFullAnswerKey').innerHTML = displayOutput;
             }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
+            function formatQuestion(inputArray, index)
+            {
+                let item = inputArray[index];
+                let output = "<h2>In what year was " + item + " released? </h2>"
+
+                return output;
+            }
+            // Description: Return a random integer, n, such that min <= n <= max
+            // Citation: Mozilla Foundation
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+            // Input/Parameters: Two floating point numbers, min and max
+            // Output/Return: Returns a random integer between min and max
+            function randomInt(min, max) 
+            {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                
+                return Math.floor(Math.random() * (max - min + 1)) + min; 
+            }
+
         </script>
     </head>
-    <body>
+    <body onLoad="displayRandomQuestion()">
             <h1>Marvel Movie Trivia</h1>
             <p>Write the year in which the Marvel movie was released.</p>
             <div id="divIdPic"></div>
