@@ -28,9 +28,9 @@
             // Captain America: https://www.amazon.com/POSTER-STOP-ONLINE-Captain-America/dp/B08Z82QX9Y
             // Black Widow: https://www.amazon.com/Black-Widow-Movie-Poster-Authenticity/dp/B08B4CFVTJ
             // Guardians: https://www.amazon.com/Guardians-Galaxy-Movie-24x36-Poster/dp/B00LM3PI1U
-            let imageArray = ["blackpanther.jpg", "blackwidow.jpg", "captainamerica.jpg", "captainmarvel.jpg", "guardians.jpg", "shangchi.jpg"];
-            let movieArray = ["Black Panther", "Black Widow", "Captain America", "Captain Marvel", "Guardians of the Galaxy", "Shang-Chi"];
-            let yearArray = [2018, 2021, 2011, 2019, 2014, 2021]
+            let imageArray = ["blackpanther.jpg", "blackwidow.jpg", "captainamerica.jpg", "captainmarvel.jpg", "guardians.jpg", "shangchi.jpg", "ironman.jpg"];
+            let movieArray = ["Black Panther", "Black Widow", "Captain America", "Captain Marvel", "Guardians of the Galaxy", "Shang-Chi", "Iron Man"];
+            let yearArray = [2018, 2021, 2011, 2019, 2014, 2021, 2008]
             // Description:
             // Citations:
             // Input/Parameters:
@@ -51,7 +51,22 @@
             // Output/Return:
             function checkAnswer()
             {
-                console.log('To Do: Implement checkAnswer()');
+                let submittedAnswer = txtIdAnswer.value;
+                let correctAnswer = yearArray[questionNumber];
+                let currentMovie = movieArray[questionNumber];
+                let output;
+                
+                if (submittedAnswer == correctAnswer)
+                {
+                    output = "You are correct " + currentMovie + " was released in " + correctAnswer
+                }
+                else
+                {
+                    output = "You are incorrect " + currentMovie + " was not released in " + submittedAnswer
+                }
+
+                divIdAnswer.innerHTML = output
+
             }
             // Description: Takes a list of images and outputs a random one
             // Citations: None
