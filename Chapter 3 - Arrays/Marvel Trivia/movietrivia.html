@@ -31,7 +31,8 @@
             let imageArray = ["blackpanther.jpg", "blackwidow.jpg", "captainamerica.jpg", "captainmarvel.jpg", "guardians.jpg", "shangchi.jpg", "ironman.jpg"];
             let movieArray = ["Black Panther", "Black Widow", "Captain America", "Captain Marvel", "Guardians of the Galaxy", "Shang-Chi", "Iron Man"];
             let yearArray = [2018, 2021, 2011, 2019, 2014, 2021, 2008]
-            // Description:
+            let playerScore = 0
+            // Description: 
             // Citations:
             // Input/Parameters:
             // Output/Return:
@@ -58,7 +59,8 @@
                 
                 if (submittedAnswer == correctAnswer)
                 {
-                    output = "You are correct " + currentMovie + " was released in " + correctAnswer
+                    output = "You are correct " + currentMovie + " was released in " + correctAnswer + "<br>"
+                    playerScore = playerScore + 1
                 }
                 else
                 {
@@ -66,12 +68,14 @@
                 }
 
                 divIdAnswer.innerHTML = output
+                divIdScore.innerHTML = "Player Score: " + playerScore
+                
 
             }
             // Description: Takes a list of images and outputs a random one
             // Citations: None
             // Input/Parameters: List of images
-            // Output/Return: Random image from the list
+            // Output/Return: Random image from the list and displays
             function formatImage(inputArray, index)
             {
                 let fileName = inputArray[index];
@@ -98,10 +102,10 @@
 
                 document.getElementById('divIdFullAnswerKey').innerHTML = displayOutput;
             }
-            // Description:
-            // Citations:
+            // Description: Asks what year was random movie released
+            // Citations: None
             // Input/Parameters: List of movie names
-            // Output/Return: 
+            // Output/Return: What year was a random movie released
             function formatQuestion(inputArray, index)
             {
                 let item = inputArray[index];
@@ -136,6 +140,8 @@
             <div id="divIdAnswer"></div>
             <br>
             <div id="divIdFullAnswerKey"></div>
+            <br>
+            <div id="divIdScore"></div>
             <br>
     </body>
 </html>
