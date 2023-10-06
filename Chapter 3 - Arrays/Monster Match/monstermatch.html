@@ -5,10 +5,9 @@
         <style>
             body
             {
-                padding: 10px 0;
-                border: 5px double rgb(255, 0, 0);
+                padding: 15px 0;
+                border: 10px double rgb(255, 0, 0);
                 text-align: center;
-                background: rgb(2,0,36);
                 background: linear-gradient(90deg, rgb(143, 137, 250) 0%, rgb(58, 77, 250) 44%, 
                 rgb(76, 0, 255) 100%);
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -21,15 +20,64 @@
             let deckIndex1
             let deckIndex2
             let curCardP1
-            let curCardP1
+            let curCardP2
             let deckCards = 8
             let imageArray = ["monster1.svg", "monster2.svg", "monster3.svg", "monster4.svg"]
             let gameState = "Game Over"
+            let score = 0
+
+            // Description: Return a random integer, n, such that min <= n <= max
+            // Citation: Mozilla Foundation
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+            // Input/Parameters: Two floating point numbers, min and max
+            // Output/Return: Returns a random integer between min and max
+            function randomInt(min, max) 
+            {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                
+                return Math.floor(Math.random() * (max - min + 1)) + min; 
+            }
+            function formatImage(inputArray, index)
+            {
+                let fileName = inputArray[index];
+
+                let output = "<img src='Monster Pics/" + fileName + " ' width=200 height=300>";
+                
+                return output;
+            }
+            function viewInstructions()
+            {
+                divIdinstruct.innerHTML = "Full Instructions:" + "<br>" + 
+                "Each player has a deck of monster cards. Each " + "<br>" +
+                "round, a player will reveal a random card from their " + "<br>" +
+                "deck. If the cards match, it is a 'Monster Match.'" + "<br>" +
+                "The user will need to press 'Y' for yes or 'N' for " + "<br>" +
+                "no, depending whether there is currently a match on" + "<br>" +
+                "the board. If the user is correct, their score is" + "<br>" +
+                "increased by 1. If they are incorrect, their score is " + "<br>" +
+                "reduced by 1. You win the game once you reach a " + "<br>" +
+                "score of 10! Press 'Space' to receive a new set of" + "<br>" +
+                "cards once a valid guess is made."
+            }
         </script>
     </head>
     <body>
         <h1>Monster Match</h1>
         <input type="button" value="Start New Game">
-        <input type="button" value="View Game Instructions">
+        <input type="button" value="View Game Instructions" onClick="viewInstructions()">
+        <table>
+            <tr>
+                <th><span id="player1Id"></span></th>
+                <th><span id="player2Id"></span></th>
+            </tr>
+            <tr>
+                <th><span id="image1Id"></span></th>
+                <th><span id="image2Id"></span></th>
+            </tr>
+        </table>
+        <div id="divIdmatch"></div>
+        <div id="divIdinstruct"></div>
+        <div id="divIdcurScore"></div>
     </body>
 </html>
