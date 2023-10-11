@@ -13,6 +13,11 @@
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
                 color: rgb(1, 37, 0)
             }
+            table
+            {
+                margin-left: auto;
+                margin-right: auto;
+            }
         </style>
         <script>
             let p1Deck = []
@@ -60,11 +65,30 @@
                 "score of 10! Press 'Space' to receive a new set of" + "<br>" +
                 "cards once a valid guess is made."
             }
+            function displayScore()
+            {
+                divIdcurScore.innerHTML = "Score: " + score
+            }
+            function dealNewCards()
+            {
+                deckIndex1 = randomInt(0, p1Deck - 1);
+                deckIndex2 = randomInt(0, p2Deck - 1);
+                
+                let picture1 = formatImage(imageArray, deckIndex1);
+                let picture2 = formatImage(imageArray, deckIndex2);
+
+                image1Id.innerHTML = picture1
+                image2Id.innerHTML = picture2
+
+                gameState = "Play"
+
+                divIdinstruct.innerHTML = "Press 'Y' if matching or 'N' if not matching"
+            }
         </script>
     </head>
     <body>
         <h1>Monster Match</h1>
-        <input type="button" value="Start New Game">
+        <input type="button" value="Start New Game" onClick="dealNewCards()">
         <input type="button" value="View Game Instructions" onClick="viewInstructions()">
         <table>
             <tr>
