@@ -43,6 +43,10 @@
                 
                 return Math.floor(Math.random() * (max - min + 1)) + min; 
             }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
             function formatImage(inputArray, index)
             {
                 let fileName = inputArray[index];
@@ -51,6 +55,10 @@
                 
                 return output;
             }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
             function viewInstructions()
             {
                 divIdinstruct.innerHTML = "Full Instructions:" + "<br>" + 
@@ -65,17 +73,25 @@
                 "score of 10! Press 'Space' to receive a new set of" + "<br>" +
                 "cards once a valid guess is made."
             }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
             function displayScore()
             {
                 divIdcurScore.innerHTML = "Score: " + score
             }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
             function dealNewCards()
             {
-                deckIndex1 = randomInt(0, p1Deck - 1);
-                deckIndex2 = randomInt(0, p2Deck - 1);
+                deckIndex1 = randomInt(0, p1Deck.length - 1);
+                deckIndex2 = randomInt(0, p2Deck.length - 1);
                 
-                let picture1 = formatImage(imageArray, deckIndex1);
-                let picture2 = formatImage(imageArray, deckIndex2);
+                let picture1 = formatImage(p1Deck, deckIndex1);
+                let picture2 = formatImage(p2Deck, deckIndex2);
 
                 image1Id.innerHTML = picture1
                 image2Id.innerHTML = picture2
@@ -84,11 +100,51 @@
 
                 divIdinstruct.innerHTML = "Press 'Y' if matching or 'N' if not matching"
             }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function newGame()
+            {
+                for (i=0; i<=3; i++)
+                {
+                    p1Deck.push(imageArray[i])
+                    p1Deck.push(imageArray[i])
+                    p2Deck.push(imageArray[i])
+                    p2Deck.push(imageArray[i])
+                }
+
+                player1Id.innerHTML = "Player 1"
+                player2Id.innerHTML = "Player 2"
+
+                dealNewCards();
+                displayScore();
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function winGame()
+            {
+                if (score = 10)
+                {
+                    gameState = "Game Over"
+                    divIdmessages.innerHTML = "Congratulations, you won! Press 'Start New Game' to play again"
+                }
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function checkMatch()
+            {
+                
+            }
         </script>
     </head>
     <body>
         <h1>Monster Match</h1>
-        <input type="button" value="Start New Game" onClick="dealNewCards()">
+        <input type="button" value="Start New Game" onClick="newGame()">
         <input type="button" value="View Game Instructions" onClick="viewInstructions()">
         <table>
             <tr>
@@ -100,7 +156,7 @@
                 <th><span id="image2Id"></span></th>
             </tr>
         </table>
-        <div id="divIdmatch"></div>
+        <div id="divIdmessages"></div>
         <div id="divIdinstruct"></div>
         <div id="divIdcurScore"></div>
     </body>
