@@ -90,11 +90,11 @@
                 deckIndex1 = randomInt(0, p1Deck.length - 1);
                 deckIndex2 = randomInt(0, p2Deck.length - 1);
                 
-                let picture1 = formatImage(p1Deck, deckIndex1);
-                let picture2 = formatImage(p2Deck, deckIndex2);
+                curCardP1 = formatImage(p1Deck, deckIndex1);
+                curCardP2 = formatImage(p2Deck, deckIndex2);
 
-                image1Id.innerHTML = picture1
-                image2Id.innerHTML = picture2
+                image1Id.innerHTML = curCardP1
+                image2Id.innerHTML = curCardP2
 
                 gameState = "Play"
 
@@ -136,13 +136,58 @@
             // Citation:
             // Input/Parameters:
             // Output/Return:
-            function checkMatch()
+            function checkMatch(event)
             {
-                
+                pressKey = event.Key
+                if (gameState = "Play")
+                {
+                    if (pressKey == "y")
+                    {
+                        console.log(pressKey)
+                        if (curCardP1 == curCardP2)
+                        {
+                            divIdmessages.innerHTML = "Congrats you got it correct! Press the Space key to deal more cards."
+                            score++
+                        }
+                        else
+                        {
+                            divIdmessages.innerHTML = "Uh oh, you got it wrong! Press the Space key to deal more cards."
+                            score--
+                        }
+                        gameState = "Pause"
+                    }
+                    else if (pressKey == "n")
+                    {
+                        if (curCardP1 != curCardP2)
+                        {
+                            divIdmessages.innerHTML = "Congrats you got it correct! Press the Space key to deal more cards."
+                            score++
+                        }
+                        else
+                        {
+                            divIdmessages.innerHTML = "Uh oh, you got it wrong! Press the Space key to deal more cards."
+                            score--
+                        }
+                        gameState = "Pause"
+                    }
+                    else
+                    {
+                        divIdmessages.innerHTML = "Oops, you clicked an invalid key. Please press 'Y' if matching or 'N' if not matching"
+                    }
+                }
+                else if (gameState = "Pause")
+                {
+                    if (pressKey == " ")
+                    {
+                        gameState = "Play"
+                    }
+                    winGame();
+                    displayScore();
+                }
             }
         </script>
     </head>
-    <body>
+    <body onkeyup="checkMatch(event)">
         <h1>Monster Match</h1>
         <input type="button" value="Start New Game" onClick="newGame()">
         <input type="button" value="View Game Instructions" onClick="viewInstructions()">
