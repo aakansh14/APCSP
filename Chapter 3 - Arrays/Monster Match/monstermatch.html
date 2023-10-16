@@ -79,7 +79,8 @@
             // Output/Return:
             function displayScore()
             {
-                divIdcurScore.innerHTML = "Score: " + score
+                p1CountId.innerHTML = "Cards Left: " + deckCards;
+                p2CountId.innerHTML = "Cards Left: " + deckCards;
             }
             // Description:
             // Citation:
@@ -126,7 +127,7 @@
             // Output/Return:
             function winGame()
             {
-                if (score = 10)
+                if (score == 10)
                 {
                     gameState = "Game Over"
                     divIdmessages.innerHTML = "Congratulations, you won! Press 'Start New Game' to play again"
@@ -138,12 +139,11 @@
             // Output/Return:
             function checkMatch(event)
             {
-                pressKey = event.Key
-                if (gameState = "Play")
+                pressKey = event.key
+                if (gameState == "Play")
                 {
                     if (pressKey == "y")
                     {
-                        console.log(pressKey)
                         if (curCardP1 == curCardP2)
                         {
                             divIdmessages.innerHTML = "Congrats you got it correct! Press the Space key to deal more cards."
@@ -170,12 +170,12 @@
                         }
                         gameState = "Pause"
                     }
-                    else
+                    else 
                     {
                         divIdmessages.innerHTML = "Oops, you clicked an invalid key. Please press 'Y' if matching or 'N' if not matching"
                     }
                 }
-                else if (gameState = "Pause")
+                else if (gameState == "Pause")
                 {
                     if (pressKey == " ")
                     {
@@ -199,6 +199,10 @@
             <tr>
                 <th><span id="image1Id"></span></th>
                 <th><span id="image2Id"></span></th>
+            </tr>
+            <tr>
+                <th><span id="p1CountId"></span></th>
+                <th><span id="p2CountId"></span></th>
             </tr>
         </table>
         <div id="divIdmessages"></div>
