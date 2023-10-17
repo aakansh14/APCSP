@@ -62,16 +62,17 @@
             function viewInstructions()
             {
                 divIdinstruct.innerHTML = "Full Instructions:" + "<br>" + 
-                "Each player has a deck of monster cards. Each " + "<br>" +
-                "round, a player will reveal a random card from their " + "<br>" +
-                "deck. If the cards match, it is a 'Monster Match.'" + "<br>" +
-                "The user will need to press 'Y' for yes or 'N' for " + "<br>" +
-                "no, depending whether there is currently a match on" + "<br>" +
-                "the board. If the user is correct, their score is" + "<br>" +
-                "increased by 1. If they are incorrect, their score is " + "<br>" +
-                "reduced by 1. You win the game once you reach a " + "<br>" +
-                "score of 10! Press 'Space' to receive a new set of" + "<br>" +
-                "cards once a valid guess is made."
+                "Each player has a deck of monster cards. Each round, a " + "<br>" +
+                "player will reveal a random card from their deck. If the " + "<br>" +
+                "cards match, it is a 'Monster Match.' The fastest player " + "<br>" +
+                "can claim the other player's card (it is removed from the " + "<br>" +
+                "deck of the slower player's deck and added to the faster " + "<br>" +
+                "player's deck). Player 1 can claim a match by pressing 'a' " + "<br>" +
+                "before Player 2 can claim the match by pressing 'l'. If a " + "<br>" +
+                "player presses 'a' or 'l' when there is not a match, they " + "<br>" +
+                "will give up their card. If the cards don't match, press 'n' " + "<br>" +
+                "to start the next round, When a player has claimed all the " + "<br>" +
+                "other player's cards, the player wins the game."
             }
             // Description:
             // Citation:
@@ -99,7 +100,7 @@
 
                 gameState = "Play"
 
-                divIdinstruct.innerHTML = "Press 'Y' if matching or 'N' if not matching"
+                divIdinstruct.innerHTML = "Player 1 press 'a' if matching. Player 2 press 'l' if matching"
             }
             // Description:
             // Citation:
@@ -127,11 +128,15 @@
             // Output/Return:
             function winGame()
             {
-                if (score == 10)
+                if (p1Deck.length == 0)
                 {
-                    gameState = "Game Over"
-                    divIdmessages.innerHTML = "Congratulations, you won! Press 'Start New Game' to play again"
+                    divIdmessages.innerHTML = "Player 2 has won! Press 'Start New Game' to play again"
                 }
+                else if (p2Deck.length == 0)
+                {
+                    divIdmessages.innerHTML = "Player 1 has won! Press 'Start New Game' to play again"
+                }
+                gameState = "Game Over"
             }
             // Description:
             // Citation:
@@ -142,12 +147,13 @@
                 pressKey = event.key
                 if (gameState == "Play")
                 {
-                    if (pressKey == "y")
+                    if (pressKey == "a")
                     {
                         if (curCardP1 == curCardP2)
                         {
-                            divIdmessages.innerHTML = "Congrats you got it correct! Press the Space key to deal more cards."
-                            score++
+                            p1Deck.push(p2Deck[curCardP2])
+                            p2Deck.splice(curCardP2,1)
+                            divIdmessages.innerHTML = "Congrats Player 1 got it correct! Press the Space key to deal more cards."
                         }
                         else
                         {
