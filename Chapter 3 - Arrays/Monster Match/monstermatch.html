@@ -80,8 +80,8 @@
             // Output/Return:
             function displayScore()
             {
-                p1CountId.innerHTML = "Cards Left: " + deckCards;
-                p2CountId.innerHTML = "Cards Left: " + deckCards;
+                p1CountId.innerHTML = "Cards Left: " + p1Deck.length;
+                p2CountId.innerHTML = "Cards Left: " + p2Deck.length;
             }
             // Description:
             // Citation:
@@ -108,6 +108,9 @@
             // Output/Return:
             function newGame()
             {
+                p1Deck = []
+                p2Deck = []
+                
                 for (i=0; i<=3; i++)
                 {
                     p1Deck.push(imageArray[i])
@@ -151,8 +154,8 @@
                     {
                         if (curCardP1 == curCardP2)
                         {
-                            p1Deck.push(p2Deck[curCardP2])
-                            p2Deck.splice(curCardP2,1)
+                            p1Deck.push(p2Deck[deckIndex2])
+                            p2Deck.splice(deckIndex2,1)
                             divIdmessages.innerHTML = "Congrats Player 1 got it correct! Press the Space key to deal more cards."
                         }
                         else
@@ -162,7 +165,7 @@
                         }
                         gameState = "Pause"
                     }
-                    else if (pressKey == "n")
+                    else if (pressKey == "l")
                     {
                         if (curCardP1 != curCardP2)
                         {
