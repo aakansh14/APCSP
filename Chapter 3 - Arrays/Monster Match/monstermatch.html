@@ -108,9 +108,6 @@
             // Output/Return:
             function newGame()
             {
-                p1Deck = []
-                p2Deck = []
-                
                 for (i=0; i<=3; i++)
                 {
                     p1Deck.push(imageArray[i])
@@ -156,28 +153,39 @@
                         {
                             p1Deck.push(p2Deck[deckIndex2])
                             p2Deck.splice(deckIndex2,1)
-                            divIdmessages.innerHTML = "Congrats Player 1 got it correct! Press the Space key to deal more cards."
+                            divIdmessages.innerHTML = "Congrats Player 1 has claimed the match! Press 'n' to deal more cards."
+                            displayScore();
                         }
                         else
                         {
-                            divIdmessages.innerHTML = "Uh oh, you got it wrong! Press the Space key to deal more cards."
-                            score--
+                            p2Deck.push(p1Deck[deckIndex1])
+                            p1Deck.splice(deckIndex1,1)
+                            divIdmessages.innerHTML = "Player 1 has misfired! Press 'n' to deal more cards."
+                            displayScore();
                         }
                         gameState = "Pause"
                     }
                     else if (pressKey == "l")
                     {
-                        if (curCardP1 != curCardP2)
+                        if (curCardP1 == curCardP2)
                         {
-                            divIdmessages.innerHTML = "Congrats you got it correct! Press the Space key to deal more cards."
-                            score++
+                            p2Deck.push(p1Deck[deckIndex1])
+                            p1Deck.splice(deckIndex1,1)
+                            divIdmessages.innerHTML = "Congrats Player 2 has claimed the match! Press 'n' to deal more cards."
+                            displayScore();
                         }
                         else
                         {
-                            divIdmessages.innerHTML = "Uh oh, you got it wrong! Press the Space key to deal more cards."
-                            score--
+                            p1Deck.push(p2Deck[deckIndex2])
+                            p2Deck.splice(deckIndex2,1)
+                            divIdmessages.innerHTML = "Player 2 has misfired! Press 'n' to deal more cards."
+                            displayScore();
                         }
                         gameState = "Pause"
+                    }
+                    else if (pressKey == "n")
+                    {
+                        
                     }
                     else 
                     {
