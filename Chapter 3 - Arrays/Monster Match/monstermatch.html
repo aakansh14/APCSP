@@ -108,6 +108,9 @@
             // Output/Return:
             function newGame()
             {
+                p1Deck = []
+                p2Deck = []
+                
                 for (i=0; i<=3; i++)
                 {
                     p1Deck.push(imageArray[i])
@@ -187,12 +190,12 @@
                     {
                         if (curCardP1 == curCardP2)
                         {
-                            divIdmessages.innerHTML = "There is a match on te board, someone must claim it!"
+                            divIdmessages.innerHTML = "There is a match on the board, someone must claim it!"
                             gameState = "Play"
                         }
                         else 
                         {
-                            displayScore();
+                            dealNewCards();
                             gameState = "Play"
                         }
                     }
