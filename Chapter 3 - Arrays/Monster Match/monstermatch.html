@@ -110,7 +110,7 @@
             {
                 p1Deck = []
                 p2Deck = []
-                
+
                 for (i=0; i<=3; i++)
                 {
                     p1Deck.push(imageArray[i])
@@ -167,6 +167,7 @@
                         gameState = "Pause"
                         displayScore();
                         winGame();
+                        dealNewCards();
                     }
                     else if (pressKey == "l")
                     {
@@ -185,6 +186,7 @@
                         gameState = "Pause"
                         displayScore();
                         winGame();
+                        dealNewCards();
                     }
                     else if (pressKey == "n")
                     {
