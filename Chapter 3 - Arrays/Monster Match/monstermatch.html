@@ -154,16 +154,16 @@
                             p1Deck.push(p2Deck[deckIndex2])
                             p2Deck.splice(deckIndex2,1)
                             divIdmessages.innerHTML = "Congrats Player 1 has claimed the match! Press 'n' to deal more cards."
-                            displayScore();
                         }
                         else
                         {
                             p2Deck.push(p1Deck[deckIndex1])
                             p1Deck.splice(deckIndex1,1)
                             divIdmessages.innerHTML = "Player 1 has misfired! Press 'n' to deal more cards."
-                            displayScore();
                         }
                         gameState = "Pause"
+                        displayScore();
+                        winGame();
                     }
                     else if (pressKey == "l")
                     {
@@ -172,34 +172,42 @@
                             p2Deck.push(p1Deck[deckIndex1])
                             p1Deck.splice(deckIndex1,1)
                             divIdmessages.innerHTML = "Congrats Player 2 has claimed the match! Press 'n' to deal more cards."
-                            displayScore();
                         }
                         else
                         {
                             p1Deck.push(p2Deck[deckIndex2])
                             p2Deck.splice(deckIndex2,1)
                             divIdmessages.innerHTML = "Player 2 has misfired! Press 'n' to deal more cards."
-                            displayScore();
                         }
                         gameState = "Pause"
+                        displayScore();
+                        winGame();
                     }
                     else if (pressKey == "n")
                     {
-                        
+                        if (curCardP1 == curCardP2)
+                        {
+                            divIdmessages.innerHTML = "There is a match on te board, someone must claim it!"
+                            gameState = "Play"
+                        }
+                        else 
+                        {
+                            displayScore();
+                            gameState = "Play"
+                        }
                     }
                     else 
                     {
-                        divIdmessages.innerHTML = "Oops, you clicked an invalid key. Please press 'Y' if matching or 'N' if not matching"
+                        divIdmessages.innerHTML = "Oops, you clicked an invalid key. Player 1 please press 'a' if matching and Player 2 please press 'l' if matching otherwise press 'n' to deal more cards."
                     }
                 }
                 else if (gameState == "Pause")
                 {
-                    if (pressKey == " ")
+                    if (pressKey == "n")
                     {
                         gameState = "Play"
+                        dealNewCards();
                     }
-                    winGame();
-                    displayScore();
                 }
             }
         </script>
