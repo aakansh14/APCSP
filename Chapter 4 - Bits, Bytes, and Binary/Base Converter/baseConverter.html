@@ -3,7 +3,16 @@
     <head>
         <title>Base Converter</title>
         <style>
-
+            body
+            {
+                padding: 15px 0;
+                border: 5px double rgb(17, 0, 255);
+                text-align: center;
+                background: linear-gradient(45deg, rgb(2, 255, 107) 45%, rgb(0, 255, 98) 44%, 
+                rgb(0, 217, 255) 100%);
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color: rgb(25, 0, 37)
+            }
         </style>
         <script>
 
@@ -12,5 +21,16 @@
     <body>
         <h1>Base 2, 8, 10, 16 Conversions</h1>
         <div><img src="number-systems.png"></div>
+        <br>
+        <input type="text" id="divIdinputValue" placeholder="Input Value">
+        <input type="text" id="divIdconvertedValue" placeholder="Converted Value">
+        <br>
+        <br>
+        <select>
+            <option>Base 2 to Base 10</option>
+        </select>
+        <br>
+        <br>
+        <input type="button" value="Convert Value">
     </body>
 </html>
