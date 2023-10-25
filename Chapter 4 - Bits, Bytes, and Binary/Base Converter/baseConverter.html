@@ -10,12 +10,55 @@
                 text-align: center;
                 background: linear-gradient(45deg, rgb(2, 255, 107) 45%, rgb(0, 255, 98) 44%, 
                 rgb(0, 217, 255) 100%);
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
                 color: rgb(25, 0, 37)
             }
         </style>
         <script>
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function binToDec(binaryNumber)
+            {
+                // Split array into individual indices
+                let binaryArray = binaryNumber.split("");
+                
+                // Reverse the array, store back in the same variable
+                binaryArray = binaryArray.reverse();
 
+                // Store our final answer (decimal)
+	            let decimalAnswer = 0;
+
+                // Loop through each individual digit in the binary number
+	            for (let i = 0; i < binaryArray.length; i++)
+                {
+                    // Grab the digit at index i, convert to a number
+		            let digit = Number(binaryArray[i]);
+                    // Multipliying the digit by its place value
+                    let digitValue = digit * (2**i);
+                    // Adding the digit value to the total
+		            decimalAnswer += digitValue;
+	            }
+	            return decimalAnswer;
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function convert()
+            {
+                let inputValue = divIdinputValue.value
+                let dropdownMenu = idselectConversion.value
+                if (base2tobase10)
+
+
+                // 1. Read and store the contents of the first textbox
+                // 2. Read and store the currently selected dropdown item
+                // 3. Utilize if, and else-if statements to test what is selected
+                // 4. Call the binToDec() and feed it the contents of the first textbox, store the return value in a variable
+                // 5. Display the converted answer in the second textbox
+            }
         </script>
     </head>
     <body>
@@ -26,11 +69,11 @@
         <input type="text" id="divIdconvertedValue" placeholder="Converted Value">
         <br>
         <br>
-        <select>
-            <option>Base 2 to Base 10</option>
+        <select id="idselectConversion">
+            <option value="base2tobase10">Base 2 to Base 10</option>
         </select>
         <br>
         <br>
-        <input type="button" value="Convert Value">
+        <input type="button" value="Convert Value" onclick="convert()">
     </body>
 </html>
