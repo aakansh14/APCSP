@@ -48,9 +48,13 @@
             // Output/Return:
             function convert()
             {
-                let inputValue = divIdinputValue.value
-                let dropdownMenu = idselectConversion.value
-                if (base2tobase10)
+                let inputValue = inputIdValue.value
+                let selected = idselectConversion.value
+                
+                if (selected = "Base 2 to Base 10")
+                {
+                    convertedIdValue.value = binToDec(inputValue)
+                }
 
 
                 // 1. Read and store the contents of the first textbox
@@ -65,8 +69,8 @@
         <h1>Base 2, 8, 10, 16 Conversions</h1>
         <div><img src="number-systems.png"></div>
         <br>
-        <input type="text" id="divIdinputValue" placeholder="Input Value">
-        <input type="text" id="divIdconvertedValue" placeholder="Converted Value">
+        <input type="text" id="inputIdValue" placeholder="Input Value">
+        <input type="text" id="convertedIdValue" placeholder="Converted Value">
         <br>
         <br>
         <select id="idselectConversion">
