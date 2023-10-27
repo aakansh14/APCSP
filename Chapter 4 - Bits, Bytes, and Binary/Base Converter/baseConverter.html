@@ -46,17 +46,48 @@
             // Citation:
             // Input/Parameters:
             // Output/Return:
+            function octToDec(octalNumber)
+            {
+                // Split array into individual indices
+                let octalArray = octalNumber.split("");
+                
+                // Reverse the array, store back in the same variable
+                octalArray = octalArray.reverse();
+
+                // Store our final answer (decimal)
+	            let decimalAnswer = 0;
+
+                // Loop through each individual digit in the octal number
+	            for (let i = 0; i < octalArray.length; i++)
+                {
+                    // Grab the digit at index i, convert to a number
+		            let digit = Number(octalArray[i]);
+                    // Multipliying the digit by its place value
+                    let digitValue = digit * (8**i);
+                    // Adding the digit value to the total
+		            decimalAnswer += digitValue;
+	            }
+	            return decimalAnswer;
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
             function convert()
             {
                 let inputValue = inputIdValue.value
                 let selected = idselectConversion.value
                 
-                if (selected = "Base 2 to Base 10")
+                if (selected == "Base 2 to Base 10")
                 {
-                    convertedIdValue.value = binToDec(inputValue)
+                    let output = binToDec(inputValue)
+                    convertedIdValue.value = output
                 }
-
-
+                else if (selected == "Base 8 to Base 10")
+                {
+                    let output = octToDec(inputValue)
+                    convertedIdValue.value = output
+                }
                 // 1. Read and store the contents of the first textbox
                 // 2. Read and store the currently selected dropdown item
                 // 3. Utilize if, and else-if statements to test what is selected
@@ -74,7 +105,8 @@
         <br>
         <br>
         <select id="idselectConversion">
-            <option value="base2tobase10">Base 2 to Base 10</option>
+            <option id="base2tobase10">Base 2 to Base 10</option>
+            <option id="base8tobase10">Base 8 to Base 10</option>
         </select>
         <br>
         <br>
