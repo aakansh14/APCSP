@@ -73,26 +73,81 @@
             // Citation:
             // Input/Parameters:
             // Output/Return:
+            function hexToDec(hexNumber)
+            {
+                // Split array into individual indices
+                let hexArray = hexNumber.split("");
+                
+                // Reverse the array, store back in the same variable
+                hexArray = hexArray.reverse();
+
+                // Store our final answer (decimal)
+	            let decimalAnswer = 0;
+
+                // Loop through each individual digit in the hexadecimal number
+	            for (let i = 0; i < hexArray.length; i++)
+                {
+                    // Grab the digit at index i, convert to a number
+		            let digit = hexArray[i];
+                    // Check if the digit is a letter between A through F and applying the number value to it
+                    if (digit == "A" || digit == "a")
+                    {
+                        digit = 10;
+                    }
+                    else if (digit == "B" || digit == "b")
+                    {
+                        digit = 11;
+                    }
+                    else if (digit == "C" || digit == "c")
+                    {
+                        digit = 12;
+                    }
+                    else if (digit == "D" || digit == "d")
+                    {
+                        digit = 13;
+                    }
+                    else if (digit == "E" || digit == "e")
+                    {
+                        digit = 14;
+                    }
+                    else if (digit == "F" || digit == "f")
+                    {
+                        digit = 15;
+                    }
+                    // Else the digit is a number between 0 - 9 and apply that number value to it
+                    else 
+                    {
+                        digit = Number(digit);
+                    }
+                    // Multipliying the digit by its place value
+                    let digitValue = digit * (16**i);
+                    // Adding the digit value to the total
+		            decimalAnswer += digitValue;
+	            }
+	            return decimalAnswer;
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
             function convert()
             {
-                let inputValue = inputIdValue.value
-                let selected = idselectConversion.value
-                
+                let inputValue = idInputValue.value
+                let selected = idSelectConversion.value
+                let output = "";
                 if (selected == "Base 2 to Base 10")
                 {
-                    let output = binToDec(inputValue)
-                    convertedIdValue.value = output
+                    output = binToDec(inputValue)
                 }
                 else if (selected == "Base 8 to Base 10")
                 {
-                    let output = octToDec(inputValue)
-                    convertedIdValue.value = output
+                    output = octToDec(inputValue)
                 }
-                // 1. Read and store the contents of the first textbox
-                // 2. Read and store the currently selected dropdown item
-                // 3. Utilize if, and else-if statements to test what is selected
-                // 4. Call the binToDec() and feed it the contents of the first textbox, store the return value in a variable
-                // 5. Display the converted answer in the second textbox
+                else if (selected == "Base 16 to Base 10")
+                {
+                    output = hexToDec(inputValue)
+                }
+                idConvertedValue.value = output
             }
         </script>
     </head>
@@ -100,13 +155,14 @@
         <h1>Base 2, 8, 10, 16 Conversions</h1>
         <div><img src="number-systems.png"></div>
         <br>
-        <input type="text" id="inputIdValue" placeholder="Input Value">
-        <input type="text" id="convertedIdValue" placeholder="Converted Value">
+        <input type="text" id="idInputValue" placeholder="Input Value">
+        <input type="text" id="idConvertedValue" placeholder="Converted Value">
         <br>
         <br>
-        <select id="idselectConversion">
+        <select id="idSelectConversion">
             <option id="base2tobase10">Base 2 to Base 10</option>
             <option id="base8tobase10">Base 8 to Base 10</option>
+            <option id="base16tobase10">Base 16 to Base 10</option>
         </select>
         <br>
         <br>
