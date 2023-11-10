@@ -12,7 +12,108 @@
             }
         </style>
         <script>
+            // Description: Converts a decimal number to hexadecimal
+            // Citation: None
+            // Input/Parameters: Decimal number
+            // Output/Return: Converted hexadecimal number
+            function decToHex(decimalNumber) {
+                let hexAnswer = "";
 
+                // While loop that run until we get the value of 0
+                while (decimalNumber != 0) {
+                    // Find the remainder after dividing by 2
+                    let remainder = decimalNumber % 16;
+
+                    if (remainder == 10) {
+                        remainder = "A";
+                    }
+                    else if (remainder == 11) {
+                        remainder = "B";
+                    }
+                    else if (remainder == 12) {
+                        remainder = "C";
+                    }
+                    else if (remainder == 13) {
+                        remainder = "D";
+                    }
+                    else if (remainder == 14) {
+                        remainder = "E";
+                    }
+                    else if (remainder == 15) {
+                        remainder = "F";
+                    }
+                    else {
+                        remainder = Number(remainder);
+                    }
+                    // Add the remainder to the hexAnswer
+                    hexAnswer += remainder;
+                    // Use integer division to create a new decimalNumber
+                    decimalNumber = Math.floor(decimalNumber / 16);
+                }
+                // Reverse our hexAnswer
+                let hexArray = hexAnswer.split("");
+                hexArray.reverse();
+                hexAnswer = hexArray.join("");
+
+                // Return the final hexAnswer
+                return hexAnswer;
+            }
+            // Description:
+            // Citation: None
+            // Input/Parameters:
+            // Output/Return:
+            function getHex(red,green,blue){
+                // convert red decimal to hexadecimal
+                let redHex = decToHex(red);
+                while (redHex.length < 2){
+                    redHex = "0" + redHex;
+                }
+
+                // convert green decimal to hexadecimal
+                let greenHex = decToHex(green);
+                while (greenHex.length < 2){
+                    greenHex = "0" + greenHex;
+                }
+
+                // convert blue decimal to hexadecimal
+                let blueHex = decToHex(blue);
+                while (blueHex.length < 2){
+                    blueHex = "0" + blueHex;
+                }
+                
+                // create a string in the form of #RRGGBB
+                let hexString = "#" + redHex + greenHex + blueHex;
+
+                // reutrn the string to the user
+                return hexString;
+            }
+            // Description:
+            // Citation: None
+            // Input/Parameters:
+            // Output/Return:
+            function showResult(){
+                // reading decimals from the textboxes
+                let redDecimal = idRedValue.value;
+                let greenDecimal = idGreenValue.value;
+                let blueDecimal = idBlueValue.value;
+
+                // call the getHex function and feed it the red, green and blue values
+                let hexString = getHex(redDecimal, greenDecimal, blueDecimal)
+
+                // change background color accordingly
+                document.body.style.backgroundColor = hexString;
+
+                // create the rgb string to display "rgb(red, green, blue)"
+                let rgbString = "rgb(" + redDecimal + ", " + greenDecimal + ", " + blueDecimal + ")";
+                
+                // create an output sentence
+                let output = "";
+                output += "The conversion of " + rgbString + " to hexadecimal to eqivalent to " + hexString;
+
+                // display output
+                idDivOutput.innerHTML = output;
+
+            }
         </script>
     </head>
     <body>
@@ -26,9 +127,9 @@
         Blue Value (0-255): <input type="text" id="idBlueValue">
         <br>
         <br>
-        <input type="button" value="Convert to RGB">
+        <input type="button" value="Convert to RGB" onclick="showResult()">
         <br>
         <br>
-        <div id="">The RGB-Value of this color is rgb(255,255,255) and the hex-value of this color is #FFFFFF</div>
+        <div id="idDivOutput"></div>
     </body>
 </html>
