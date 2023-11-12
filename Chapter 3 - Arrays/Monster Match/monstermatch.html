@@ -8,8 +8,8 @@
                 padding: 15px 0;
                 border: 10px double rgb(255, 0, 0);
                 text-align: center;
-                background: linear-gradient(90deg, rgb(143, 137, 250) 0%, rgb(58, 77, 250) 44%, 
-                rgb(76, 0, 255) 100%);
+                background: linear-gradient(90deg, rgb(0, 238, 255) 0%, rgb(76, 0, 255) 100%), 
+                rgb(0, 26, 255) 44%;
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
                 color: rgb(1, 37, 0)
             }
@@ -43,10 +43,10 @@
                 
                 return Math.floor(Math.random() * (max - min + 1)) + min; 
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Takes a list of images and returns a random one
+            // Citations: None
+            // Input/Parameters: List of images
+            // Output/Return: Random image from the list and displays
             function formatImage(inputArray, index)
             {
                 let fileName = inputArray[index];
@@ -55,10 +55,10 @@
                 
                 return output;
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Displays a set of instructions when the button is clicked
+            // Citation: None
+            // Input/Parameters: The instructions
+            // Output/Return: The instructions
             function viewInstructions()
             {
                 divIdinstruct.innerHTML = "Full Instructions:" + "<br>" + 
@@ -74,19 +74,19 @@
                 "to start the next round, When a player has claimed all the " + "<br>" +
                 "other player's cards, the player wins the game."
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Displays score after every round
+            // Citation: None
+            // Input/Parameters: The length of each player's deck
+            // Output/Return: The number of cards each player has remaining
             function displayScore()
             {
                 p1CountId.innerHTML = "Cards Left: " + p1Deck.length;
                 p2CountId.innerHTML = "Cards Left: " + p2Deck.length;
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Picks random index in each player's deck, takes random image using that index and displays
+            // Citation: None
+            // Input/Parameters: List of images with unique indices
+            // Output/Return: Random image in each player's decl
             function dealNewCards()
             {
                 deckIndex1 = randomInt(0, p1Deck.length - 1);
@@ -102,10 +102,10 @@
 
                 divIdinstruct.innerHTML = "Player 1 press 'a' if matching. Player 2 press 'l' if matching"
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Starts a new game when the start new game button is clicked, resets score from previous game
+            // Citation: None
+            // Input/Parameters: A random index from the image array and pushes it into each player's deck twice
+            // Output/Return: Resets the score and deals new cards
             function newGame()
             {
                 p1Deck = []
@@ -124,11 +124,13 @@
 
                 dealNewCards();
                 displayScore();
+
+                divIdmessages.innerHTML = ""
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Displays winning message once a player steals the other player's cards
+            // Citation: None
+            // Input/Parameters: Winning message if player 1 wins and vice versa
+            // Output/Return: Displays winning message
             function winGame()
             {
                 if (p1Deck.length == 0)
@@ -141,10 +143,10 @@
                 }
                 gameState = "Game Over"
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Checks if the cards match based on the key pressed then moves a card to the other player based on who won the match
+            // Citation: None
+            // Input/Parameters: Keys such as 'a', 'l', and 'n'. Checks if the two cards displayed are the same or different. 
+            // Output/Return: A message based on who won the match, deals new cards, and changes the score.
             function checkMatch(event)
             {
                 pressKey = event.key
