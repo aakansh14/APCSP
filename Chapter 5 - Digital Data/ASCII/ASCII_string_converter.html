@@ -12,11 +12,107 @@
         }
         </style>
         <script>
+            // Image Citations: https://simple.wikipedia.org/wiki/ASCII
 
+            // Description: Converts a binary number to decimal
+            // Citation: baseConverter.html
+            // Input/Parameters: Binary number
+            // Output/Return: Converted decimal number
+            function binToDec(binaryNumber) {
+                // Split array into individual indices
+                let binaryArray = binaryNumber.split("");
+
+                // Reverse the array, store back in the same variable
+                binaryArray = binaryArray.reverse();
+
+                // Store our final answer (decimal)
+                let decimalAnswer = 0;
+
+                // Loop through each individual digit in the binary number
+                for (let i = 0; i < binaryArray.length; i++) {
+                    // Grab the digit at index i, convert to a number
+                    let digit = Number(binaryArray[i]);
+                    // Multipliying the digit by its place value
+                    let digitValue = digit * (2 ** i);
+                    // Adding the digit value to the total
+                    decimalAnswer += digitValue;
+                }
+                return decimalAnswer;
+            }
+            // Description: Converts a decimal number to binary
+            // Citation: baseConverter.html
+            // Input/Parameters: Decimal number
+            // Output/Return: Converted binary number
+            function decToBin(decimalNumber) {
+                let binaryAnswer = "";
+
+                // While loop that run until we get the value of 0
+                while (decimalNumber != 0) {
+                    // Find the remainder after dividing by 2
+                    let remainder = decimalNumber % 2;
+                    // Add the remainder to the binaryAnswer
+                    binaryAnswer += remainder;
+                    // Use integer division to create a new decimalNumber
+                    decimalNumber = Math.floor(decimalNumber / 2);
+                }
+                // Reverse our binaryAnswer
+                let binaryArray = binaryAnswer.split("");
+                binaryArray.reverse();
+                binaryAnswer = binaryArray.join("");
+
+                // Return the final binaryAnswer
+                return binaryAnswer;
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function convertToBinaryASCII(stringInput){
+                let stringArray = stringInput.split("");
+                let stringLength = stringArray.length;
+                let binaryOutput = ""
+                for (let i=0; i<stringLength; i++) {
+                    let character = i
+                    character = character.charCodeAt(0)
+                    let binaryInteger = decToBin(character)
+                    while (binaryInteger.length < 8){
+                        binaryInteger = "0" + binaryInteger;
+                    }
+                    binaryOutput += binaryInteger;
+                }
+                return binaryOutput;
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function convertToString(binaryInput){
+                let binaryArray = binaryInput.split("");
+                let arrayLength = binaryArray.length;
+                let stringOutput = ""
+                for (let i=0; i<arrayLength; i++) {
+                    let character = i
+                    character = binToDec(character)
+                    character = String.fromCharCode(character)
+                }
+            }
         </script>
     </head>
     <body>
         <h1>ASCII Converter</h1>
         <h2>Convert between binary and string representations of ASCII</h2>
+        <div><img src="ASCII_table.jpg"></div>
+        <br>
+        <textarea id="idInputValue" placeholder="Input goes here (ASCII expressed either as binary string or decimal string)"rows="10" cols="50"></textarea>
+        <br>
+        <br>
+        <select id="idSelectConversion">
+            <option>String to Binary</option>
+            <option>Binary to String</option>
+        </select>
+        <br>
+        <br>
+        <input type="button" value="Display Result">
+        <div id="idOutputValue"></div>
     </body>
 </html>
