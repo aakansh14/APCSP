@@ -63,7 +63,7 @@
                 // Return the final binaryAnswer
                 return binaryAnswer;
             }
-            // Description:
+            // Description: Takes a 
             // Citation:
             // Input/Parameters:
             // Output/Return:
@@ -72,13 +72,13 @@
                 let stringLength = stringArray.length;
                 let binaryOutput = ""
                 for (let i=0; i<stringLength; i++) {
-                    let character = i
+                    let character = stringArray[i]
                     character = character.charCodeAt(0)
                     let binaryInteger = decToBin(character)
                     while (binaryInteger.length < 8){
                         binaryInteger = "0" + binaryInteger;
                     }
-                    binaryOutput += binaryInteger;
+                    binaryOutput += binaryInteger + " "
                 }
                 return binaryOutput;
             }
@@ -87,21 +87,39 @@
             // Input/Parameters:
             // Output/Return:
             function convertToString(binaryInput){
-                let binaryArray = binaryInput.split("");
+                let binaryArray = binaryInput.split(" ");
                 let arrayLength = binaryArray.length;
                 let stringOutput = ""
                 for (let i=0; i<arrayLength; i++) {
-                    let character = i
+                    let character = binaryArray[i]
                     character = binToDec(character)
                     character = String.fromCharCode(character)
+                    stringOutput += character + ""
                 }
+                return stringOutput;
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function displayResult(){
+                let inputValue = idInputValue.value
+                let selected = idSelectConversion.value
+                let output = "";
+                if (selected == "String to Binary") {
+                    output = convertToBinaryASCII(inputValue)
+                }
+                else if (selected == "Binary to String") {
+                    output = convertToString(inputValue)
+                }
+                idOutputValue.innerHTML = output;
             }
         </script>
     </head>
     <body>
         <h1>ASCII Converter</h1>
         <h2>Convert between binary and string representations of ASCII</h2>
-        <div><img src="ASCII_table.jpg"></div>
+        <div><img src="ASCII_table.jpg" height="300"></div>
         <br>
         <textarea id="idInputValue" placeholder="Input goes here (ASCII expressed either as binary string or decimal string)"rows="10" cols="50"></textarea>
         <br>
@@ -112,7 +130,7 @@
         </select>
         <br>
         <br>
-        <input type="button" value="Display Result">
+        <input type="button" value="Display Result" onclick="displayResult()">
         <div id="idOutputValue"></div>
     </body>
 </html>
