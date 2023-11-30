@@ -9,7 +9,17 @@
             background: linear-gradient(90deg, rgb(2, 184, 17) 44%, rgb(0, 255, 255) 100%);
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             color: rgb(25, 0, 37)
-        }
+            }
+            div{
+                text-align: center;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-size: 150%;
+                background-color: #0077ff;
+                width: 75%;
+                border: 5px solid rgb(8, 0, 116);
+                padding: 25px;
+                margin: auto
+            }
         </style>
         <script>
             // Image Citations: https://simple.wikipedia.org/wiki/ASCII
@@ -63,10 +73,10 @@
                 // Return the final binaryAnswer
                 return binaryAnswer;
             }
-            // Description: Takes a 
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Takes a string and converts it to the binary equivalent
+            // Citation: None
+            // Input/Parameters: String
+            // Output/Return: Binary equivalent
             function convertToBinaryASCII(stringInput){
                 let stringArray = stringInput.split("");
                 let stringLength = stringArray.length;
@@ -82,10 +92,10 @@
                 }
                 return binaryOutput;
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Takes a binary number and converts it to the string equivalent
+            // Citation: None
+            // Input/Parameters: Binary number
+            // Output/Return: String equivalent
             function convertToString(binaryInput){
                 let binaryArray = binaryInput.split(" ");
                 let arrayLength = binaryArray.length;
@@ -98,10 +108,10 @@
                 }
                 return stringOutput;
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
+            // Description: Displays the final converted value
+            // Citation: None
+            // Input/Parameters: None
+            // Output/Return: Final converted value
             function displayResult(){
                 let inputValue = idInputValue.value
                 let selected = idSelectConversion.value
@@ -119,7 +129,7 @@
     <body>
         <h1>ASCII Converter</h1>
         <h2>Convert between binary and string representations of ASCII</h2>
-        <div><img src="ASCII_table.jpg" height="300"></div>
+        <img src="ASCII_table.jpg" height="300">
         <br>
         <textarea id="idInputValue" placeholder="Input goes here (ASCII expressed either as binary string or decimal string)"rows="10" cols="50"></textarea>
         <br>
@@ -131,6 +141,8 @@
         <br>
         <br>
         <input type="button" value="Display Result" onclick="displayResult()">
+        <br>
+        <br>
         <div id="idOutputValue"></div>
     </body>
 </html>
