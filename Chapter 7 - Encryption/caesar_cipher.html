@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Caesar Cipher Project</title>
+        <style>
+            body {
+                padding: 15px 0;
+                text-align: center;
+                background: rgb(91, 222, 255);
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                color: rgb(25, 0, 37)
+            }
+            div{
+                text-align: center;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-size: 150%;
+                background-color: #0077ff;
+                width: 75%;
+                border: 5px solid rgb(8, 0, 116);
+                padding: 25px;
+                margin: auto
+            }
+            .customEncrypt{
+                /* background/text */
+                background-color:rgb(196, 75, 75);
+                font: Times;
+                font-size: 60px;
+                color:rgb(23, 239, 192);
+
+                /* border/spacing */
+                border-style: dashed;
+                border-radius: 10px;
+                border-width: 5px;
+                border-color: rgb(65, 109, 253);
+                padding: 15px;
+
+                /* centering */
+                margin: auto;
+                width:fit-content;
+
+                /* mouse */
+                cursor: grab;
+            }
+
+            .customDecrypt{
+                /* background/text */
+                background-color:rgb(0, 255, 0);
+                font: helvetica;
+                font-size: 30px;
+                color:rgb(91, 92, 80);
+
+                /* border/spacing */
+                border-style: groove;
+                border-radius: 20px;
+                border-width: 5px;
+                border-color: rgb(232, 239, 23);
+                padding: 5px;
+
+                /* centering */
+                margin: auto;
+                width:fit-content;
+
+                /* mouse */
+                cursor: no-drop;
+            }
+
+            .customPinkRandomKey{
+                /* background/text */
+                background-color:rgb(148, 126, 0);
+                font: helvetica;
+                font-size: 30px;
+                color:rgb(35, 0, 133);
+
+                /* border/spacing */
+                border-style: groove;
+                border-radius: 20px;
+                border-width: 5px;
+                border-color: rgb(65, 0, 54);
+                padding: 5px;
+
+                /* centering */
+                margin: auto;
+                width:fit-content;
+
+                /* mouse */
+                cursor: wait;
+            }
+
+            .customInstructions{
+                /* background/text */
+                background-color:royalblue;
+                font: helvetica;
+                font-size: 40px;
+                color:rgb(255, 255, 255);
+
+                /* border/spacing */
+                border-style: groove;
+                border-radius: 20px;
+                border-width: 15px;
+                border-color: rgb(239, 59, 23);
+                padding: 15px;
+
+                /* centering */
+                margin: auto;
+                width:fit-content;
+
+                /* mouse */
+                cursor: pointer;
+            }
+        </style>
+        <script>
+        </script>
+    </head>
+    <body>
+        <h1>Caesar Cipher Project</h1>
+        <textarea id="textAreaId"rows="10" cols="50"></textarea>
+        <br>
+        <br>
+        <br>
+        Key: <select id="idSelectConversion">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+        </select>
+        <br>
+        <br>
+        <br>
+        <span class="customEncrypt">Encrypt</span>
+        <span class="customDecrypt">Decrypt</span>
+        <br><br><br><br><br>
+        <span class="customPinkRandomKey">Pick Random Key</span>
+        <span class="customInstructions">Instructions</span>
+        <br><br><br><br><br>
+        <div id="outputDiv"></div>
+    </body>
+</html>
