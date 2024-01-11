@@ -37,9 +37,6 @@
                 /* centering */
                 margin: auto;
                 width:fit-content;
-
-                /* mouse */
-                cursor: grab;
             }
 
             .customDecrypt{
@@ -59,9 +56,6 @@
                 /* centering */
                 margin: auto;
                 width:fit-content;
-
-                /* mouse */
-                cursor: no-drop;
             }
 
             .customPinkRandomKey{
@@ -81,9 +75,6 @@
                 /* centering */
                 margin: auto;
                 width:fit-content;
-
-                /* mouse */
-                cursor: wait;
             }
 
             .customInstructions{
@@ -103,12 +94,15 @@
                 /* centering */
                 margin: auto;
                 width:fit-content;
-
-                /* mouse */
-                cursor: pointer;
             }
         </style>
         <script>
+            function encrypt(){
+                let key = document.getElementById("idSelectConversion").value;
+                let text = document.getElementById("textAreaId").innerHTML;
+                text = text.toUpperCase();
+                
+            }
         </script>
     </head>
     <body>
