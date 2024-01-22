@@ -100,8 +100,18 @@
             function encrypt(){
                 let key = document.getElementById("idSelectConversion").value;
                 let text = document.getElementById("textAreaId").innerHTML;
+                key = Number(key);
                 text = text.toUpperCase();
+                let textArray = text.split("");
                 
+                for (i=0; i<textArray.length; i++){
+                    let character = textArray[i]
+                    character = character.charCodeAt(0)
+                    character = character + key
+                    character = String.fromCharCode(character)
+                    outputDiv.innerHTML = character
+                }
+                return outputDiv
             }
         </script>
     </head>
@@ -136,7 +146,7 @@
         <br>
         <br>
         <br>
-        <span class="customEncrypt">Encrypt</span>
+        <span class="customEncrypt" onclick="encrypt()">Encrypt</span>
         <span class="customDecrypt">Decrypt</span>
         <br><br><br><br><br>
         <span class="customPinkRandomKey">Pick Random Key</span>
