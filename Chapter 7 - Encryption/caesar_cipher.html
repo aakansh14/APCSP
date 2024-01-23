@@ -98,20 +98,51 @@
         </style>
         <script>
             function encrypt(){
-                let key = document.getElementById("idSelectConversion").value;
-                let text = document.getElementById("textAreaId").innerHTML;
+                let key = idSelectConversion.value;
+                let text = textAreaId.value;
                 key = Number(key);
                 text = text.toUpperCase();
                 let textArray = text.split("");
+                let output = ""
                 
                 for (i=0; i<textArray.length; i++){
                     let character = textArray[i]
                     character = character.charCodeAt(0)
                     character = character + key
+                    if (character < 65 || character > 90){
+                        character = character - key
+                    }
+                    else if (character + key > 90 || character + key < 65){
+                        character = character - 26
+                    }
                     character = String.fromCharCode(character)
-                    outputDiv.innerHTML = character
+                    output += character
                 }
-                return outputDiv
+                outputDiv.innerHTML = output
+            }
+            function decrypt(){
+                let key = idSelectConversion.value;
+                let text = textAreaId.value;
+                key = Number(key);
+                text = text.toLowerCase();
+                let textArray = text.split("");
+                let output = ""
+                
+                for (i=0; i<textArray.length; i++){
+                    let character = textArray[i]
+                    character = character.charCodeAt(0)
+                    character = character - key
+                    if (character < 65 || character > 90){
+                        character = character + key
+                    }
+                    else if (character + key > 90 || character + key < 65){
+                        character = character - 26
+                    }
+                    character = String.fromCharCode(character)
+                    output += character
+                }
+                
+                outputDiv.innerHTML = output
             }
         </script>
     </head>
@@ -147,7 +178,7 @@
         <br>
         <br>
         <span class="customEncrypt" onclick="encrypt()">Encrypt</span>
-        <span class="customDecrypt">Decrypt</span>
+        <span class="customDecrypt" onclick="decrypt()">Decrypt</span>
         <br><br><br><br><br>
         <span class="customPinkRandomKey">Pick Random Key</span>
         <span class="customInstructions">Instructions</span>
