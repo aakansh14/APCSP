@@ -132,10 +132,10 @@
                     let character = textArray[i]
                     character = character.charCodeAt(0)
                     character = character - key
-                    if (character < 65 || character > 90){
+                    if (character < 97 || character > 122){
                         character = character + key
                     }
-                    else if (character + key > 90 || character + key < 65){
+                    else if (character + key > 122 || character + key < 97){
                         character = character - 26
                     }
                     character = String.fromCharCode(character)
@@ -143,6 +143,13 @@
                 }
                 
                 outputDiv.innerHTML = output
+            }
+            function instructions(){
+                divInstruct.innerHTML = "Enter a plaintext, select an encryption key, and then press 'Encrypt' to view the ciphertext." + "<br>" +
+                "Or you may enter a ciphertext, select a decryption key, and then press 'Decrypt' to view the plaintext"
+            }
+            function noInstructions(){
+                divInstruct.innerHTML = ""
             }
         </script>
     </head>
@@ -173,6 +180,11 @@
             <option>18</option>
             <option>19</option>
             <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
         </select>
         <br>
         <br>
@@ -181,7 +193,7 @@
         <span class="customDecrypt" onclick="decrypt()">Decrypt</span>
         <br><br><br><br><br>
         <span class="customPinkRandomKey">Pick Random Key</span>
-        <span class="customInstructions">Instructions</span>
+        <span class="customInstructions" id="divInstruct" >Instructions</span>
         <br><br><br><br><br>
         <div id="outputDiv"></div>
     </body>
