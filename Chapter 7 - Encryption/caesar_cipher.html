@@ -105,16 +105,18 @@
                 let textArray = text.split("");
                 let output = ""
                 
-                for (i=0; i<textArray.length; i++){
+                for (let i=0; i<textArray.length; i++){
                     let character = textArray[i]
                     character = character.charCodeAt(0)
-                    character = character + key
+                    console.log(character)
                     if (character < 65 || character > 90){
                         character = character - key
                     }
                     else if (character + key > 90 || character + key < 65){
                         character = character - 26
                     }
+                    character = character + key
+                    console.log(character)
                     character = String.fromCharCode(character)
                     output += character
                 }
@@ -128,16 +130,16 @@
                 let textArray = text.split("");
                 let output = ""
                 
-                for (i=0; i<textArray.length; i++){
+                for (let i=0; i<textArray.length; i++){
                     let character = textArray[i]
                     character = character.charCodeAt(0)
-                    character = character - key
                     if (character < 97 || character > 122){
                         character = character + key
                     }
-                    else if (character + key > 122 || character + key < 97){
-                        character = character - 26
+                    else if (character - key > 122 || character - key < 97){
+                        character = character + 26
                     }
+                    character = character - key
                     character = String.fromCharCode(character)
                     output += character
                 }
@@ -193,8 +195,9 @@
         <span class="customDecrypt" onclick="decrypt()">Decrypt</span>
         <br><br><br><br><br>
         <span class="customPinkRandomKey">Pick Random Key</span>
-        <span class="customInstructions" id="divInstruct" >Instructions</span>
+        <span class="customInstructions" onclick="instructions()">Instructions</span>
         <br><br><br><br><br>
         <div id="outputDiv"></div>
+        <div id="divInstruct"></div>
     </body>
 </html>
