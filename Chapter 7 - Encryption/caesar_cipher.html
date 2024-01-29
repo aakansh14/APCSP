@@ -10,7 +10,7 @@
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
                 color: rgb(25, 0, 37)
             }
-            div{
+            .div1 {
                 text-align: center;
                 font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
                 font-size: 150%;
@@ -97,6 +97,10 @@
             }
         </style>
         <script>
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function encrypt(){
                 let key = idSelectConversion.value;
                 let text = textAreaId.value;
@@ -121,7 +125,12 @@
                     output += character
                 }
                 outputDiv.innerHTML = output
+                outputDiv.style.background = "red";
             }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function decrypt(){
                 let key = idSelectConversion.value;
                 let text = textAreaId.value;
@@ -145,11 +154,37 @@
                 }
                 
                 outputDiv.innerHTML = output
+                outputDiv.style.background = "green";
+
             }
+            // Description: Return a random integer, n, such that min <= n <= max
+            // Citation: Mozilla Foundation
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+            // Input/Parameters: Two floating point numbers, min and max
+            // Output/Return: Returns a random integer between min and max
+            function randomInt(min, max) 
+            {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                
+                return Math.floor(Math.random() * (max - min + 1)) + min; 
+            }
+            function pickRanKey(){
+                ranKey = randomInt(1,25)
+                idSelectConversion.value = ranKey
+            }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function instructions(){
                 divInstruct.innerHTML = "Enter a plaintext, select an encryption key, and then press 'Encrypt' to view the ciphertext." + "<br>" +
                 "Or you may enter a ciphertext, select a decryption key, and then press 'Decrypt' to view the plaintext"
             }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
             function noInstructions(){
                 divInstruct.innerHTML = ""
             }
@@ -194,10 +229,10 @@
         <span class="customEncrypt" onclick="encrypt()">Encrypt</span>
         <span class="customDecrypt" onclick="decrypt()">Decrypt</span>
         <br><br><br><br><br>
-        <span class="customPinkRandomKey">Pick Random Key</span>
-        <span class="customInstructions" onclick="instructions()">Instructions</span>
+        <span class="customPinkRandomKey" onclick="pickRanKey()">Pick Random Key</span>
+        <span class="customInstructions" onmouseover="instructions()" onmouseout="noInstructions()">Instructions</span>
         <br><br><br><br><br>
-        <div id="outputDiv"></div>
+        <div class="div1" id="outputDiv"></div>
         <div id="divInstruct"></div>
     </body>
 </html>
