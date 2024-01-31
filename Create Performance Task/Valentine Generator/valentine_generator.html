@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Custom Valentine Generator</title>
+        <style>
+            body {
+                padding: 15px 0;
+                text-align: center;
+                background: rgb(255, 142, 198);
+                font-family:cursive;
+                border: 10px double rgb(255, 0, 85);
+                color: rgb(221, 0, 0)
+            }
+            p {
+                text-align: center;
+                font-family:'Times New Roman', Times, serif;
+                color: rgb(0, 0, 0)
+            }
+            .customContainer{
+                /* background/text */
+                background-color:rgb(255, 0, 0);
+                font:initial;
+                font-size: 60px;
+                color:rgb(255, 255, 255);
+
+                /* border/spacing */
+                border-style:ridge;
+                border-radius: 10px;
+                border-width: 10px;
+                border-color: rgb(255, 152, 152);
+                padding: 15px;
+
+                /* centering */
+                margin: auto;
+                width:fit-content;
+            }
+        </style>
+        <script>
+            let customName = ""
+            let customList = []
+            let randomAdjectives = ["nice, funny, sweet, kind, thoughtful, jolly, exceptional, smart, emphatic, fun, hilarious, and cool"]
+            
+            // Description: Return a random integer, n, such that min <= n <= max
+            // Citation: Mozilla Foundation
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+            // Input/Parameters: Two floating point numbers, min and max
+            // Output/Return: Returns a random integer between min and max
+            function randomInt(min, max) 
+            {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                
+                return Math.floor(Math.random() * (max - min + 1)) + min; 
+            }
+            function generateRandomAdjectiveList()
+            {
+
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Custom Valentine Generator</h1>
+        <img src="valentine.jpg" height="200">
+        <p>Use the dropdown menu to select which Valentine you'd like to generate.</p>
+        <p>Suzy always gets a Valentine with 4 randon adjectives, Sanjay always gets a <br>
+            Valentine with 2 random adjectives, and Nick alwats gets a Valentine with 8 <br>
+            random adjectives. You can also generate your own custom Valentine to a <br>
+            friend of your choice. If you use more than 8 adjectives, your friend will be <br>
+            classified as your BEST friend, and one of their adjectives will be replaced <br>
+            with emoji hearts!</p>
+            <select>
+                <option>Suzy</option>
+                <option>Sanjay</option>
+                <option>Nick</option>
+                <option>Custom</option>
+            </select>
+            <br>
+            <br>
+            <br>
+        <span class="customContainer" id="idButtonContainer">Create Valentine</span>
+        <div id="idDivLetter"></div>
+        <br>
+    </body>
+</html>
