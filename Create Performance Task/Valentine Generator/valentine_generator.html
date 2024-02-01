@@ -36,6 +36,7 @@
             }
         </style>
         <script>
+            // Image Citation: https://www.goodhousekeeping.com/holidays/valentines-day-ideas/a30273635/what-to-write-in-valentines-day-card/
             let customName = ""
             let customList = []
             let randomAdjectives = ["nice, funny, sweet, kind, thoughtful, jolly, exceptional, smart, emphatic, fun, hilarious, and cool"]
@@ -52,9 +53,48 @@
                 
                 return Math.floor(Math.random() * (max - min + 1)) + min; 
             }
-            function generateRandomAdjectiveList()
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function generateRanAdjList(num, inputList)
             {
+                inputList
+                let tempAdjectives = []
+                while (tempAdjectives.length < inputList.length)
+                {
+                    let ranNum = randomInt(0, inputList.length)
+                    if (!tempAdjectives.includes(ranNum)){
+                        tempAdjectives.push(ranNum)
+                    }
+                }
+                return tempAdjectives
 
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function formatList(adjectivesArray){
+                adjectivesArray
+                let output = ""
+                for (i=0; i<adjectivesArray.length; i++){
+                    output += adjectivesArray[i]
+                }
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function composeValentine(){
+
+            }
+            // Description:
+            // Citation:
+            // Input/Parameters:
+            // Output/Return:
+            function getValentine(){
+                
             }
         </script>
     </head>
