@@ -59,42 +59,55 @@
             // Output/Return:
             function generateRanAdjList(num, inputList)
             {
-                inputList
                 let tempAdjectives = []
-                while (tempAdjectives.length < inputList.length)
+                while (tempAdjectives.length < num)
                 {
-                    let ranNum = randomInt(0, inputList.length)
+                    let ranIndex = randomInt(0, inputList.length - 1 )
+                    let ranNum = inputList[ranIndex]
                     if (!tempAdjectives.includes(ranNum)){
                         tempAdjectives.push(ranNum)
                     }
                 }
                 return tempAdjectives
-
             }
             // Description:
             // Citation:
             // Input/Parameters:
             // Output/Return:
-            function formatList(adjectivesArray){
-                adjectivesArray
+            function formatList(inputList){
                 let output = ""
-                for (i=0; i<adjectivesArray.length; i++){
-                    output += adjectivesArray[i]
+                for (i=0; i<inputList.length; i++){
+                    output += inputList[i]
                 }
+                return output
             }
             // Description:
             // Citation:
             // Input/Parameters:
             // Output/Return:
-            function composeValentine(){
-
+            function composeValentine(inputName, inputList){
+                let friendShip = ""
+                if (inputList > 5){
+                    friendShip = "best"
+                    let randomIndex = randomInt(0, inputList.length - 1)
+                    inputList.splice(randomIndex)
+                    inputList.push("❤️❤️❤️")
+                }
+                let valentine = "Dear" + inputName + "Happy Valetine's Day!" + "<br>" + 
+                "Here are a list of qualities that represent you" + formatList(inputList) + "<br>" +
+                "You are my " + friendShip + "friend." + "<br>" +
+                "From your friend, Aakansh"
+                return valentine
             }
             // Description:
             // Citation:
             // Input/Parameters:
             // Output/Return:
             function getValentine(){
-                
+                let names = nameId.value
+                if (names == Suzy){
+                    
+                }
             }
         </script>
     </head>
@@ -108,7 +121,7 @@
             friend of your choice. If you use more than 8 adjectives, your friend will be <br>
             classified as your BEST friend, and one of their adjectives will be replaced <br>
             with emoji hearts!</p>
-            <select>
+            <select id="nameId">
                 <option>Suzy</option>
                 <option>Sanjay</option>
                 <option>Nick</option>
