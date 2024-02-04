@@ -106,7 +106,16 @@
             function getValentine(){
                 let names = nameId.value
                 if (names == Suzy){
-                    
+                    let list = generateRanAdjList(4, randomAdjectives)
+                    idDivLetter.innerHTML = list + "<br>" + composeValentine("Suzy", randomAdjectives)
+                }
+                else if (names == Sanjay){
+                    let list = generateRanAdjList(2, randomAdjectives)
+                    idDivLetter.innerHTML = list + "<br>" + composeValentine("Sanjay", randomAdjectives)
+                }
+                else if (names == Nick){
+                    let list = generateRanAdjList(8, randomAdjectives)
+                    idDivLetter.innerHTML = list + "<br>" + composeValentine("Nick", randomAdjectives)
                 }
             }
         </script>
@@ -130,7 +139,7 @@
             <br>
             <br>
             <br>
-        <span class="customContainer" id="idButtonContainer">Create Valentine</span>
+        <span class="customContainer" id="idButtonContainer" onclick="getValentine()">Create Valentine</span>
         <div id="idDivLetter"></div>
         <br>
     </body>
