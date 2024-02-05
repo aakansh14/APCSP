@@ -16,24 +16,6 @@
                 font-family:'Times New Roman', Times, serif;
                 color: rgb(0, 0, 0)
             }
-            .customContainer{
-                /* background/text */
-                background-color:rgb(255, 0, 0);
-                font:initial;
-                font-size: 60px;
-                color:rgb(255, 255, 255);
-
-                /* border/spacing */
-                border-style:ridge;
-                border-radius: 10px;
-                border-width: 10px;
-                border-color: rgb(255, 152, 152);
-                padding: 15px;
-
-                /* centering */
-                margin: auto;
-                width:fit-content;
-            }
         </style>
         <script>
             // Image Citation: https://www.goodhousekeeping.com/holidays/valentines-day-ideas/a30273635/what-to-write-in-valentines-day-card/
@@ -57,18 +39,18 @@
             // Citation:
             // Input/Parameters:
             // Output/Return:
+            /**
             function generateRanAdjList(num, inputList)
             {
-                let tempAdjectives = []
-                while (tempAdjectives.length < num)
-                {
+                let tempAdjectives = [];
+                while (tempAdjectives.length < num){
                     let ranIndex = randomInt(0, inputList.length - 1 )
-                    let ranNum = inputList[ranIndex]
-                    if (!tempAdjectives.includes(ranNum)){
-                        tempAdjectives.push(ranNum)
+                    if (!tempAdjectives.includes(ranIndex)){
+                        tempAdjectives.push(ranIndex)
                     }
                 }
-                return tempAdjectives
+                return tempAdjectives;
+                **/
             }
             // Description:
             // Citation:
@@ -138,7 +120,7 @@
             <br>
             <br>
             <br>
-        <div id="idButtonContainer"><input class="customContainer" type="button" value="Create Valentine" onclick="getValentine()"></div>
+        <div id="idButtonContainer"><input type="button" value="Create Valentine" onClick="getValentine()"></div>
         <div id="idDivLetter"></div>
         <br>
     </body>
