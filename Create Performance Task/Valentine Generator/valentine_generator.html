@@ -87,31 +87,18 @@
             // Output/Return:
             function getValentine(){
                 let names = nameId.value
-<<<<<<< HEAD
-                if (names == Suzy){
-                    let list = generateRanAdjList(4, randomAdjectives)
-                    idDivLetter.innerHTML = list + "<br>" + composeValentine("Suzy", randomAdjectives)
-                }
-                else if (names == Sanjay){
-                    let list = generateRanAdjList(2, randomAdjectives)
-                    idDivLetter.innerHTML = list + "<br>" + composeValentine("Sanjay", randomAdjectives)
-                }
-                else if (names == Nick){1
-                    let list = generateRanAdjList(8, randomAdjectives)
-                    idDivLetter.innerHTML = list + "<br>" + composeValentine("Nick", randomAdjectives)
-=======
                 let output = ""
-                if (names == "Suzy" ){
-                    output = generateRanAdjList(4, randomAdjectives) + composeValentine("Suzy", randomAdjectives)
->>>>>>> 62b56eb0efc990afbceb1b53a2372cc50a31ae1d
+                if (names == "Suzy"){
+                    output = generateRanAdjList(4, randomAdjectives)
+                    idDivLetter.innerHTML = output + "<br>" + composeValentine("Suzy", randomAdjectives)
                 }
-                else if (names == "Sanjay" ){
-                    output = generateRanAdjList(2, randomAdjectives) + composeValentine("Sanjay", randomAdjectives)
+                else if (names == "Sanjay"){
+                    output = generateRanAdjList(2, randomAdjectives)
+                    idDivLetter.innerHTML = output + "<br>" + composeValentine("Sanjay", randomAdjectives)
                 }
-                else if (names == "Nick" ){
-                    output = generateRanAdjList(8, randomAdjectives) + composeValentine("Nick", randomAdjectives)
-                }
-                idDivLetter.innerHTML = output
+                else if (names == "Nick"){1
+                    output = generateRanAdjList(8, randomAdjectives)
+                    idDivLetter.innerHTML = output + "<br>" + composeValentine("Nick", randomAdjectives)
             }
         </script>
     </head>
@@ -134,11 +121,7 @@
             <br>
             <br>
             <br>
-<<<<<<< HEAD
-        <span class="customContainer" id="idButtonContainer" onclick="getValentine()">Create Valentine</span>
-=======
         <div id="idButtonContainer"><input type="button" value="Create Valentine" onClick="getValentine()"></div>
->>>>>>> 62b56eb0efc990afbceb1b53a2372cc50a31ae1d
         <div id="idDivLetter"></div>
         <br>
     </body>
