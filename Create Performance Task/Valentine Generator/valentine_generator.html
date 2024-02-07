@@ -1,128 +1,136 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Custom Valentine Generator</title>
-        <style>
-            body {
-                padding: 15px 0;
-                text-align: center;
-                background: rgb(255, 142, 198);
-                font-family:cursive;
-                border: 10px double rgb(255, 0, 85);
-                color: rgb(221, 0, 0)
+
+<head>
+    <title>Custom Valentine Generator</title>
+    <style>
+        body {
+            padding: 15px 0;
+            text-align: center;
+            background: rgb(255, 142, 198);
+            font-family: cursive;
+            border: 10px double rgb(255, 0, 85);
+            color: rgb(221, 0, 0)
+        }
+
+        p {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            color: rgb(0, 0, 0)
+        }
+    </style>
+    <script>
+        // Image Citation: https://www.goodhousekeeping.com/holidays/valentines-day-ideas/a30273635/what-to-write-in-valentines-day-card/
+        let customName = ""
+        let customList = []
+        let randomAdjectives = ["nice, funny, sweet, kind, thoughtful, jolly, exceptional, smart, emphatic, fun, hilarious, and cool"]
+
+        // Description: Return a random integer, n, such that min <= n <= max
+        // Citation: Mozilla Foundation
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+        // Input/Parameters: Two floating point numbers, min and max
+        // Output/Return: Returns a random integer between min and max
+        function randomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function generateRanAdjList(num, inputList) {
+            let tempAdjectives = [];
+            let adjective = ""
+            while (tempAdjectives.length < num) {
+                let ranIndex = randomInt(0, inputList.length - 1)
+                adjective = inputList[ranIndex]
+                if (!tempAdjectives.includes(adjective)) {
+                    tempAdjectives.push(adjective)
+                }
             }
-            p {
-                text-align: center;
-                font-family:'Times New Roman', Times, serif;
-                color: rgb(0, 0, 0)
-            }
-        </style>
-        <script>
-            // Image Citation: https://www.goodhousekeeping.com/holidays/valentines-day-ideas/a30273635/what-to-write-in-valentines-day-card/
-            let customName = ""
-            let customList = []
-            let randomAdjectives = ["nice, funny, sweet, kind, thoughtful, jolly, exceptional, smart, emphatic, fun, hilarious, and cool"]
+            return tempAdjectives;
             
-            // Description: Return a random integer, n, such that min <= n <= max
-            // Citation: Mozilla Foundation
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-            // Input/Parameters: Two floating point numbers, min and max
-            // Output/Return: Returns a random integer between min and max
-            function randomInt(min, max) 
-            {
-                min = Math.ceil(min);
-                max = Math.floor(max);
-                
-                return Math.floor(Math.random() * (max - min + 1)) + min; 
+        }
+
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function formatList(inputList) {
+            let output = ""
+            for (i = 0; i < inputList.length; i++) {
+                output += inputList[i]
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
-            /**
-            function generateRanAdjList(num, inputList)
-            {
-                let tempAdjectives = [];
-                while (tempAdjectives.length < num){
-                    let ranIndex = randomInt(0, inputList.length - 1 )
-                    if (!tempAdjectives.includes(ranIndex)){
-                        tempAdjectives.push(ranIndex)
-                    }
-                }
-                return tempAdjectives;
-                **/
+            return output
+        }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function composeValentine(inputName, inputList) {
+            let friendShip = ""
+            if (inputList > 5) {
+                friendShip = "best"
+                let randomIndex = randomInt(0, inputList.length - 1)
+                inputList.splice(randomIndex)
+                inputList.push("❤️❤️❤️")
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
-            function formatList(inputList){
-                let output = ""
-                for (i=0; i<inputList.length; i++){
-                    output += inputList[i]
-                }
-                return output
-            }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
-            function composeValentine(inputName, inputList){
-                let friendShip = ""
-                if (inputList > 5){
-                    friendShip = "best"
-                    let randomIndex = randomInt(0, inputList.length - 1)
-                    inputList.splice(randomIndex)
-                    inputList.push("❤️❤️❤️")
-                }
-                let valentine = "Dear" + inputName + "Happy Valetine's Day!" + "<br>" + 
+            let valentine = "Dear" + inputName + "Happy Valetine's Day!" + "<br>" +
                 "Here are a list of qualities that represent you" + formatList(inputList) + "<br>" +
                 "You are my " + friendShip + "friend." + "<br>" +
                 "From your friend, Aakansh"
-                return valentine
+            return valentine
+        }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function getValentine() {
+            let names = nameId.value
+            let list = []
+            let output = ""
+            if (names == "Suzy") {
+                list += generateRanAdjList(4, randomAdjectives)
+                output += "<br>" + composeValentine("Suzy", list)
             }
-            // Description:
-            // Citation:
-            // Input/Parameters:
-            // Output/Return:
-            function getValentine(){
-                let names = nameId.value
-                let output = ""
-                if (names == "Suzy"){
-                    output = generateRanAdjList(4, randomAdjectives)
-                    idDivLetter.innerHTML = output + "<br>" + composeValentine("Suzy", randomAdjectives)
-                }
-                else if (names == "Sanjay"){
-                    output = generateRanAdjList(2, randomAdjectives)
-                    idDivLetter.innerHTML = output + "<br>" + composeValentine("Sanjay", randomAdjectives)
-                }
-                else if (names == "Nick"){1
-                    output = generateRanAdjList(8, randomAdjectives)
-                    idDivLetter.innerHTML = output + "<br>" + composeValentine("Nick", randomAdjectives)
+            else if (names == "Sanjay") {
+                list += generateRanAdjList(2, randomAdjectives)
+                output += "<br>" + composeValentine("Sanjay", list)
             }
-        </script>
-    </head>
-    <body>
-        <h1>Custom Valentine Generator</h1>
-        <img src="valentine.jpg" height="200">
-        <p>Use the dropdown menu to select which Valentine you'd like to generate.</p>
-        <p>Suzy always gets a Valentine with 4 randon adjectives, Sanjay always gets a <br>
-            Valentine with 2 random adjectives, and Nick alwats gets a Valentine with 8 <br>
-            random adjectives. You can also generate your own custom Valentine to a <br>
-            friend of your choice. If you use more than 8 adjectives, your friend will be <br>
-            classified as your BEST friend, and one of their adjectives will be replaced <br>
-            with emoji hearts!</p>
-            <select id="nameId">
-                <option>Suzy</option>
-                <option>Sanjay</option>
-                <option>Nick</option>
-                <option>Custom</option>
-            </select>
-            <br>
-            <br>
-            <br>
-        <div id="idButtonContainer"><input type="button" value="Create Valentine" onClick="getValentine()"></div>
-        <div id="idDivLetter"></div>
-        <br>
-    </body>
+            else if (names == "Nick") {
+                list = generateRanAdjList(8, randomAdjectives)
+                output += "<br>" + composeValentine("Nick", list)
+            }
+            idDivLetter.innerHTML = output
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Custom Valentine Generator</h1>
+    <img src="valentine.jpg" height="200">
+    <p>Use the dropdown menu to select which Valentine you'd like to generate.</p>
+    <p>Suzy always gets a Valentine with 4 randon adjectives, Sanjay always gets a <br>
+        Valentine with 2 random adjectives, and Nick alwats gets a Valentine with 8 <br>
+        random adjectives. You can also generate your own custom Valentine to a <br>
+        friend of your choice. If you use more than 8 adjectives, your friend will be <br>
+        classified as your BEST friend, and one of their adjectives will be replaced <br>
+        with emoji hearts!</p>
+    <select id="nameId">
+        <option>Suzy</option>
+        <option>Sanjay</option>
+        <option>Nick</option>
+        <option>Custom</option>
+    </select>
+    <br>
+    <br>
+    <br>
+    <div id="idButtonContainer"><input type="button" value="Create Valentine" onClick="getValentine()"></div>
+    <div id="idDivLetter"></div>
+    <br>
+</body>
+
 </html>
