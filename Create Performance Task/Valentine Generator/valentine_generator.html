@@ -23,7 +23,7 @@
         // Image Citation: https://www.goodhousekeeping.com/holidays/valentines-day-ideas/a30273635/what-to-write-in-valentines-day-card/
         let customName = ""
         let customList = []
-        let randomAdjectives = ["nice, funny, sweet, kind, thoughtful, jolly, exceptional, smart, emphatic, fun, hilarious, and cool"]
+        let randomAdjectives = ["nice", "funny", "sweet", "kind", "thoughtful", "jolly", "exceptional", "smart", "emphatic", "fun", "hilarious", "cool"]
 
         // Description: Return a random integer, n, such that min <= n <= max
         // Citation: Mozilla Foundation
@@ -37,74 +37,122 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Takes set of random adjectives from the list and gives a certain number of them
+        // Citation: None
+        // Input/Parameters: Number of adjectives and list of the adjectives
+        // Output/Return: New list with a certain number
         function generateRanAdjList(num, inputList) {
             let tempAdjectives = [];
-            let adjective = ""
+
             while (tempAdjectives.length < num) {
                 let ranIndex = randomInt(0, inputList.length - 1)
-                adjective = inputList[ranIndex]
+                let adjective = inputList[ranIndex]
                 if (!tempAdjectives.includes(adjective)) {
                     tempAdjectives.push(adjective)
                 }
             }
             return tempAdjectives;
-            
         }
 
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Takes a list and formats it accordingly
+        // Citation: None
+        // Input/Parameters: List of adjectives
+        // Output/Return: Formatted version of list with spaces
         function formatList(inputList) {
             let output = ""
             for (i = 0; i < inputList.length; i++) {
                 output += inputList[i]
+                if (i < inputList.length - 1) {
+                    output += "<br>"
+                }
+
             }
             return output
+            console.log(output)
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
-        function composeValentine(inputName, inputList) {
+        // Description: Fully composes the valentine letter
+        // Citation: None
+        // Input/Parameters: Name and list of adjectives
+        // Output/Return: A fully compose letter toward a person with adjectives describing them
+        function composeValentine(inputName, array) {
             let friendShip = ""
-            if (inputList > 5) {
-                friendShip = "best"
-                let randomIndex = randomInt(0, inputList.length - 1)
-                inputList.splice(randomIndex)
-                inputList.push("❤️❤️❤️")
+            if (array.length > 5) {
+                friendShip = "best";
+                let randomIndex = randomInt(0, array.length - 1)
+                array[randomIndex] = "❤️❤️❤️"
             }
-            let valentine = "Dear" + inputName + "Happy Valetine's Day!" + "<br>" +
-                "Here are a list of qualities that represent you" + formatList(inputList) + "<br>" +
-                "You are my " + friendShip + "friend." + "<br>" +
+            else {
+                friendShip = "nice"
+            }
+            let valentine = "Dear " + inputName + "," + "<br>" + "Happy Valetine's Day!" + "<br>" +
+                "Here are a list of qualities that represent you" + "<br>" + formatList(array) + "<br>" +
+                "You are my " + friendShip + " friend." + "<br>" +
                 "From your friend, Aakansh"
             return valentine
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Displays certain message based on option picked
+        // Citation: None
+        // Input/Parameters: Name
+        // Output/Return: A composed message
         function getValentine() {
-            let names = nameId.value
+            let names = nameInputId.value
             let list = []
             let output = ""
             if (names == "Suzy") {
-                list += generateRanAdjList(4, randomAdjectives)
+                list = generateRanAdjList(4, randomAdjectives)
                 output += "<br>" + composeValentine("Suzy", list)
             }
             else if (names == "Sanjay") {
-                list += generateRanAdjList(2, randomAdjectives)
+                list = generateRanAdjList(2, randomAdjectives)
                 output += "<br>" + composeValentine("Sanjay", list)
             }
             else if (names == "Nick") {
                 list = generateRanAdjList(8, randomAdjectives)
                 output += "<br>" + composeValentine("Nick", list)
             }
+            else if (names == "Custom") {
+                list = generateRanAdjList(customList.length, customList)
+                output += "<br>" + composeValentine(customName, customList)
+            }
             idDivLetter.innerHTML = output
+        }
+        // Description: Saves a custom name given by the user
+        // Citation: None
+        // Input/Parameters: Custom Name
+        // Output/Return: Custom Name
+        function saveName() {
+            customName = idName.value
+            idCustomNameContainer.innerHTML = customName
+        }
+        // Description: Saves custom adjectives given by the user
+        // Citation: None
+        // Input/Parameters: Set of adjectives 
+        // Output/Return: Custom set of adjectives
+        function saveAdjective() {
+            let textBox = idAdjective.value
+            customList.push(textBox)
+            let formattedList = formatList(customList)
+            idCustomAdjectiveContainer.innerHTML = formattedList
+        }
+        // Description: Displays buttons and textboxs to type custom information
+        // Citation: None
+        // Input/Parameters: Custom Name and adjectives
+        // Output/Return: Fully composed message including those names and adjectives
+        function toggleCustom() {
+            idDivCustomInputs.innerHTML = ""
+            let everyCustom = "<input type='textbox' id='idName' placeholder='Enter your name'>";
+            everyCustom += "<input type='button' value='Save Name' id='idCustomNameButton' onclick='saveName()'>" + "<br>" + "Custom Name: ";
+            everyCustom += "<span id='idCustomNameContainer'></span>" + "<br>";
+            everyCustom += "<input type='textbox' id='idAdjective' placeholder='Enter adjectives'>";
+            everyCustom += "<input type='button' value='Save Item' id='idCustomItemButton' onclick='saveAdjective()'>" + "<br>" + "Custom Adjectives: ";
+            everyCustom += "<span id='idCustomAdjectiveContainer'></span>";
+
+            if (nameInputId.value == "Custom") {
+                idDivCustomInputs.innerHTML = everyCustom
+            }
+            else {
+                idDivCustomInputs.innerHTML = ""
+            }
         }
     </script>
 </head>
@@ -119,7 +167,7 @@
         friend of your choice. If you use more than 8 adjectives, your friend will be <br>
         classified as your BEST friend, and one of their adjectives will be replaced <br>
         with emoji hearts!</p>
-    <select id="nameId">
+    <select onChange="toggleCustom()" id="nameInputId">
         <option>Suzy</option>
         <option>Sanjay</option>
         <option>Nick</option>
@@ -128,6 +176,7 @@
     <br>
     <br>
     <br>
+    <div id="idDivCustomInputs"></div>
     <div id="idButtonContainer"><input type="button" value="Create Valentine" onClick="getValentine()"></div>
     <div id="idDivLetter"></div>
     <br>
