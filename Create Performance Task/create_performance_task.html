@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PF Debate Timer</title>
+    <style>
+        body {
+            padding: 15px 0;
+            border: 10px double rgb(25, 0, 255);
+            text-align: center;
+            background: rgb(0, 195, 255);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: rgb(1, 37, 0)
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function chooseSide(){
+            selected1 = argueTeam1.value
+            selected2 = argueTeam1.value
+            if (selected1 = "Con"){
+                team1Id.innerHTML = "Con"
+            }
+            else{
+                team1Id.innerHTML = "Pro"
+            }
+            if (selected2 = "Con"){
+                team2Id.innerHTML = "Con"
+            }
+            else{
+                team2Id.innerHTML = "Pro"
+            }
+        }
+            // Requirments:
+            // Instructions for input from one of the following:
+                // the user (including user actions that trigger events)
+                // a device
+                // an online data stream
+                // a file
+            // A list
+            // At least one procedure that contributes to the program’s intended purpose, where you have defined:
+                // the procedure’s name
+                // the return type (if necessary)
+                // one or more parameters
+            // An algorithm that includes sequencing, selection, and iteration that is in the body of the selected procedure
+            // Calls to your student-developed procedure
+            // Instructions for output (tactile, audible, visual, or textual) based on input and program functionality
+    </script>
+</head>
+
+<body>
+    <h1>PF Debate Timer</h1>
+    <table>
+        <tr>
+            <th><span id="team1Id">Team 1</span></th>
+            <th><span id="team2Id">Team 2</span></th>
+        </tr>
+        <tr>
+            <th><select id="argueTeam1">
+                    <option>Con</option>
+                    <option>Pro</option>
+                </select>
+                <br>
+                <select id="sideTeam1">
+                    <option>Speaking first</option>
+                    <option>Speaking second</option>
+                </select></th>
+            <br>
+            <th><select id="argueTeam2">
+                <option>Con</option>
+                <option>Pro</option>
+            </select>
+            <br>
+            <select id="sideTeam2">
+                <option>Speaking first</option>
+                <option>Speaking second</option>
+            </select></th>
+        </tr>
+    </table>
+    <input type="button" value="Choose Sides" onclick="chooseSide()">
+</body>
+
+</html>
