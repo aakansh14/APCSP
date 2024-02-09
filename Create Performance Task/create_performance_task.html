@@ -19,25 +19,48 @@
         }
     </style>
     <script>
+        let speechList = []
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function instructions(){
+            idDivInstructions.innerHTML = "This is a PF Debate Timer to assist you in your debate rounds. First Choose Sides and then the constructive speech timer will appear. Press Next to move on to the next speech, all speech times will be displayed at the end"
+        }
         // Description:
         // Citation:
         // Input/Parameters:
         // Output/Return:
         function chooseSide(){
-            selected1 = argueTeam1.value
-            selected2 = argueTeam1.value
-            if (selected1 = "Con"){
+            let selected1 = argueTeam1.value
+            let selected2 = argueTeam2.value
+            if (selected1 == "Con"){
                 team1Id.innerHTML = "Con"
             }
-            else{
+            else if (selected1 == "Pro"){
                 team1Id.innerHTML = "Pro"
             }
-            if (selected2 = "Con"){
+            
+            if (selected2 == "Con"){
                 team2Id.innerHTML = "Con"
             }
-            else{
+            else if(selected2 == "Pro"){
                 team2Id.innerHTML = "Pro"
             }
+        }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function speeches(){
+            chooseSide()
+            idDivSpeeches.innerHTML = ""
+            let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer'>";
+            everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+            everySpeech += "<input type='button' value='Reset' id='idResetTimer'>";
+
+            
+            idDivSpeeches.innerHTML = everySpeech
         }
             // Requirments:
             // Instructions for input from one of the following:
@@ -58,6 +81,7 @@
 
 <body>
     <h1>PF Debate Timer</h1>
+    <div id="idDivInstructions"></div>
     <table>
         <tr>
             <th><span id="team1Id">Team 1</span></th>
@@ -68,24 +92,17 @@
                     <option>Con</option>
                     <option>Pro</option>
                 </select>
-                <br>
-                <select id="sideTeam1">
-                    <option>Speaking first</option>
-                    <option>Speaking second</option>
-                </select></th>
+            </th>
             <br>
             <th><select id="argueTeam2">
                 <option>Con</option>
                 <option>Pro</option>
             </select>
-            <br>
-            <select id="sideTeam2">
-                <option>Speaking first</option>
-                <option>Speaking second</option>
-            </select></th>
+            </th>
         </tr>
     </table>
-    <input type="button" value="Choose Sides" onclick="chooseSide()">
+    <input type="button" value="Choose Sides" onclick="speeches()">
+    <div id="idDivSpeeches"></div>
 </body>
 
 </html>
