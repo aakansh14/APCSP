@@ -24,27 +24,27 @@
         // Citation:
         // Input/Parameters:
         // Output/Return:
-        function instructions(){
+        function instructions() {
             idDivInstructions.innerHTML = "This is a PF Debate Timer to assist you in your debate rounds. First Choose Sides and then the constructive speech timer will appear. Press Next to move on to the next speech, all speech times will be displayed at the end"
         }
         // Description:
         // Citation:
         // Input/Parameters:
         // Output/Return:
-        function chooseSide(){
+        function chooseSide() {
             let selected1 = argueTeam1.value
             let selected2 = argueTeam2.value
-            if (selected1 == "Con"){
+            if (selected1 == "Con") {
                 team1Id.innerHTML = "Con"
             }
-            else if (selected1 == "Pro"){
+            else if (selected1 == "Pro") {
                 team1Id.innerHTML = "Pro"
             }
-            
-            if (selected2 == "Con"){
+
+            if (selected2 == "Con") {
                 team2Id.innerHTML = "Con"
             }
-            else if(selected2 == "Pro"){
+            else if (selected2 == "Pro") {
                 team2Id.innerHTML = "Pro"
             }
         }
@@ -52,15 +52,60 @@
         // Citation:
         // Input/Parameters:
         // Output/Return:
-        function speeches(){
+        function speeches() {
             chooseSide()
             idDivSpeeches.innerHTML = ""
             let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-            everySpeech += "<input type='button' value='Reset' id='idResetTimer'>";
+            everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
+            everySpeech += "<input type='button' value='Next' id='idNextSpeech' onclick='next()'>";
 
-            
+
             idDivSpeeches.innerHTML = everySpeech
+        }
+        function next() {
+            let number = 0
+            let everySpeech = ""
+            for (i = 0; i < 10; i++) {
+                idDivSpeeches.innerHTML = ""
+                if (number == 0) {
+                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Constructive: ";
+                }
+                if (number == 1) {
+                    everySpeech = "<br>" + "<br>" + "1st Cross: ";
+                }
+                if (number == 2) {
+                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Rebuttal: ";
+                }
+                if (number == 3) {
+                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Rebuttal: ";
+                }
+                if (number == 4) {
+                    everySpeech = "<br>" + "<br>" + "2nd Cross: ";
+                }
+                if (number == 5) {
+                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Summary: ";
+                }
+                if (number == 6) {
+                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Summary: ";
+                }
+                if (number == 7) {
+                    everySpeech = "<br>" + "<br>" + "Grand Cross: ";
+                }
+                if (number == 8) {
+                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Final Focus: ";
+                }
+                if (number == 9) {
+                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
+                }
+                everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
+                everySpeech += "<input type='button' value='Next' id='idNextSpeech' onclick='next()'>";
+                number = number + 1
+                idDivSpeeches.innerHTML = everySpeech
+            }
+            
         }
             // Requirments:
             // Instructions for input from one of the following:
@@ -95,9 +140,9 @@
             </th>
             <br>
             <th><select id="argueTeam2">
-                <option>Con</option>
-                <option>Pro</option>
-            </select>
+                    <option>Con</option>
+                    <option>Pro</option>
+                </select>
             </th>
         </tr>
     </table>
