@@ -58,54 +58,79 @@
             let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
             everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
-            everySpeech += "<input type='button' value='Next' id='idNextSpeech' onclick='next()'>";
-
 
             idDivSpeeches.innerHTML = everySpeech
         }
-        function next() {
+        function next(event) {
+            pressKey = event.key
+            
             let number = 0
             let everySpeech = ""
-            for (i = 0; i < 10; i++) {
-                idDivSpeeches.innerHTML = ""
+            idDivSpeeches.innerHTML = ""
+            if (pressKey == "n") {
                 if (number == 0) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Constructive: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 1) {
                     everySpeech = "<br>" + "<br>" + "1st Cross: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 2) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Rebuttal: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 3) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Rebuttal: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 4) {
                     everySpeech = "<br>" + "<br>" + "2nd Cross: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 5) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Summary: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 6) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Summary: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 7) {
                     everySpeech = "<br>" + "<br>" + "Grand Cross: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 8) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Final Focus: ";
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
                 if (number == 9) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
+                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
+                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
+                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
-                everySpeech += "<input type='button' value='Next' id='idNextSpeech' onclick='next()'>";
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
             }
-            
         }
             // Requirments:
             // Instructions for input from one of the following:
@@ -124,7 +149,7 @@
     </script>
 </head>
 
-<body>
+<body onkeyup="next(event)">
     <h1>PF Debate Timer</h1>
     <div id="idDivInstructions"></div>
     <table>
@@ -148,6 +173,7 @@
     </table>
     <input type="button" value="Choose Sides" onclick="speeches()">
     <div id="idDivSpeeches"></div>
+    <div id="idDivNext">Press 'n' to move on to the next speech</div>
 </body>
 
 </html>
