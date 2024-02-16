@@ -19,6 +19,9 @@
         }
     </style>
     <script>
+        let startTime;
+        let stopwatchInterval;
+        let elapsedPausedTime = 0;
         let speechList = []
         // Description:
         // Citation:
@@ -55,82 +58,89 @@
         function speeches() {
             chooseSide()
             idDivSpeeches.innerHTML = ""
-            let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer'>";
-            everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-            everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
+            let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
+            everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
+            everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
 
             idDivSpeeches.innerHTML = everySpeech
         }
         function next(event) {
             pressKey = event.key
-            
+
             let number = 0
             let everySpeech = ""
             idDivSpeeches.innerHTML = ""
             if (pressKey == "n") {
                 if (number == 0) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Constructive: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 1) {
+                else if (number == 1) {
                     everySpeech = "<br>" + "<br>" + "1st Cross: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 2) {
+                else if (number == 2) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Rebuttal: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 3) {
+                else if (number == 3) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Rebuttal: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 4) {
+                else if (number == 4) {
                     everySpeech = "<br>" + "<br>" + "2nd Cross: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 5) {
+                else if (number == 5) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Summary: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 6) {
+                else if (number == 6) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Summary: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 7) {
+                else if (number == 7) {
                     everySpeech = "<br>" + "<br>" + "Grand Cross: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 8) {
+                else if (number == 8) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Final Focus: ";
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
-                if (number == 9) {
+                else if (number == 9) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
-                    everySpeech += "<input type='button' value='Start' id='idStartTimer'>";
-                    everySpeech += "<input type='button' value='Stop' id='idStop Timer'>";
-                    everySpeech += "<input type='button' value='Reset' id='idResetTimer'>" + "<br>" + "<br>";
                 }
+                everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
+                everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
+                everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
             }
+        }
+        // https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
+        // Wesbite used to create stopwatch; update code comments later
+        function startStopwatch() {
+            if (!stopwatchInterval) {
+                startTime = new Date().getTime() - elapsedPausedTime; // get the starting time by subtracting the elapsed paused time from the current time
+                stopwatchInterval = setInterval(updateStopwatch, 1000); // update every second
+            }
+        }
+
+        function stopStopwatch() {
+            clearInterval(stopwatchInterval); // stop the interval
+            elapsedPausedTime = new Date().getTime() - startTime; // calculate elapsed paused time
+            stopwatchInterval = null; // reset the interval variable
+        }
+
+        function resetStopwatch() {
+            stopStopwatch(); // stop the interval
+            elapsedPausedTime = 0; // reset the elapsed paused time variable
+            document.getElementById("stopwatch").innerHTML = "00:00:00"; // reset the display
+        }
+        function updateStopwatch() {
+            var currentTime = new Date().getTime(); // get current time in milliseconds
+            var elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
+            var seconds = Math.floor(elapsedTime / 1000) % 60; // calculate seconds
+            var minutes = Math.floor(elapsedTime / 1000 / 60) % 60; // calculate minutes
+            var hours = Math.floor(elapsedTime / 1000 / 60 / 60); // calculate hours
+            var displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
+            document.getElementById("stopwatch").innerHTML = displayTime; // update the display
+        }
+
+        function pad(number) {
+            // add a leading zero if the number is less than 10
+            return (number < 10 ? "0" : "") + number;
         }
             // Requirments:
             // Instructions for input from one of the following:
@@ -173,6 +183,7 @@
     </table>
     <input type="button" value="Choose Sides" onclick="speeches()">
     <div id="idDivSpeeches"></div>
+    <div id="stopwatch">00:00:00</div>
     <div id="idDivNext">Press 'n' to move on to the next speech</div>
 </body>
 
