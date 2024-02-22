@@ -61,9 +61,14 @@
             let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
             everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
+            everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
             idDivSpeeches.innerHTML = everySpeech
         }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
         function next(event) {
             pressKey = event.key
 
@@ -102,12 +107,17 @@
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
                 }
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
-                everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
+                everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
                 everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
+                everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
             }
         }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
         // https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
         // Wesbite used to create stopwatch; update code comments later
         function startStopwatch() {
@@ -116,18 +126,28 @@
                 stopwatchInterval = setInterval(updateStopwatch, 1000); // update every second
             }
         }
-
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
         function stopStopwatch() {
             clearInterval(stopwatchInterval); // stop the interval
             elapsedPausedTime = new Date().getTime() - startTime; // calculate elapsed paused time
             stopwatchInterval = null; // reset the interval variable
         }
-
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
         function resetStopwatch() {
             stopStopwatch(); // stop the interval
             elapsedPausedTime = 0; // reset the elapsed paused time variable
             document.getElementById("stopwatch").innerHTML = "00:00:00"; // reset the display
         }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
         function updateStopwatch() {
             var currentTime = new Date().getTime(); // get current time in milliseconds
             var elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
@@ -137,10 +157,22 @@
             var displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
             document.getElementById("stopwatch").innerHTML = displayTime; // update the display
         }
-
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
         function pad(number) {
             // add a leading zero if the number is less than 10
             return (number < 10 ? "0" : "") + number;
+        }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function saveStopwatch(){
+            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
+            speechList.splice(1, document.getElementById("stopwatch").innerHTML)
+            console.log(speechList)
         }
             // Requirments:
             // Instructions for input from one of the following:
@@ -169,12 +201,14 @@
         </tr>
         <tr>
             <th><select id="argueTeam1">
+                    <option value="" disabled selected hidden>Choose Side</option>
                     <option>Con</option>
                     <option>Pro</option>
                 </select>
             </th>
             <br>
             <th><select id="argueTeam2">
+                    <option value="" disabled selected hidden>Choose Side</option>
                     <option>Con</option>
                     <option>Pro</option>
                 </select>
