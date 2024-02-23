@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>PF Debate Timer</title>
+    <title>Public Forum Debate</title>
     <style>
         body {
             padding: 15px 0;
@@ -23,13 +23,8 @@
         let stopwatchInterval;
         let elapsedPausedTime = 0;
         let speechList = []
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
-        function instructions() {
-            idDivInstructions.innerHTML = "This is a PF Debate Timer to assist you in your debate rounds. First Choose Sides and then the constructive speech timer will appear. Press Next to move on to the next speech, all speech times will be displayed at the end"
-        }
+        let specificSpeech
+        let number = 0
         // Description:
         // Citation:
         // Input/Parameters:
@@ -57,12 +52,15 @@
         // Output/Return:
         function speeches() {
             chooseSide()
+
+            specificSpeech = team1Id.innerHTML + "Constructive:"
             idDivSpeeches.innerHTML = ""
             let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
             everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
             everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
+            
             idDivSpeeches.innerHTML = everySpeech
         }
         // Description:
@@ -72,39 +70,48 @@
         function next(event) {
             pressKey = event.key
 
-            let number = 0
             let everySpeech = ""
             idDivSpeeches.innerHTML = ""
             if (pressKey == "n") {
                 if (number == 0) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Constructive: ";
+                    specificSpeech = team2Id.innerHTML + "Constructive:"
                 }
                 else if (number == 1) {
                     everySpeech = "<br>" + "<br>" + "1st Cross: ";
+                    specificSpeech = "1st Cross:"
                 }
                 else if (number == 2) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Rebuttal: ";
+                    specificSpeech = team1Id.innerHTML + "Rebuttal:"
                 }
                 else if (number == 3) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Rebuttal: ";
+                    specificSpeech = team2Id.innerHTML + "Rebuttal:"
                 }
                 else if (number == 4) {
                     everySpeech = "<br>" + "<br>" + "2nd Cross: ";
+                    specificSpeech = "2nd Cross:"
                 }
                 else if (number == 5) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Summary: ";
+                    specificSpeech = team1Id.innerHTML + "Summary:"
                 }
                 else if (number == 6) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Summary: ";
+                    specificSpeech = team2Id.innerHTML + "Summary:"
                 }
                 else if (number == 7) {
                     everySpeech = "<br>" + "<br>" + "Grand Cross: ";
+                    specificSpeech = "Grand Cross:"
                 }
                 else if (number == 8) {
                     everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Final Focus: ";
+                    specificSpeech = team1Id.innerHTML + "Final Focus:"
                 }
                 else if (number == 9) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
+                    specificSpeech = team2Id.innerHTML + "Final Focus:"
                 }
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
@@ -149,13 +156,13 @@
         // Input/Parameters:
         // Output/Return:
         function updateStopwatch() {
-            var currentTime = new Date().getTime(); // get current time in milliseconds
-            var elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
-            var seconds = Math.floor(elapsedTime / 1000) % 60; // calculate seconds
-            var minutes = Math.floor(elapsedTime / 1000 / 60) % 60; // calculate minutes
-            var hours = Math.floor(elapsedTime / 1000 / 60 / 60); // calculate hours
-            var displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
-            document.getElementById("stopwatch").innerHTML = displayTime; // update the display
+            let currentTime = new Date().getTime(); // get current time in milliseconds
+            let elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
+            let seconds = Math.floor(elapsedTime / 1000) % 60; // calculate seconds
+            let minutes = Math.floor(elapsedTime / 1000 / 60) % 60; // calculate minutes
+            let hours = Math.floor(elapsedTime / 1000 / 60 / 60); // calculate hours
+            let displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
+            stopwatch.innerHTML = displayTime; // update the display
         }
         // Description:
         // Citation:
@@ -171,8 +178,16 @@
         // Output/Return:
         function saveStopwatch(){
             speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
-            speechList.splice(1, document.getElementById("stopwatch").innerHTML)
+            speechList.splice(1, 0, stopwatch.innerHTML)
             console.log(speechList)
+        }
+        function changeBackground(){
+            while(specificSpeech == team1Id.innerHTML + "Constructive:" || specificSpeech == team2Id.innerHTML + "Constructive:" || specificSpeech == team1Id.innerHTML + "Rebuttal:" || specificSpeech == team2Id.innerHTML + "Rebuttal:"){
+                if (stopwatch.innerHTML > "00:00:10" ){
+                    style.background = "red"
+                }
+            }
+            while(specificSpeech == "1st Cross:" || specificSpeech == "2nd Cross:" || specificSpeech == team1Id.innerHTML + "Summary:" || specificSpeech == team2Id.innerHTML + "Summary:" || specificSpeech == "Grand Cross:")
         }
             // Requirments:
             // Instructions for input from one of the following:
@@ -192,8 +207,8 @@
 </head>
 
 <body onkeyup="next(event)">
-    <h1>PF Debate Timer</h1>
-    <div id="idDivInstructions"></div>
+    <h1>Public Forum Debate</h1>
+    <div id="idDivInstructions">This is a Public Forum Debate Stopwatch to assist you in your debate rounds. First Choose Sides and then the constructive speech timer will appear. Press 'n' to move on to the next speech and use the start, stop, and reset buttons for the functionality of the stopwatch. Press the save button so that all speech times are displayed at the end.</div>
     <table>
         <tr>
             <th><span id="team1Id">Team 1</span></th>
