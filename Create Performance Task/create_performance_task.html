@@ -60,7 +60,7 @@
             everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
             everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
-            
+
             idDivSpeeches.innerHTML = everySpeech
         }
         // Description:
@@ -112,6 +112,7 @@
                 else if (number == 9) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
                     specificSpeech = team2Id.innerHTML + "Final Focus:"
+                    idDivNext.innerHTML = "Press n to see the final times"
                 }
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
@@ -119,6 +120,10 @@
                 everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
+                if (number == 10) {
+                    idDivSpeeches.innerHTML = "<br>" + "<input type='button' value='Display Times' id='idDisplay'>"
+                    stopwatch.innerHTML = ""
+                }
             }
         }
         // Description:
@@ -176,18 +181,38 @@
         // Citation:
         // Input/Parameters:
         // Output/Return:
-        function saveStopwatch(){
+        function saveStopwatch() {
             speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
-            speechList.splice(1, 0, stopwatch.innerHTML)
-            console.log(speechList)
+            if (specificSpeech == team1Id.innerHTML + "Constructive:") {
+                speechList.splice(1, 0, stopwatch.innerHTML)
+                console.log(speechList)
+            }
+            else if(specificSpeech == team2Id.innerHTML + "Constructive:"){
+                speechList.splice(3, 0, stopwatch.innerHTML)
+                console.log(speechList)
+            }
         }
-        function changeBackground(){
-            while(specificSpeech == team1Id.innerHTML + "Constructive:" || specificSpeech == team2Id.innerHTML + "Constructive:" || specificSpeech == team1Id.innerHTML + "Rebuttal:" || specificSpeech == team2Id.innerHTML + "Rebuttal:"){
-                if (stopwatch.innerHTML > "00:00:10" ){
-                    style.background = "red"
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function changeBackground() {
+            while (specificSpeech == team1Id.innerHTML + "Constructive:" || specificSpeech == team2Id.innerHTML + "Constructive:" || specificSpeech == team1Id.innerHTML + "Rebuttal:" || specificSpeech == team2Id.innerHTML + "Rebuttal:") {
+                console.log(specificSpeech)
+                if (stopwatch.innerHTML == "00:00:10") {
+                    document.body.style.background = "red"
                 }
             }
-            while(specificSpeech == "1st Cross:" || specificSpeech == "2nd Cross:" || specificSpeech == team1Id.innerHTML + "Summary:" || specificSpeech == team2Id.innerHTML + "Summary:" || specificSpeech == "Grand Cross:")
+            while (specificSpeech == "1st Cross:" || specificSpeech == "2nd Cross:" || specificSpeech == team1Id.innerHTML + "Summary:" || specificSpeech == team2Id.innerHTML + "Summary:" || specificSpeech == "Grand Cross:") {
+                if (stopwatch.innerHTML > "00:00:10") {
+                    document.body.style.background = "red"
+                }
+            }
+            while (specificSpeech == team1Id.innerHTML + "Final Focus:" || specificSpeech == team2Id.innerHTML + "Final Focus:") {
+                if (stopwatch.innerHTML > "00:00:10") {
+                    document.body.style.background = "red"
+                }
+            }
         }
             // Requirments:
             // Instructions for input from one of the following:
@@ -208,7 +233,10 @@
 
 <body onkeyup="next(event)">
     <h1>Public Forum Debate</h1>
-    <div id="idDivInstructions">This is a Public Forum Debate Stopwatch to assist you in your debate rounds. First Choose Sides and then the constructive speech timer will appear. Press 'n' to move on to the next speech and use the start, stop, and reset buttons for the functionality of the stopwatch. Press the save button so that all speech times are displayed at the end.</div>
+    <div id="idDivInstructions">This is a Public Forum Debate Stopwatch to assist you in your debate rounds. First
+        Choose Sides and then the constructive speech timer will appear. Press 'n' to move on to the next speech and use
+        the start, stop, and reset buttons for the functionality of the stopwatch. Press the save button so that all
+        speech times are displayed at the end.</div>
     <table>
         <tr>
             <th><span id="team1Id">Team 1</span></th>
