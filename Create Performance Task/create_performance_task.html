@@ -120,6 +120,7 @@
                 everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
+                idDivSave.innerHTML = ""
                 if (number == 10) {
                     idDivSpeeches.innerHTML = "<br>" + "<input type='button' value='Display Times' id='idDisplay'>"
                     stopwatch.innerHTML = ""
@@ -182,15 +183,26 @@
         // Input/Parameters:
         // Output/Return:
         function saveStopwatch() {
-            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
-            if (specificSpeech == team1Id.innerHTML + "Constructive:") {
-                speechList.splice(1, 0, stopwatch.innerHTML)
-                console.log(speechList)
-            }
-            else if(specificSpeech == team2Id.innerHTML + "Constructive:"){
-                speechList.splice(3, 0, stopwatch.innerHTML)
-                console.log(speechList)
-            }
+            speechList.push(stopwatch.innerHTML)
+            idDivSave.innerHTML = "Your time has been saved"
+            console.log(speechList)
+        }
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function formatArray() {
+            speechList.splice(0, 0, team1Id.innerHTML + " Constructive:")
+            speechList.splice(2, 0, team2Id.innerHTML + " Constructive:")
+            speechList.splice(4, 0, "1st Cross:")
+            speechList.splice(6, 0, team1Id.innerHTML + " Rebuttal:")
+            speechList.splice(8, 0, team2Id.innerHTML + " Rebuttal:")
+            speechList.splice(10, 0, "2nd Cross:")
+            speechList.splice(12, 0, team1Id.innerHTML + " Summary:")
+            speechList.splice(14, 0, team2Id.innerHTML + " Summary:")
+            speechList.splice(16, 0, "Grand Cross")
+            speechList.splice(18, 0, team1Id.innerHTML + " Final Focus:")
+            speechList.splice(20, 0, team2Id.innerHTML + " Final Focus:")
         }
         // Description:
         // Citation:
@@ -261,6 +273,7 @@
     <input type="button" value="Choose Sides" onclick="speeches()">
     <div id="idDivSpeeches"></div>
     <div id="stopwatch">00:00:00</div>
+    <div id="idDivSave"></div>
     <div id="idDivNext">Press 'n' to move on to the next speech</div>
 </body>
 
