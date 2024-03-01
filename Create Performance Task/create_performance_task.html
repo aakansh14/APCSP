@@ -23,7 +23,6 @@
         let stopwatchInterval;
         let elapsedPausedTime = 0;
         let speechList = []
-        let specificSpeech
         let number = 0
         // Description:
         // Citation:
@@ -53,7 +52,6 @@
         function speeches() {
             chooseSide()
 
-            specificSpeech = team1Id.innerHTML + "Constructive:"
             idDivSpeeches.innerHTML = ""
             let everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
@@ -73,45 +71,35 @@
             let everySpeech = ""
             idDivSpeeches.innerHTML = ""
             if (pressKey == "n") {
-                if (number == 0) {
+                if (number == 1) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Constructive: ";
-                    specificSpeech = team2Id.innerHTML + "Constructive:"
-                }
-                else if (number == 1) {
-                    everySpeech = "<br>" + "<br>" + "1st Cross: ";
-                    specificSpeech = "1st Cross:"
                 }
                 else if (number == 2) {
-                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Rebuttal: ";
-                    specificSpeech = team1Id.innerHTML + "Rebuttal:"
+                    everySpeech = "<br>" + "<br>" + "1st Cross: ";
                 }
                 else if (number == 3) {
-                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Rebuttal: ";
-                    specificSpeech = team2Id.innerHTML + "Rebuttal:"
+                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Rebuttal: ";
                 }
                 else if (number == 4) {
-                    everySpeech = "<br>" + "<br>" + "2nd Cross: ";
-                    specificSpeech = "2nd Cross:"
+                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Rebuttal: ";
                 }
                 else if (number == 5) {
-                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Summary: ";
-                    specificSpeech = team1Id.innerHTML + "Summary:"
+                    everySpeech = "<br>" + "<br>" + "2nd Cross: ";
                 }
                 else if (number == 6) {
-                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Summary: ";
-                    specificSpeech = team2Id.innerHTML + "Summary:"
+                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Summary: ";
                 }
                 else if (number == 7) {
-                    everySpeech = "<br>" + "<br>" + "Grand Cross: ";
-                    specificSpeech = "Grand Cross:"
+                    everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Summary: ";
                 }
                 else if (number == 8) {
-                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Final Focus: ";
-                    specificSpeech = team1Id.innerHTML + "Final Focus:"
+                    everySpeech = "<br>" + "<br>" + "Grand Cross: ";
                 }
                 else if (number == 9) {
+                    everySpeech = "<br>" + "<br>" + team1Id.innerHTML + " Final Focus: ";
+                }
+                else if (number == 10) {
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
-                    specificSpeech = team2Id.innerHTML + "Final Focus:"
                     idDivNext.innerHTML = "Press n to see the final times"
                 }
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
@@ -121,7 +109,7 @@
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
                 idDivSave.innerHTML = ""
-                if (number == 10) {
+                if (number == 11) {
                     idDivSpeeches.innerHTML = "<br>" + "<input type='button' value='Display Times' id='idDisplay'>"
                     stopwatch.innerHTML = ""
                 }
@@ -183,8 +171,14 @@
         // Input/Parameters:
         // Output/Return:
         function saveStopwatch() {
-            speechList.push(stopwatch.innerHTML)
-            idDivSave.innerHTML = "Your time has been saved"
+            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:"]
+            let specificSpeech = 0
+            for (i=0; i<speechList.length; i++) {
+                speechList.splice(specificSpeech, 0, stopwatch.innerHTML)
+                idDivSave.innerHTML = "Your time has been saved"
+                specificSpeech = specificSpeech + 2
+            }
+
             console.log(speechList)
         }
         // Description:
@@ -192,10 +186,10 @@
         // Input/Parameters:
         // Output/Return:
         function formatArray() {
-            speechList.splice(0, 0, team1Id.innerHTML + " Constructive:")
-            speechList.splice(2, 0, team2Id.innerHTML + " Constructive:")
-            speechList.splice(4, 0, "1st Cross:")
-            speechList.splice(6, 0, team1Id.innerHTML + " Rebuttal:")
+            )
+            team2Id.innerHTML + " Constructive:")
+            "1st Cross:")
+            speechList.splice(6, 0, )
             speechList.splice(8, 0, team2Id.innerHTML + " Rebuttal:")
             speechList.splice(10, 0, "2nd Cross:")
             speechList.splice(12, 0, team1Id.innerHTML + " Summary:")
@@ -209,18 +203,17 @@
         // Input/Parameters:
         // Output/Return:
         function changeBackground() {
-            while (specificSpeech == team1Id.innerHTML + "Constructive:" || specificSpeech == team2Id.innerHTML + "Constructive:" || specificSpeech == team1Id.innerHTML + "Rebuttal:" || specificSpeech == team2Id.innerHTML + "Rebuttal:") {
-                console.log(specificSpeech)
+            while (number == 0 || number == 1 || number == 3 || number == 4) {
                 if (stopwatch.innerHTML == "00:00:10") {
                     document.body.style.background = "red"
                 }
             }
-            while (specificSpeech == "1st Cross:" || specificSpeech == "2nd Cross:" || specificSpeech == team1Id.innerHTML + "Summary:" || specificSpeech == team2Id.innerHTML + "Summary:" || specificSpeech == "Grand Cross:") {
+            while (number == 2 || number == 5 || number == 6 || number == 7 || number == 8) {
                 if (stopwatch.innerHTML > "00:00:10") {
                     document.body.style.background = "red"
                 }
             }
-            while (specificSpeech == team1Id.innerHTML + "Final Focus:" || specificSpeech == team2Id.innerHTML + "Final Focus:") {
+            while (number == 9 || number == 10) {
                 if (stopwatch.innerHTML > "00:00:10") {
                     document.body.style.background = "red"
                 }
