@@ -171,7 +171,7 @@
         // Input/Parameters:
         // Output/Return:
         function saveStopwatch() {
-            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:"]
+            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
             let specificSpeech = 0
             for (i=0; i<speechList.length; i++) {
                 speechList.splice(specificSpeech, 0, stopwatch.innerHTML)
@@ -180,23 +180,6 @@
             }
 
             console.log(speechList)
-        }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
-        function formatArray() {
-            )
-            team2Id.innerHTML + " Constructive:")
-            "1st Cross:")
-            speechList.splice(6, 0, )
-            speechList.splice(8, 0, team2Id.innerHTML + " Rebuttal:")
-            speechList.splice(10, 0, "2nd Cross:")
-            speechList.splice(12, 0, team1Id.innerHTML + " Summary:")
-            speechList.splice(14, 0, team2Id.innerHTML + " Summary:")
-            speechList.splice(16, 0, "Grand Cross")
-            speechList.splice(18, 0, team1Id.innerHTML + " Final Focus:")
-            speechList.splice(20, 0, team2Id.innerHTML + " Final Focus:")
         }
         // Description:
         // Citation:
