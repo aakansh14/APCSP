@@ -23,7 +23,7 @@
         let stopwatchInterval;
         let elapsedPausedTime = 0;
         let speechList = []
-        let number = 0
+        let number = 1
         // Description:
         // Citation:
         // Input/Parameters:
@@ -102,6 +102,7 @@
                     everySpeech = "<br>" + "<br>" + team2Id.innerHTML + " Final Focus: "
                     idDivNext.innerHTML = "Press n to see the final times"
                 }
+
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
                 everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
@@ -109,7 +110,7 @@
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
                 idDivSave.innerHTML = ""
-                if (number == 11) {
+                if (number == 12) {
                     idDivSpeeches.innerHTML = "<br>" + "<input type='button' value='Display Times' id='idDisplay'>"
                     stopwatch.innerHTML = ""
                 }
@@ -162,32 +163,36 @@
         // Citation:
         // Input/Parameters:
         // Output/Return:
-        function pad(number) {
+        function pad(num) {
             // add a leading zero if the number is less than 10
-            return (number < 10 ? "0" : "") + number;
+            return (num < 10 ? "0" : "") + num;
         }
         // Description:
         // Citation:
         // Input/Parameters:
         // Output/Return:
         function saveStopwatch() {
-            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
+            let times = "False"
             let specificSpeech = 0
-            for (i=0; i<speechList.length; i++) {
-                speechList.splice(specificSpeech, 0, stopwatch.innerHTML)
+            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
+            while (times = "False"){
+                speechList.push(stopwatch.innerHTML)
                 idDivSave.innerHTML = "Your time has been saved"
-                specificSpeech = specificSpeech + 2
+                specificSpeech = specificSpeech + 1
+                if (specificSpeech == 11){
+                    times = "True"
+                }
             }
-
             console.log(speechList)
         }
-        // Description:
+  
+        // // Description:
         // Citation:
         // Input/Parameters:
         // Output/Return:
         function changeBackground() {
             while (number == 0 || number == 1 || number == 3 || number == 4) {
-                if (stopwatch.innerHTML == "00:00:10") {
+                if (stopwatch.innerHTML > "00:00:10") {
                     document.body.style.background = "red"
                 }
             }
