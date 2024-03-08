@@ -24,6 +24,7 @@
         let elapsedPausedTime = 0;
         let speechList = []
         let number = 1
+        let specificSpeech = 0
         // Description:
         // Citation:
         // Input/Parameters:
@@ -172,20 +173,35 @@
         // Input/Parameters:
         // Output/Return:
         function saveStopwatch() {
-            let times = "False"
-            let specificSpeech = 0
-            speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
-            while (times = "False"){
-                speechList.push(stopwatch.innerHTML)
-                idDivSave.innerHTML = "Your time has been saved"
-                specificSpeech = specificSpeech + 1
-                if (specificSpeech == 11){
-                    times = "True"
-                }
+            // speechList = [team1Id.innerHTML + " Constructive:", team2Id.innerHTML + " Constructive:", "1st Cross:", team1Id.innerHTML + " Rebuttal:", team2Id.innerHTML + " Rebuttal:", "2nd Cross:", team1Id.innerHTML + " Summary:", team2Id.innerHTML + " Summary:", "Grand Cross", team1Id.innerHTML + " Final Focus:", team2Id.innerHTML + " Final Focus:"]
+            speechList.push(stopwatch.innerHTML)
+            idDivSave.innerHTML = "Your time has been saved"
+            specificSpeech = specificSpeech + 1
+            
+            if (specificSpeech == 11){
+                formatArray()
             }
+            console.log(specificSpeech)
             console.log(speechList)
         }
-  
+        // Description:
+        // Citation:
+        // Input/Parameters:
+        // Output/Return:
+        function formatArray(){
+            speechList.splice(0,0, team1Id.innerHTML + " Constructive:")
+            speechList.splice(2,0, "b")
+            speechList.splice(4,0, "c")
+            speechList.splice(6,0, "d")
+            speechList.splice(8,0, "e")
+            speechList.splice(10,0, "f")
+            speechList.splice(12,0, "g")
+            speechList.splice(14,0, "h")
+            speechList.splice(16,0, "i")
+            speechList.splice(18,0, "j")
+            speechList.splice(20,0, "k")
+
+        }
         // // Description:
         // Citation:
         // Input/Parameters:
