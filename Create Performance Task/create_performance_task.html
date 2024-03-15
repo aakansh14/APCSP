@@ -197,11 +197,23 @@
             }
         }
         // Description:
-        // Citation:
+        // Citation: Valentine Generator
         // Input/Parameters:
         // Output/Return:
+        function formatList(inputList) {
+            let output = ""
+            for (i = 0; i < inputList.length; i++) {
+                output += inputList[i]
+                if (i < inputList.length - 1) {
+                    output += "<br>"
+                }
+
+            }
+            return output
+            console.log(output)
+        }
         function displayTimes(){
-            idDivNext.innerHTML = speechList
+            idDivNext.innerHTML = formatList(speechList)
         }
         // // Description:
         // // Citation:
