@@ -17,6 +17,9 @@
             margin-left: auto;
             margin-right: auto;
         }
+        td,th {
+            padding: 10px;
+        }
     </style>
     <script>
         let teamOne
@@ -53,7 +56,7 @@
             everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
             everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
             everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
-
+            everySpeech += "<div id='stopwatch'>00:00:00</div>"
 
             idDivSpeeches.innerHTML = everySpeech
         }
@@ -103,6 +106,8 @@
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
                 everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
                 everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
+                everySpeech += "<div id='stopwatch'>00:00:00</div>"
+
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
                 idDivSave.innerHTML = ""
@@ -234,10 +239,9 @@
         </tr>
     </table>
     <input type="button" value="Choose Sides" onclick="chooseSide()">
-    <div id="idDivSpeeches"></div>
-    <div id="stopwatch">00:00:00</div>
-    <div id="idDivSave"></div>
     <div id="idDivNext">Press '1' to move on to the next speech</div>
+    <div id="idDivSpeeches"></div>
+    <div id="idDivSave"></div>
     <table>
         <tr>
             <th><span id="displayOneId"></span></th>
