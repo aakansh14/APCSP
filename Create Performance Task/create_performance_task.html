@@ -17,7 +17,9 @@
             margin-left: auto;
             margin-right: auto;
         }
-        td,th {
+
+        td,
+        th {
             padding: 10px;
         }
     </style>
@@ -30,10 +32,11 @@
         let speechList = []
         let number = 1
         let specificSpeech = 0
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        
+        // Description: User chooses their side and then the first speech is displayed
+        // Citation: None
+        // Input/Parameters: Pro or con side
+        // Output/Return: Team one constructive speech stopwatch
         function chooseSide() {
             let selected1 = argueTeam1.value
             let selected2 = argueTeam2.value
@@ -50,20 +53,22 @@
             else if (selected2 == "Pro") {
                 teamTwo = "Pro"
             }
-            
+
             idDivSpeeches.innerHTML = ""
             let everySpeech = "<br>" + "<br>" + teamOne + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
             everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
-            everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
             everySpeech += "<div id='stopwatch'>00:00:00</div>"
+            everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
+
 
             idDivSpeeches.innerHTML = everySpeech
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+
+        // Description: Moves on to the next speech every time the key "1" is pressed
+        // Citation: None
+        // Input/Parameters: The key "1"
+        // Output/Return: The next speech
         function next(event) {
             pressKey = event.key
 
@@ -105,8 +110,8 @@
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
                 everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
-                everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
                 everySpeech += "<div id='stopwatch'>00:00:00</div>"
+                everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
                 number = number + 1
                 idDivSpeeches.innerHTML = everySpeech
@@ -176,8 +181,8 @@
             speechList.push(stopwatch.innerHTML)
             idDivSave.innerHTML = "Your time has been saved"
             specificSpeech = specificSpeech + 1
-            
-            if (specificSpeech == 11){
+
+            if (specificSpeech == 11) {
                 formatArray()
             }
         }
@@ -185,11 +190,11 @@
         // Citation:
         // Input/Parameters:
         // Output/Return:
-        function formatArray(){
+        function formatArray() {
             let speechNames = [teamOne + " Constructive: ", teamTwo + " Constructive: ", "1st Cross: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Cross: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Cross: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
             let spliceIndex = 0
 
-            for (i=0; i<speechNames.length; i++){
+            for (i = 0; i < speechNames.length; i++) {
                 speechList.splice(spliceIndex, 0, speechNames[i])
                 spliceIndex = spliceIndex + 2
             }
@@ -198,10 +203,10 @@
         // Citation: Valentine Generator
         // Input/Parameters:
         // Output/Return:
-        function displayTimes(){
+        function displayTimes() {
             idDivNext.innerHTML = ""
-            displayOneId.innerHTML = "Team One: " + teamOne + "" + schoolOne.value + "<br>" + speechList[0] + speechList[1] + "<br>" + speechList[6] + speechList[7] + "<br>" + speechList[12] + speechList[13] + "<br>" + speechList[18] + speechList[19]
-            displayTwoId.innerHTML = "Team Two: " + teamTwo + "" + schoolTwo.value + "<br>" + speechList[2] + speechList[3] + "<br>" + speechList[8] + speechList[9] + "<br>" + speechList[14] + speechList[15] + "<br>" + speechList[20] + speechList[21]
+            displayOneId.innerHTML = "Team One: " + teamOne + " " + schoolOne.value + "<br>" + speechList[0] + speechList[1] + "<br>" + speechList[6] + speechList[7] + "<br>" + speechList[12] + speechList[13] + "<br>" + speechList[18] + speechList[19]
+            displayTwoId.innerHTML = "Team Two: " + teamTwo + " " + schoolTwo.value + "<br>" + speechList[2] + speechList[3] + "<br>" + speechList[8] + speechList[9] + "<br>" + speechList[14] + speechList[15] + "<br>" + speechList[20] + speechList[21]
             crossId.innerHTML = "Cross Times:" + "<br>" + speechList[4] + speechList[5] + "<br>" + speechList[10] + speechList[11] + "<br>" + speechList[16] + speechList[17]
         }
     </script>
@@ -211,8 +216,9 @@
     <h1>Public Forum Debate</h1>
     <div id="idDivInstructions">This is a Public Forum Debate Stopwatch to assist you in your debate rounds. First
         Choose Sides and then the constructive speech timer will appear. Press '1' to move on to the next speech and use
-        the start, stop, and reset buttons for the functionality of the stopwatch. Press the save button so that all
-        speech times are displayed at the end.</div>
+        the start, stop, and reset buttons for the functionality of the stopwatch. Press the save button after every
+        speech so that all
+        times are displayed at the end.</div>
     <table>
         <tr>
             <th><span id="team1Id">Team 1</span></th>
@@ -234,13 +240,13 @@
             </th>
         </tr>
         <tr>
-            <th>School/Team Name: <input type="text" id="schoolOne"</th>
-            <th>School/Team Name: <input type="text" id="schoolTwo"</th>
+            <th>School/Team Name: <input type="text" id="schoolOne" </th>
+            <th>School/Team Name: <input type="text" id="schoolTwo" </th>
         </tr>
     </table>
     <input type="button" value="Choose Sides" onclick="chooseSide()">
-    <div id="idDivNext">Press '1' to move on to the next speech</div>
     <div id="idDivSpeeches"></div>
+    <div id="idDivNext">Press '1' to move on to the next speech</div>
     <div id="idDivSave"></div>
     <table>
         <tr>
