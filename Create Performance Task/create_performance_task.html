@@ -58,9 +58,7 @@
             let everySpeech = "<br>" + "<br>" + teamOne + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
             everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
-            everySpeech += "<div id='stopwatch'>00:00:00</div>"
             everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
-
 
             idDivSpeeches.innerHTML = everySpeech
         }
@@ -75,6 +73,7 @@
             let everySpeech = ""
             idDivSpeeches.innerHTML = ""
             if (pressKey == "1") {
+                resetStopwatch();
                 if (number == 1) {
                     everySpeech = "<br>" + "<br>" + teamTwo + " Constructive: ";
                 }
@@ -110,7 +109,6 @@
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
                 everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
-                everySpeech += "<div id='stopwatch'>00:00:00</div>"
                 everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
                 number = number + 1
@@ -148,6 +146,7 @@
         // Input/Parameters:
         // Output/Return:
         function resetStopwatch() {
+            console.log("reset")
             stopStopwatch(); // stop the interval
             elapsedPausedTime = 0; // reset the elapsed paused time variable
             document.getElementById("stopwatch").innerHTML = "00:00:00"; // reset the display
@@ -246,6 +245,7 @@
     </table>
     <input type="button" value="Choose Sides" onclick="chooseSide()">
     <div id="idDivSpeeches"></div>
+    <div id="stopwatch">00:00:00</div>
     <div id="idDivNext">Press '1' to move on to the next speech</div>
     <div id="idDivSave"></div>
     <table>
