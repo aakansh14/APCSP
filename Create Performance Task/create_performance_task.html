@@ -40,6 +40,10 @@
         function chooseSide() {
             let selected1 = argueTeam1.value
             let selected2 = argueTeam2.value
+
+            if (selected1 == selected2){
+                idDivNext.innerHTML = "Oops looks like you selected " + selected1 + " for both teams"
+            }
             if (selected1 == "Con") {
                 teamOne = "Con"
             }
@@ -78,7 +82,7 @@
                     everySpeech = "<br>" + "<br>" + teamTwo + " Constructive: ";
                 }
                 else if (number == 2) {
-                    everySpeech = "<br>" + "<br>" + "1st Cross: ";
+                    everySpeech = "<br>" + "<br>" + "1st Crossfire: ";
                 }
                 else if (number == 3) {
                     everySpeech = "<br>" + "<br>" + teamOne + " Rebuttal: ";
@@ -87,7 +91,7 @@
                     everySpeech = "<br>" + "<br>" + teamTwo + " Rebuttal: ";
                 }
                 else if (number == 5) {
-                    everySpeech = "<br>" + "<br>" + "2nd Cross: ";
+                    everySpeech = "<br>" + "<br>" + "2nd Crossfire: ";
                 }
                 else if (number == 6) {
                     everySpeech = "<br>" + "<br>" + teamOne + " Summary: ";
@@ -96,7 +100,7 @@
                     everySpeech = "<br>" + "<br>" + teamTwo + " Summary: ";
                 }
                 else if (number == 8) {
-                    everySpeech = "<br>" + "<br>" + "Grand Cross: ";
+                    everySpeech = "<br>" + "<br>" + "Grand Crossfire: ";
                 }
                 else if (number == 9) {
                     everySpeech = "<br>" + "<br>" + teamOne + " Final Focus: ";
@@ -190,7 +194,7 @@
         // Input/Parameters:
         // Output/Return:
         function formatArray() {
-            let speechNames = [teamOne + " Constructive: ", teamTwo + " Constructive: ", "1st Cross: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Cross: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Cross: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
+            let speechNames = [teamOne + " Constructive: ", teamTwo + " Constructive: ", "1st Crossfire: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Crossfire: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Crossfire: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
             let spliceIndex = 0
 
             for (i = 0; i < speechNames.length; i++) {
@@ -206,6 +210,7 @@
             idDivNext.innerHTML = ""
             displayOneId.innerHTML = "Team One: " + teamOne + " " + schoolOne.value + "<br>" + speechList[0] + speechList[1] + "<br>" + speechList[6] + speechList[7] + "<br>" + speechList[12] + speechList[13] + "<br>" + speechList[18] + speechList[19]
             displayTwoId.innerHTML = "Team Two: " + teamTwo + " " + schoolTwo.value + "<br>" + speechList[2] + speechList[3] + "<br>" + speechList[8] + speechList[9] + "<br>" + speechList[14] + speechList[15] + "<br>" + speechList[20] + speechList[21]
+            
             crossId.innerHTML = "Cross Times:" + "<br>" + speechList[4] + speechList[5] + "<br>" + speechList[10] + speechList[11] + "<br>" + speechList[16] + speechList[17]
         }
     </script>
@@ -225,16 +230,16 @@
         </tr>
         <tr>
             <th>Choose Sides:<select id="argueTeam1">
-                    <option value="" disabled selected hidden>Choose Side</option>
+<!--                <option value="" disabled selected hidden>Choose Side</option> -->
                     <option>Con</option>
                     <option>Pro</option>
                 </select>
             </th>
             <br>
             <th>Choose Sides:<select id="argueTeam2">
-                    <option value="" disabled selected hidden>Choose Side</option>
-                    <option>Con</option>
+<!--                <option value="" disabled selected hidden>Choose Side</option> -->
                     <option>Pro</option>
+                    <option>Con</option>
                 </select>
             </th>
         </tr>
@@ -252,9 +257,10 @@
         <tr>
             <th><span id="displayOneId"></span></th>
             <th><span id="displayTwoId"></span></th>
+            <th><span id="crossId"></span></th>
         </tr>
     </table>
-    <div id="crossId"></div>
+    
 </body>
 
 </html>
