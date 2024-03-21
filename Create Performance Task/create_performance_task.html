@@ -22,6 +22,9 @@
         th {
             padding: 10px;
         }
+        .customstopwatch {
+            font-size: 150%;
+        }
     </style>
     <script>
         let teamOne
@@ -41,9 +44,6 @@
             let selected1 = argueTeam1.value
             let selected2 = argueTeam2.value
 
-            if (selected1 == selected2){
-                idDivNext.innerHTML = "Oops looks like you selected " + selected1 + " for both teams"
-            }
             if (selected1 == "Con") {
                 teamOne = "Con"
             }
@@ -61,7 +61,7 @@
             idDivSpeeches.innerHTML = ""
             let everySpeech = "<br>" + "<br>" + teamOne + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
             everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
-            everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
+            everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>";
             everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
             idDivSpeeches.innerHTML = everySpeech
@@ -112,7 +112,7 @@
 
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
-                everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>" + "<br>" + "<br>";
+                everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>";
                 everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
                 number = number + 1
@@ -239,13 +239,13 @@
             </th>
         </tr>
         <tr>
-            <th>School/Team Name: <input type="text" id="schoolOne" </th>
-            <th>School/Team Name: <input type="text" id="schoolTwo" </th>
+            <th>School/Team Name: <input type="text" id="schoolOne"></th>
+            <th>School/Team Name: <input type="text" id="schoolTwo"></th>
         </tr>
     </table>
     <input type="button" value="Choose Sides" onclick="chooseSide()">
     <div id="idDivSpeeches"></div>
-    <div id="stopwatch">00:00:00</div>
+    <div class="customstopwatch"id="stopwatch">00:00:00</div>
     <div id="idDivNext">Press '1' to move on to the next speech</div>
     <div id="idDivSave"></div>
     <table>
