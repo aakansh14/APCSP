@@ -70,7 +70,7 @@
         // Description: Moves on to the next speech every time the key "1" is pressed
         // Citation: None
         // Input/Parameters: The key "1"
-        // Output/Return: The next speech
+        // Output/Return: The upcoming speech
         function next(event) {
             pressKey = event.key
 
@@ -124,41 +124,38 @@
                 }
             }
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
-        // https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
-        // Wesbite used to create stopwatch; update code comments later
+        // Description: Checks if the stopwatch isn't running then proceeds to start the stopwatch
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
         function startStopwatch() {
             if (!stopwatchInterval) {
                 startTime = new Date().getTime() - elapsedPausedTime; // get the starting time by subtracting the elapsed paused time from the current time
                 stopwatchInterval = setInterval(updateStopwatch, 1000); // update every second
             }
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Stops the stopwatch and calculates the elapsed pause time so that it can start from the same spot
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
         function stopStopwatch() {
             clearInterval(stopwatchInterval); // stop the interval
             elapsedPausedTime = new Date().getTime() - startTime; // calculate elapsed paused time
             stopwatchInterval = null; // reset the interval variable
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Stops the timer and resets the stopwatch through the innerHTML
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
         function resetStopwatch() {
-            console.log("reset")
             stopStopwatch(); // stop the interval
             elapsedPausedTime = 0; // reset the elapsed paused time variable
             document.getElementById("stopwatch").innerHTML = "00:00:00"; // reset the display
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Gets the current time and caluclates the seconds, minutes, and hours of the stopwatch then updates it on the display
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript 
         function updateStopwatch() {
             let currentTime = new Date().getTime(); // get current time in milliseconds
             let elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
@@ -168,18 +165,18 @@
             let displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
             stopwatch.innerHTML = displayTime; // update the display
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Adds a zero in front of the number if it is less than ten
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
         function pad(num) {
             // add a leading zero if the number is less than 10
             return (num < 10 ? "0" : "") + num;
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Saves the innerHTML of the stopwatch and displays a save message
+        // Citation: None
+        // Input/Parameters: Save button click
+        // Output/Return: Output message saying Your time has been saved
         function saveStopwatch() {
             speechList.push(stopwatch.innerHTML)
             idDivSave.innerHTML = "Your time has been saved"
@@ -189,10 +186,10 @@
                 formatArray()
             }
         }
-        // Description:
-        // Citation:
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Pushes the speech names to the list of times
+        // Citation: None
+        // Input/Parameters: None
+        // Output/Return: New list with the speech names and the times
         function formatArray() {
             let speechNames = [teamOne + " Constructive: ", teamTwo + " Constructive: ", "1st Crossfire: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Crossfire: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Crossfire: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
             let spliceIndex = 0
@@ -202,10 +199,10 @@
                 spliceIndex = spliceIndex + 2
             }
         }
-        // Description:
-        // Citation: Valentine Generator
-        // Input/Parameters:
-        // Output/Return:
+        // Description: Displays the speech times for the pro and con sides along with the crossfire times
+        // Citation: None
+        // Input/Parameters: Display results button click
+        // Output/Return: All the speech times that were saved
         function displayTimes() {
             idDivNext.innerHTML = ""
             displayOneId.innerHTML = "Team One: " + teamOne + " " + schoolOne.value + "<br>" + speechList[0] + speechList[1] + "<br>" + speechList[6] + speechList[7] + "<br>" + speechList[12] + speechList[13] + "<br>" + speechList[18] + speechList[19]
@@ -230,14 +227,12 @@
         </tr>
         <tr>
             <th>Choose Sides:<select id="argueTeam1">
-<!--                <option value="" disabled selected hidden>Choose Side</option> -->
                     <option>Con</option>
                     <option>Pro</option>
                 </select>
             </th>
             <br>
             <th>Choose Sides:<select id="argueTeam2">
-<!--                <option value="" disabled selected hidden>Choose Side</option> -->
                     <option>Pro</option>
                     <option>Con</option>
                 </select>
