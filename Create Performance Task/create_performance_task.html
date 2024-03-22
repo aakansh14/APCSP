@@ -35,7 +35,7 @@
         let speechList = []
         let number = 1
         let specificSpeech = 0
-        
+                
         // Description: User chooses their side and then the first speech is displayed
         // Citation: None
         // Input/Parameters: Pro or con side
@@ -109,7 +109,6 @@
                     everySpeech = "<br>" + "<br>" + teamTwo + " Final Focus: "
                     idDivNext.innerHTML = "Press 1 to see the final times"
                 }
-
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
                 everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>";
@@ -191,7 +190,6 @@
         // Input/Parameters: None
         // Output/Return: New list with the speech names and the times
         function formatArray() {
-            let speechNames = [teamOne + " Constructive: ", teamTwo + " Constructive: ", "1st Crossfire: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Crossfire: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Crossfire: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
             let spliceIndex = 0
 
             for (i = 0; i < speechNames.length; i++) {
