@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <title>Public Forum Debate</title>
+    <title>Public Forum Debate Stopwatch</title>
     <style>
         body {
             padding: 15px 0;
-            border: 10px double rgb(25, 0, 255);
+            border: 10px double rgb(115, 147, 179);
             text-align: center;
-            background: rgb(0, 195, 255);
+            background:rgb(128, 128, 128);
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             color: rgb(1, 37, 0)
         }
@@ -16,12 +16,14 @@
         table {
             margin-left: auto;
             margin-right: auto;
+           
         }
 
         td,
         th {
             padding: 10px;
         }
+
         .customstopwatch {
             font-size: 150%;
         }
@@ -35,7 +37,7 @@
         let speechList = []
         let number = 1
         let specificSpeech = 0
-                
+
         // Description: User chooses their side and then the first speech is displayed
         // Citation: None
         // Input/Parameters: Pro or con side
@@ -65,6 +67,7 @@
             everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
             idDivSpeeches.innerHTML = everySpeech
+            idDivNext.innerHTML = "Press '1' to move on to the next speech"
         }
 
         // Description: Moves on to the next speech every time the key "1" is pressed
@@ -73,56 +76,35 @@
         // Output/Return: The upcoming speech
         function next(event) {
             pressKey = event.key
-
             let everySpeech = ""
             idDivSpeeches.innerHTML = ""
-            if (pressKey == "1") {
+            let speechNames = [teamTwo + " Constructive: ", "1st Crossfire: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Crossfire: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Crossfire: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
+
+            while (pressKey == "1" && number <= 11) {
+                idDivNext.innerHTML = "Press '1' to move on to the next speech"
                 resetStopwatch();
-                if (number == 1) {
-                    everySpeech = "<br>" + "<br>" + teamTwo + " Constructive: ";
-                }
-                else if (number == 2) {
-                    everySpeech = "<br>" + "<br>" + "1st Crossfire: ";
-                }
-                else if (number == 3) {
-                    everySpeech = "<br>" + "<br>" + teamOne + " Rebuttal: ";
-                }
-                else if (number == 4) {
-                    everySpeech = "<br>" + "<br>" + teamTwo + " Rebuttal: ";
-                }
-                else if (number == 5) {
-                    everySpeech = "<br>" + "<br>" + "2nd Crossfire: ";
-                }
-                else if (number == 6) {
-                    everySpeech = "<br>" + "<br>" + teamOne + " Summary: ";
-                }
-                else if (number == 7) {
-                    everySpeech = "<br>" + "<br>" + teamTwo + " Summary: ";
-                }
-                else if (number == 8) {
-                    everySpeech = "<br>" + "<br>" + "Grand Crossfire: ";
-                }
-                else if (number == 9) {
-                    everySpeech = "<br>" + "<br>" + teamOne + " Final Focus: ";
-                }
-                else if (number == 10) {
-                    everySpeech = "<br>" + "<br>" + teamTwo + " Final Focus: "
-                    idDivNext.innerHTML = "Press 1 to see the final times"
-                }
+
+                everySpeech = "<br><br>" + speechNames[number - 1];
                 everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
                 everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
                 everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>";
                 everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
 
-                number = number + 1
-                idDivSpeeches.innerHTML = everySpeech
-                idDivSave.innerHTML = ""
-                if (number == 12) {
-                    idDivSpeeches.innerHTML = "<br>" + "<input type='button' value='Display Times' id='idDisplay' onclick='displayTimes()'>"
-                    stopwatch.innerHTML = ""
+                number = number + 1;
+                idDivSpeeches.innerHTML = everySpeech;
+                idDivSave.innerHTML = "";
+                pressKey = '';
+                if (number == 11) {
+                    idDivNext.innerHTML = "Press 1 to see the final times"
                 }
             }
+            if (number == 12) {
+                idDivNext.innerHTML = "Press 1 to see the final times"
+                idDivSpeeches.innerHTML = "<br>" + "<input type='button' value='Display Times' id='idDisplay' onclick='displayTimes()'>"
+                stopwatch.innerHTML = ""
+            }
         }
+
         // Description: Checks if the stopwatch isn't running then proceeds to start the stopwatch
         // Author: Educative.io
         // Date Accessed: February 15th
@@ -133,6 +115,7 @@
                 stopwatchInterval = setInterval(updateStopwatch, 1000); // update every second
             }
         }
+
         // Description: Stops the stopwatch and calculates the elapsed pause time so that it can start from the same spot
         // Author: Educative.io
         // Date Accessed: February 15th
@@ -142,6 +125,7 @@
             elapsedPausedTime = new Date().getTime() - startTime; // calculate elapsed paused time
             stopwatchInterval = null; // reset the interval variable
         }
+
         // Description: Stops the timer and resets the stopwatch through the innerHTML
         // Author: Educative.io
         // Date Accessed: February 15th
@@ -151,6 +135,7 @@
             elapsedPausedTime = 0; // reset the elapsed paused time variable
             document.getElementById("stopwatch").innerHTML = "00:00:00"; // reset the display
         }
+
         // Description: Gets the current time and caluclates the seconds, minutes, and hours of the stopwatch then updates it on the display
         // Author: Educative.io
         // Date Accessed: February 15th
@@ -164,6 +149,7 @@
             let displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
             stopwatch.innerHTML = displayTime; // update the display
         }
+
         // Description: Adds a zero in front of the number if it is less than ten
         // Author: Educative.io
         // Date Accessed: February 15th
@@ -172,6 +158,7 @@
             // add a leading zero if the number is less than 10
             return (num < 10 ? "0" : "") + num;
         }
+
         // Description: Saves the innerHTML of the stopwatch and displays a save message
         // Citation: None
         // Input/Parameters: Save button click
@@ -185,18 +172,21 @@
                 formatArray()
             }
         }
+
         // Description: Pushes the speech names to the list of times
         // Citation: None
         // Input/Parameters: None
         // Output/Return: New list with the speech names and the times
         function formatArray() {
             let spliceIndex = 0
+            let speechNames = [teamOne + " Constructive: ", teamTwo + " Constructive: ", "1st Crossfire: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Crossfire: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Crossfire: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
 
             for (i = 0; i < speechNames.length; i++) {
                 speechList.splice(spliceIndex, 0, speechNames[i])
                 spliceIndex = spliceIndex + 2
             }
         }
+
         // Description: Displays the speech times for the pro and con sides along with the crossfire times
         // Citation: None
         // Input/Parameters: Display results button click
@@ -205,16 +195,17 @@
             idDivNext.innerHTML = ""
             displayOneId.innerHTML = "Team One: " + teamOne + " " + schoolOne.value + "<br>" + speechList[0] + speechList[1] + "<br>" + speechList[6] + speechList[7] + "<br>" + speechList[12] + speechList[13] + "<br>" + speechList[18] + speechList[19]
             displayTwoId.innerHTML = "Team Two: " + teamTwo + " " + schoolTwo.value + "<br>" + speechList[2] + speechList[3] + "<br>" + speechList[8] + speechList[9] + "<br>" + speechList[14] + speechList[15] + "<br>" + speechList[20] + speechList[21]
-            
+
             crossId.innerHTML = "Cross Times:" + "<br>" + speechList[4] + speechList[5] + "<br>" + speechList[10] + speechList[11] + "<br>" + speechList[16] + speechList[17]
         }
+        
     </script>
 </head>
 
 <body onkeyup="next(event)">
-    <h1>Public Forum Debate</h1>
+    <h1>Public Forum Debate Stopwatch</h1>
     <div id="idDivInstructions">This is a Public Forum Debate Stopwatch to assist you in your debate rounds. First
-        Choose Sides and then the constructive speech timer will appear. Press '1' to move on to the next speech and use
+        Choose Sides and then the constructive speech stopwatch will appear. Press '1' to move on to the next speech and use
         the start, stop, and reset buttons for the functionality of the stopwatch. Press the save button after every
         speech so that all
         times are displayed at the end.</div>
@@ -224,13 +215,13 @@
             <th><span id="team2Id">Team 2</span></th>
         </tr>
         <tr>
-            <th>Choose Sides:<select id="argueTeam1">
+            <th>Choose Sides: <select id="argueTeam1">
                     <option>Con</option>
                     <option>Pro</option>
                 </select>
             </th>
             <br>
-            <th>Choose Sides:<select id="argueTeam2">
+            <th>Choose Sides: <select id="argueTeam2">
                     <option>Pro</option>
                     <option>Con</option>
                 </select>
@@ -243,8 +234,8 @@
     </table>
     <input type="button" value="Choose Sides" onclick="chooseSide()">
     <div id="idDivSpeeches"></div>
-    <div class="customstopwatch"id="stopwatch">00:00:00</div>
-    <div id="idDivNext">Press '1' to move on to the next speech</div>
+    <div class="customstopwatch" id="stopwatch">00:00:00</div>
+    <div id="idDivNext"></div>
     <div id="idDivSave"></div>
     <table>
         <tr>
@@ -253,7 +244,7 @@
             <th><span id="crossId"></span></th>
         </tr>
     </table>
-    
+
 </body>
 
 </html>
