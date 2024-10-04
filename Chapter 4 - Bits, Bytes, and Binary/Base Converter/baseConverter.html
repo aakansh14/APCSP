@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Base Converter</title>
+    <style>
+        body {
+            padding: 15px 0;
+            border: 5px double rgb(17, 0, 255);
+            text-align: center;
+            background: linear-gradient(45deg, rgb(2, 255, 107) 45%, rgb(0, 255, 98) 44%,
+                    rgb(0, 217, 255) 100%);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: rgb(25, 0, 37)
+        }
+    </style>
+    <script>
+        // Description: Converts a binary number to decimal
+        // Citation: None
+        // Input/Parameters: Binary number
+        // Output/Return: Converted decimal number
+        function binToDec(binaryNumber) {
+            // Split array into individual indices
+            let binaryArray = binaryNumber.split("");
+
+            // Reverse the array, store back in the same variable
+            binaryArray = binaryArray.reverse();
+
+            // Store our final answer (decimal)
+            let decimalAnswer = 0;
+
+            // Loop through each individual digit in the binary number
+            for (let i = 0; i < binaryArray.length; i++) {
+                // Grab the digit at index i, convert to a number
+                let digit = Number(binaryArray[i]);
+                // Multipliying the digit by its place value
+                let digitValue = digit * (2 ** i);
+                // Adding the digit value to the total
+                decimalAnswer += digitValue;
+            }
+            return decimalAnswer;
+        }
+        // Description: Converts a octal number to decimal
+        // Citation: None
+        // Input/Parameters: Octal number
+        // Output/Return: Converted decimal number
+        function octToDec(octalNumber) {
+            // Split array into individual indices
+            let octalArray = octalNumber.split("");
+
+            // Reverse the array, store back in the same variable
+            octalArray = octalArray.reverse();
+
+            // Store our final answer (decimal)
+            let decimalAnswer = 0;
+
+            // Loop through each individual digit in the octal number
+            for (let i = 0; i < octalArray.length; i++) {
+                // Grab the digit at index i, convert to a number
+                let digit = Number(octalArray[i]);
+                // Multipliying the digit by its place value
+                let digitValue = digit * (8 ** i);
+                // Adding the digit value to the total
+                decimalAnswer += digitValue;
+            }
+            return decimalAnswer;
+        }
+        // Description: Converts a hexadecimal number to decimal
+        // Citation: None
+        // Input/Parameters: Hexadecimal number
+        // Output/Return: Converted decimal number
+        function hexToDec(hexNumber) {
+            // Split array into individual indices
+            let hexArray = hexNumber.split("");
+
+            // Reverse the array, store back in the same variable
+            hexArray = hexArray.reverse();
+
+            // Store our final answer (decimal)
+            let decimalAnswer = 0;
+
+            // Loop through each individual digit in the hexadecimal number
+            for (let i = 0; i < hexArray.length; i++) {
+                // Grab the digit at index i, convert to a number
+                let digit = hexArray[i];
+                // Check if the digit is a letter between A through F and applying the number value to it
+                if (digit == "A" || digit == "a") {
+                    digit = 10;
+                }
+                else if (digit == "B" || digit == "b") {
+                    digit = 11;
+                }
+                else if (digit == "C" || digit == "c") {
+                    digit = 12;
+                }
+                else if (digit == "D" || digit == "d") {
+                    digit = 13;
+                }
+                else if (digit == "E" || digit == "e") {
+                    digit = 14;
+                }
+                else if (digit == "F" || digit == "f") {
+                    digit = 15;
+                }
+                // Else the digit is a number between 0 - 9 and apply that number value to it
+                else {
+                    digit = Number(digit);
+                }
+                // Multipliying the digit by its place value
+                let digitValue = digit * (16 ** i);
+                // Adding the digit value to the total
+                decimalAnswer += digitValue;
+            }
+            return decimalAnswer;
+        }
+        // Description: Converts a decimal number to binary
+        // Citation: None
+        // Input/Parameters: Decimal number
+        // Output/Return: Converted binary number
+        function decToBin(decimalNumber) {
+            let binaryAnswer = "";
+
+            // While loop that run until we get the value of 0
+            while (decimalNumber != 0) {
+                // Find the remainder after dividing by 2
+                let remainder = decimalNumber % 2;
+                // Add the remainder to the binaryAnswer
+                binaryAnswer += remainder;
+                // Use integer division to create a new decimalNumber
+                decimalNumber = Math.floor(decimalNumber / 2);
+            }
+            // Reverse our binaryAnswer
+            let binaryArray = binaryAnswer.split("");
+            binaryArray.reverse();
+            binaryAnswer = binaryArray.join("");
+
+            // Return the final binaryAnswer
+            return binaryAnswer;
+        }
+        // Description: Converts a decimal number to octal
+        // Citation: None
+        // Input/Parameters: Decimal number
+        // Output/Return: Converted octal number
+        function decToOct(decimalNumber) {
+            let octalAnswer = "";
+
+            // While loop that run until we get the value of 0
+            while (decimalNumber != 0) {
+                // Find the remainder after dividing by 2
+                let remainder = decimalNumber % 8;
+                // Add the remainder to the octalAnswer
+                octalAnswer += remainder;
+                // Use integer division to create a new decimalNumber
+                decimalNumber = Math.floor(decimalNumber / 8);
+            }
+            // Reverse our octalAnswer
+            let octalArray = octalAnswer.split("");
+            octalArray.reverse();
+            octalAnswer = octalArray.join("");
+
+            // Return the final octalAnswer
+            return octalAnswer;
+        }
+        // Description: Converts a decimal number to hexadecimal
+        // Citation: None
+        // Input/Parameters: Decimal number
+        // Output/Return: Converted hexadecimal number
+        function decToHex(decimalNumber) {
+            let hexAnswer = "";
+
+            // While loop that run until we get the value of 0
+            while (decimalNumber != 0) {
+                // Find the remainder after dividing by 2
+                let remainder = decimalNumber % 16;
+
+                if (remainder == 10) {
+                    remainder = "A";
+                }
+                else if (remainder == 11) {
+                    remainder = "B";
+                }
+                else if (remainder == 12) {
+                    remainder = "C";
+                }
+                else if (remainder == 13) {
+                    remainder = "D";
+                }
+                else if (remainder == 14) {
+                    remainder = "E";
+                }
+                else if (remainder == 15) {
+                    remainder = "F";
+                }
+                else {
+                    remainder = Number(remainder);
+                }
+                // Add the remainder to the hexAnswer
+                hexAnswer += remainder;
+                // Use integer division to create a new decimalNumber
+                decimalNumber = Math.floor(decimalNumber / 16);
+            }
+            // Reverse our hexAnswer
+            let hexArray = hexAnswer.split("");
+            hexArray.reverse();
+            hexAnswer = hexArray.join("");
+
+            // Return the final hexAnswer
+            return hexAnswer;
+        }
+        // Description: Applies the functions once a conversion is selected
+        // Citation: None
+        // Input/Parameters: None
+        // Output/Return: Final answer or converted value
+        function convert() {
+            let inputValue = idInputValue.value
+            let selected = idSelectConversion.value
+            let output = "";
+            if (selected == "Base 2 to Base 10") {
+                output = binToDec(inputValue)
+            }
+            else if (selected == "Base 8 to Base 10") {
+                output = octToDec(inputValue)
+            }
+            else if (selected == "Base 16 to Base 10") {
+                output = hexToDec(inputValue)
+            }
+            else if (selected == "Base 10 to Base 2") {
+                output = decToBin(inputValue)
+            }
+            else if (selected == "Base 10 to Base 8") {
+                output = decToOct(inputValue)
+            }
+            else if (selected == "Base 10 to Base 16") {
+                output = decToHex(inputValue)
+            }
+            idConvertedValue.value = output
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Base 2, 8, 10, 16 Conversions</h1>
+    <div><img src="number-systems.png"></div>
+    <br>
+    <input type="text" id="idInputValue" placeholder="Input Value">
+    <input type="text" id="idConvertedValue" placeholder="Converted Value">
+    <br>
+    <br>
+    <select id="idSelectConversion">
+        <option>Base 2 to Base 10</option>
+        <option>Base 8 to Base 10</option>
+        <option>Base 16 to Base 10</option>
+        <option>Base 10 to Base 2</option>
+        <option>Base 10 to Base 8</option>
+        <option>Base 10 to Base 16</option>
+    </select>
+    <br>
+    <br>
+    <input type="button" value="Convert Value" onclick="convert()">
+</body>
+
+</html>

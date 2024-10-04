@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ASCII String Converter</title>
+        <style>
+            body {
+            padding: 15px 0;
+            text-align: center;
+            background: linear-gradient(90deg, rgb(2, 184, 17) 44%, rgb(0, 255, 255) 100%);
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: rgb(25, 0, 37)
+            }
+            div{
+                text-align: center;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-size: 150%;
+                background-color: #0077ff;
+                width: 75%;
+                border: 5px solid rgb(8, 0, 116);
+                padding: 25px;
+                margin: auto
+            }
+        </style>
+        <script>
+            // Image Citations: https://simple.wikipedia.org/wiki/ASCII
+
+            // Description: Converts a binary number to decimal
+            // Citation: baseConverter.html
+            // Input/Parameters: Binary number
+            // Output/Return: Converted decimal number
+            function binToDec(binaryNumber) {
+                // Split array into individual indices
+                let binaryArray = binaryNumber.split("");
+
+                // Reverse the array, store back in the same variable
+                binaryArray = binaryArray.reverse();
+
+                // Store our final answer (decimal)
+                let decimalAnswer = 0;
+
+                // Loop through each individual digit in the binary number
+                for (let i = 0; i < binaryArray.length; i++) {
+                    // Grab the digit at index i, convert to a number
+                    let digit = Number(binaryArray[i]);
+                    // Multipliying the digit by its place value
+                    let digitValue = digit * (2 ** i);
+                    // Adding the digit value to the total
+                    decimalAnswer += digitValue;
+                }
+                return decimalAnswer;
+            }
+            // Description: Converts a decimal number to binary
+            // Citation: baseConverter.html
+            // Input/Parameters: Decimal number
+            // Output/Return: Converted binary number
+            function decToBin(decimalNumber) {
+                let binaryAnswer = "";
+
+                // While loop that run until we get the value of 0
+                while (decimalNumber != 0) {
+                    // Find the remainder after dividing by 2
+                    let remainder = decimalNumber % 2;
+                    // Add the remainder to the binaryAnswer
+                    binaryAnswer += remainder;
+                    // Use integer division to create a new decimalNumber
+                    decimalNumber = Math.floor(decimalNumber / 2);
+                }
+                // Reverse our binaryAnswer
+                let binaryArray = binaryAnswer.split("");
+                binaryArray.reverse();
+                binaryAnswer = binaryArray.join("");
+
+                // Return the final binaryAnswer
+                return binaryAnswer;
+            }
+            // Description: Takes a string and converts it to the binary equivalent
+            // Citation: None
+            // Input/Parameters: String
+            // Output/Return: Binary equivalent
+            function convertToBinaryASCII(stringInput){
+                let stringArray = stringInput.split("");
+                let stringLength = stringArray.length;
+                let binaryOutput = ""
+                for (let i=0; i<stringLength; i++) {
+                    let character = stringArray[i]
+                    character = character.charCodeAt(0)
+                    let binaryInteger = decToBin(character)
+                    while (binaryInteger.length < 8){
+                        binaryInteger = "0" + binaryInteger;
+                    }
+                    binaryOutput += binaryInteger + " "
+                }
+                return binaryOutput;
+            }
+            // Description: Takes a binary number and converts it to the string equivalent
+            // Citation: None
+            // Input/Parameters: Binary number
+            // Output/Return: String equivalent
+            function convertToString(binaryInput){
+                let binaryArray = binaryInput.split(" ");
+                let arrayLength = binaryArray.length;
+                let stringOutput = ""
+                for (let i=0; i<arrayLength; i++) {
+                    let character = binaryArray[i]
+                    character = binToDec(character)
+                    character = String.fromCharCode(character)
+                    stringOutput += character + ""
+                }
+                return stringOutput;
+            }
+            // Description: Displays the final converted value
+            // Citation: None
+            // Input/Parameters: None
+            // Output/Return: Final converted value
+            function displayResult(){
+                let inputValue = idInputValue.value
+                let selected = idSelectConversion.value
+                let output = "";
+                if (selected == "String to Binary") {
+                    output = convertToBinaryASCII(inputValue)
+                }
+                else if (selected == "Binary to String") {
+                    output = convertToString(inputValue)
+                }
+                idOutputValue.innerHTML = output;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>ASCII Converter</h1>
+        <h2>Convert between binary and string representations of ASCII</h2>
+        <img src="ASCII_table.jpg" height="300">
+        <br>
+        <textarea id="idInputValue" placeholder="Input goes here (ASCII expressed either as binary string or decimal string)"rows="10" cols="50"></textarea>
+        <br>
+        <br>
+        <select id="idSelectConversion">
+            <option>String to Binary</option>
+            <option>Binary to String</option>
+        </select>
+        <br>
+        <br>
+        <input type="button" value="Display Result" onclick="displayResult()">
+        <br>
+        <br>
+        <div id="idOutputValue"></div>
+    </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Public Forum Debate Stopwatch</title>
+    <style>
+        body {
+            padding: 15px 0;
+            border: 10px double rgb(115, 147, 179);
+            text-align: center;
+            background:rgb(128, 128, 128);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: rgb(1, 37, 0)
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+           
+        }
+
+        td,
+        th {
+            padding: 10px;
+        }
+
+        .customstopwatch {
+            font-size: 150%;
+        }
+    </style>
+    <script>
+        let teamOne
+        let teamTwo
+        let startTime;
+        let stopwatchInterval;
+        let elapsedPausedTime = 0;
+        let speechList = []
+        let number = 1
+        let specificSpeech = 0
+
+        // Description: User chooses their side and then the first speech is displayed
+        // Citation: None
+        // Input/Parameters: Pro or con side
+        // Output/Return: Team one constructive speech stopwatch
+        function chooseSide() {
+            let selected1 = argueTeam1.value
+            let selected2 = argueTeam2.value
+
+            if (selected1 == "Con") {
+                teamOne = "Con"
+            }
+            else if (selected1 == "Pro") {
+                teamOne = "Pro"
+            }
+
+            if (selected2 == "Con") {
+                teamTwo = "Con"
+            }
+            else if (selected2 == "Pro") {
+                teamTwo = "Pro"
+            }
+
+            idDivSpeeches.innerHTML = ""
+            let everySpeech = "<br>" + "<br>" + teamOne + " Constructive: " + "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
+            everySpeech += "<input type='button' value='Stop' id='idStop Timer' onclick='stopStopwatch()'>";
+            everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>";
+            everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
+
+            idDivSpeeches.innerHTML = everySpeech
+            idDivNext.innerHTML = "Press '1' to move on to the next speech"
+        }
+
+        // Description: Moves on to the next speech every time the key "1" is pressed
+        // Citation: None
+        // Input/Parameters: The key "1"
+        // Output/Return: The upcoming speech
+        function next(event) {
+            pressKey = event.key
+            let everySpeech = ""
+            idDivSpeeches.innerHTML = ""
+            let speechNames = [teamTwo + " Constructive: ", "1st Crossfire: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Crossfire: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Crossfire: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
+
+            while (pressKey == "1" && number <= 11) {
+                idDivNext.innerHTML = "Press '1' to move on to the next speech"
+                resetStopwatch();
+
+                everySpeech = "<br><br>" + speechNames[number - 1];
+                everySpeech += "<input type='button' value='Start' id='idStartTimer' onclick='startStopwatch()'>";
+                everySpeech += "<input type='button' value='Stop' id='idStopTimer' onclick='stopStopwatch()'>";
+                everySpeech += "<input type='button' value='Reset' id='idResetTimer' onclick='resetStopwatch()'>";
+                everySpeech += "<input type='button' value='Save' id='idSaveTimer' onclick='saveStopwatch()'>";
+
+                number = number + 1;
+                idDivSpeeches.innerHTML = everySpeech;
+                idDivSave.innerHTML = "";
+                pressKey = '';
+                if (number == 11) {
+                    idDivNext.innerHTML = "Press 1 to see the final times"
+                }
+            }
+            if (number == 12) {
+                idDivNext.innerHTML = "Press 1 to see the final times"
+                idDivSpeeches.innerHTML = "<br>" + "<input type='button' value='Display Times' id='idDisplay' onclick='displayTimes()'>"
+                stopwatch.innerHTML = ""
+            }
+        }
+
+        // Description: Checks if the stopwatch isn't running then proceeds to start the stopwatch
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
+        function startStopwatch() {
+            if (!stopwatchInterval) {
+                startTime = new Date().getTime() - elapsedPausedTime; // get the starting time by subtracting the elapsed paused time from the current time
+                stopwatchInterval = setInterval(updateStopwatch, 1000); // update every second
+            }
+        }
+
+        // Description: Stops the stopwatch and calculates the elapsed pause time so that it can start from the same spot
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
+        function stopStopwatch() {
+            clearInterval(stopwatchInterval); // stop the interval
+            elapsedPausedTime = new Date().getTime() - startTime; // calculate elapsed paused time
+            stopwatchInterval = null; // reset the interval variable
+        }
+
+        // Description: Stops the timer and resets the stopwatch through the innerHTML
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
+        function resetStopwatch() {
+            stopStopwatch(); // stop the interval
+            elapsedPausedTime = 0; // reset the elapsed paused time variable
+            document.getElementById("stopwatch").innerHTML = "00:00:00"; // reset the display
+        }
+
+        // Description: Gets the current time and caluclates the seconds, minutes, and hours of the stopwatch then updates it on the display
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript 
+        function updateStopwatch() {
+            let currentTime = new Date().getTime(); // get current time in milliseconds
+            let elapsedTime = currentTime - startTime; // calculate elapsed time in milliseconds
+            let seconds = Math.floor(elapsedTime / 1000) % 60; // calculate seconds
+            let minutes = Math.floor(elapsedTime / 1000 / 60) % 60; // calculate minutes
+            let hours = Math.floor(elapsedTime / 1000 / 60 / 60); // calculate hours
+            let displayTime = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds); // format display time
+            stopwatch.innerHTML = displayTime; // update the display
+        }
+
+        // Description: Adds a zero in front of the number if it is less than ten
+        // Author: Educative.io
+        // Date Accessed: February 15th
+        // URL: https://www.educative.io/answers/how-to-create-a-stopwatch-in-javascript
+        function pad(num) {
+            // add a leading zero if the number is less than 10
+            return (num < 10 ? "0" : "") + num;
+        }
+
+        // Description: Saves the innerHTML of the stopwatch and displays a save message
+        // Citation: None
+        // Input/Parameters: Save button click
+        // Output/Return: Output message saying Your time has been saved
+        function saveStopwatch() {
+            speechList.push(stopwatch.innerHTML)
+            idDivSave.innerHTML = "Your time has been saved"
+            specificSpeech = specificSpeech + 1
+
+            if (specificSpeech == 11) {
+                formatArray()
+            }
+        }
+
+        // Description: Pushes the speech names to the list of times
+        // Citation: None
+        // Input/Parameters: None
+        // Output/Return: New list with the speech names and the times
+        function formatArray() {
+            let spliceIndex = 0
+            let speechNames = [teamOne + " Constructive: ", teamTwo + " Constructive: ", "1st Crossfire: ", teamOne + " Rebuttal: ", teamTwo + " Rebuttal: ", "2nd Crossfire: ", teamOne + " Summary: ", teamTwo + " Summary: ", "Grand Crossfire: ", teamOne + " Final Focus: ", teamTwo + " Final Focus: "]
+
+            for (i = 0; i < speechNames.length; i++) {
+                speechList.splice(spliceIndex, 0, speechNames[i])
+                spliceIndex = spliceIndex + 2
+            }
+        }
+
+        // Description: Displays the speech times for the pro and con sides along with the crossfire times
+        // Citation: None
+        // Input/Parameters: Display results button click
+        // Output/Return: All the speech times that were saved
+        function displayTimes() {
+            idDivNext.innerHTML = ""
+            displayOneId.innerHTML = "Team One: " + teamOne + " " + schoolOne.value + "<br>" + speechList[0] + speechList[1] + "<br>" + speechList[6] + speechList[7] + "<br>" + speechList[12] + speechList[13] + "<br>" + speechList[18] + speechList[19]
+            displayTwoId.innerHTML = "Team Two: " + teamTwo + " " + schoolTwo.value + "<br>" + speechList[2] + speechList[3] + "<br>" + speechList[8] + speechList[9] + "<br>" + speechList[14] + speechList[15] + "<br>" + speechList[20] + speechList[21]
+
+            crossId.innerHTML = "Cross Times:" + "<br>" + speechList[4] + speechList[5] + "<br>" + speechList[10] + speechList[11] + "<br>" + speechList[16] + speechList[17]
+        }
+        
+    </script>
+</head>
+
+<body onkeyup="next(event)">
+    <h1>Public Forum Debate Stopwatch</h1>
+    <div id="idDivInstructions">This is a Public Forum Debate Stopwatch to assist you in your debate rounds. First
+        Choose Sides and then the constructive speech stopwatch will appear. Press '1' to move on to the next speech and use
+        the start, stop, and reset buttons for the functionality of the stopwatch. Press the save button after every
+        speech so that all
+        times are displayed at the end.</div>
+    <table>
+        <tr>
+            <th><span id="team1Id">Team 1</span></th>
+            <th><span id="team2Id">Team 2</span></th>
+        </tr>
+        <tr>
+            <th>Choose Sides: <select id="argueTeam1">
+                    <option>Con</option>
+                    <option>Pro</option>
+                </select>
+            </th>
+            <br>
+            <th>Choose Sides: <select id="argueTeam2">
+                    <option>Pro</option>
+                    <option>Con</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th>School/Team Name: <input type="text" id="schoolOne"></th>
+            <th>School/Team Name: <input type="text" id="schoolTwo"></th>
+        </tr>
+    </table>
+    <input type="button" value="Choose Sides" onclick="chooseSide()">
+    <div id="idDivSpeeches"></div>
+    <div class="customstopwatch" id="stopwatch">00:00:00</div>
+    <div id="idDivNext"></div>
+    <div id="idDivSave"></div>
+    <table>
+        <tr>
+            <th><span id="displayOneId"></span></th>
+            <th><span id="displayTwoId"></span></th>
+            <th><span id="crossId"></span></th>
+        </tr>
+    </table>
+
+</body>
+
+</html>
