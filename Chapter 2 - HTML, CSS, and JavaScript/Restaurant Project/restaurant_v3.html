@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            Aacrunch's Munches
+        </title>
+        <style>
+            body
+            {
+                background: #EEA243;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+            h1, h2, h3
+            {
+                text-align: center;
+            }
+
+            p
+            {
+                text-align: center;
+                color: gray;
+            }
+
+            table, td, th
+            {
+                text-align: left;
+                width: 40%;
+                border: 3px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+        <script>
+            let selectedAppetizer = 'None $0.00';
+            let selectedMain = 'None $0.00';
+            let selectedBeverage = 'Water $0.00';
+            let appPriceFloat;
+            let bevPriceFloat;
+            let mainPriceFloat;
+            let subtotalFloat;
+
+            function calculateSubtotal()
+            {
+                if (selectedAppetizer == 'None $0.00')
+                {
+                    appPriceFloat = 0;
+                }
+                else if (selectedAppetizer == 'Veg Spring Rolls $5.00')
+                {
+                    appPriceFloat = 5;
+                }
+                else if (selectedAppetizer == 'Paneer Tikka $5.50')
+                {
+                    appPriceFloat = 5.50;
+                }
+                else if (selectedAppetizer == 'Veg Samosa $4.00')
+                {
+                    appPriceFloat = 4;
+                }
+                if (selectedMain == 'None $0.00')
+                {
+                    mainPriceFloat = 0;
+                }
+                else if (selectedMain == 'Chole Bhature $14.00')
+                {
+                    mainPriceFloat = 14;
+                }
+                else if (selectedMain == 'Biryani $15.00')
+                {
+                    mainPriceFloat = 15;
+                }
+                else if (selectedMain == 'Naan with Paneer Curry $15.00')
+                {
+                    mainPriceFloat = 15;
+                }
+                if (selectedBeverage == 'Water $0.00')
+                {
+                    bevPriceFloat = 0;
+                }
+                else if (selectedBeverage == 'Chai $2.00')
+                {
+                    bevPriceFloat = 2;
+                }
+                else if (selectedBeverage == 'Mango Lassi $3.75')
+                {
+                    bevPriceFloat = 3.75;
+                }
+                else if (selectedBeverage == 'Masala Coffee $2.50')
+                {
+                    bevPriceFloat = 2.50;
+                }
+                subtotalFloat = appPriceFloat;
+                subtotalFloat += mainPriceFloat;
+                subtotalFloat += bevPriceFloat;
+            }
+
+            function selectItem(foodType)
+            {
+                let img = '';
+                if (foodType == 'appetizer')
+                {
+                    selectedAppetizer = document.getElementById('appetizerId').value;
+
+                        if (selectedAppetizer == 'Veg Spring Rolls $5.00')
+                        {
+                            // Image Description: Crispy Veg-filled rolls
+                            // Source: https://www.cubesnjuliennes.com/baked-vegetable-spring-rolls-veg-spring-roll-recipe/
+                            img = '<img src="images/appOnePic.jpg" width="150" height="100">';
+                        }
+                        else if (selectedAppetizer == 'Paneer Tikka $5.50')
+                        {
+                            // Image Description: Tofu-like food
+                            // Source: https://spicecravings.com/paneer-tikka
+                            img = '<img src="images/appTwoPic.jpg" width="150" height="150">';
+                        }
+                        else if (selectedAppetizer == 'Veg Samosa $4.00')
+                        {
+                            // Image Description: Samosa filled with peas and potatoes
+                            // Source: https://www.indianhealthyrecipes.com/samosa-recipe-make-samosa/
+                            img = '<img src="images/appThreePic.jpg" width="150" height="100">';
+                        }
+                        document.getElementById('appPicId').innerHTML = img;
+                }
+                else if (foodType == 'main')
+                {
+                    selectedMain = document.getElementById('mainId').value;
+
+                        if (selectedMain == 'Chole Bhature $14.00')
+                        {
+                            // Image Description: Different bread with chickpeas curry
+                            // Source: https://www.indianhealthyrecipes.com/bhatura/
+                            img = '<img src="images/mainOnePic.jpg" width="150" height="150">';
+                        }
+                        else if (selectedMain == 'Biryani $15.00')
+                        {
+                            // Image Description: Rice with lots of different vegetables and flavors
+                            // Source: https://www.whiskaffair.com/hyderabadi-vegetable-dum-biryani/
+                            img = '<img src="images/mainTwoPic.jpg" width="150" height="100">';
+                        }
+                        else if (selectedMain == 'Naan with Paneer Curry $15.00')
+                        {
+                            // Image Description: Sort of Tofu Curry with Bread like naan
+                            // Source: https://carveyourcraving.com/shahi-paneer-under-25-minutes/
+                            img = '<img src="images/mainThreePic.jpg" width="150" height="150">';
+                        }
+                        document.getElementById('mainPicId').innerHTML = img;
+                }
+                else if (foodType == 'beverage')
+                {
+                    selectedBeverage = document.getElementById('beverageId').value;
+
+                        if (selectedBeverage == 'Chai $2.00')
+                        {
+                            // Image Description: Indian Tea
+                            // Source: https://carameltintedlife.com/masala-chai/
+                            img = '<img src="images/bevOnePic.jpg" width="150" height="150">';
+                        }
+                        else if (selectedBeverage == 'Mango Lassi $3.75')
+                        {
+                            // Image Description: Mango Juice
+                            // Source: https://www.teaforturmeric.com/mango-lassi/
+                            img = '<img src="images/bevTwoPic.jpg" width="150" height="200">';
+                        }
+                        else if (selectedBeverage == 'Masala Coffee $2.50')
+                        {
+                            // Image Description: Indian coffee
+                            // Source: https://recipeland.com/recipe/v/masala-coffee-spiced-coffee-13554
+                            img = '<img src="images/bevThreePic.jpg" width="150" height="150">';
+                        }
+                        document.getElementById('bevPicId').innerHTML = img;
+                }
+            }
+            function submitOrder()
+            {
+                let name = document.getElementById('nameId').value;
+                let phone = document.getElementById('phoneId').value;
+                let tip = document.getElementById('tipId').value;
+
+                let isChecked = document.getElementById('checkId').checked;
+                let textAlertsMessage;
+
+                if (isChecked)
+                {
+                    textAlertsMessage = "We will text you when your order is ready."
+                }
+                else
+                {
+                    textAlertsMessage = "You have opted out of text alerts. Orders";
+                    textAlertsMessage += "are usually ready for pickup in 30 minutes."
+                }
+                textAlertsMessage += " Please pay for your order in store."
+
+                calculateSubtotal();
+                tipPercent = parseFloat(tip);
+                let tipAmount = subtotalFloat*(tip/100);
+                let totalFloat = subtotalFloat + tipAmount;
+
+                let orderSummary = "";
+                orderSummary += "Customer Name: " + name + "<br>";
+                orderSummary += "Customer Phone: " + phone + "<br>";
+                orderSummary += "Appetizer: $" + appPriceFloat.toFixed(2) + "<br>";
+                orderSummary += "Main: $" + mainPriceFloat.toFixed(2) + "<br>";
+                orderSummary += "Beverage: $" + bevPriceFloat.toFixed(2) + "<br>";
+                orderSummary += "Subtotal: $" + subtotalFloat.toFixed(2) + "<br>";
+                orderSummary += "Tip Amount: $" + tipAmount.toFixed(2) + "<br>";
+                orderSummary += "Total: $" + totalFloat.toFixed(2) + "<br>";
+                orderSummary += "<h4>Note: " + textAlertsMessage + "</h4>";
+
+                document.getElementById('orderSummaryId').innerHTML = orderSummary;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Aakrunch's Munches</h1>
+        <h2>Lunch Menu</h2>
+        <p>Pick an appetizer, main course, and beverage:</p>
+        <br>
+            Appetizer:
+            <select id="appetizerId" onChange="selectItem('appetizer')">
+                <option>None $0.00</option>
+                <option>Veg Spring Rolls $5.00</option>
+                <option>Paneer Tikka $5.50</option>
+                <option>Veg Samosa $4.00</option>
+            </select>
+            <div id="appPicId"></div>
+            <br>
+            Main Course:
+            <select id="mainId" onChange="selectItem('main')">
+                <option>None $0.00</option>
+                <option>Chole Bhature $14.00</option>
+                <option>Biryani $15.00</option>
+                <option>Naan with Paneer Curry $15.00</option>
+            </select>
+            <div id="mainPicId"></div>
+            <br>
+            Beverage:
+            <select id="beverageId" onChange="selectItem('beverage')">
+                <option>Water $0.00</option>
+                <option>Chai $2.00</option>
+                <option>Mango Lassi $3.75</option>
+                <option>Masala Coffee $2.50</option>
+            </select>
+            <div id="bevPicId"></div>
+            <br>
+            Name: <input type="text" id="nameId" placeholder="Full Name">
+            Mobile Number: <input type="text" id="phoneId" placeholder="Mobile Phone">
+            <br>
+            <br>
+            Check if you would like text alerts about your order: <input type="checkbox" id="checkId">
+            <br>
+            <br>
+            Tip %: <input type="text" id="tipId" placeholder="Enter a Percentage Between 0 and 100" size = "58">
+            <br>
+            <br>
+            <input type="button" value="Submit Order" onClick="submitOrder()">
+            <div id='orderSummaryId'></div>
+            <br>
+    </body>
+</html>

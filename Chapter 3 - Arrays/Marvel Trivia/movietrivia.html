@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Marvel Movie Trivia</title>
+        <style>
+            body
+            {
+                padding: 10px 0;
+                border: 5px solid white;
+                text-align: center;
+                background: rgb(2,0,36);
+                background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 44%, 
+                rgba(0,212,255,1) 100%);
+                font-family: Trebuchet, Helvetica, sans-serif;
+                color: white
+            }
+            p
+            {
+                font-style: italic;
+            }
+        </style>
+        <script>
+            let questionNumber
+            // Image Citations:
+            // Black Panther: https://www.amazon.com/PosterOffice-Black-Panther-Movie-Poster/dp/B079Z2DNDR/ref=asc_df_B079Z2DNDR/?tag=hyprod-20&linkCode=df0&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627&psc=1&tag=&ref=&adgrpid=64520921227&hvpone=&hvptwo=&hvadid=309837868223&hvpos=&hvnetw=g&hvrand=9639389235403603581&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-568496468627
+            // Captain Marvel: https://www.amazon.com/CAPTAIN-MARVEL-POSTER-ORIGINAL-Version/dp/B07NNT8K3P
+            // Shang Chi: https://www.amazon.com/Trends-International-Shang-Chi-Rings-Teaser-Unframed/dp/B09BK3YVP9/ref=asc_df_B09BK3YVP9/?tag=hyprod-20&linkCode=df0&hvadid=540971280956&hvpos=&hvnetw=g&hvrand=2168267742501781273&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9021735&hvtargid=pla-1410488457331&psc=1  
+            // Captain America: https://www.amazon.com/POSTER-STOP-ONLINE-Captain-America/dp/B08Z82QX9Y
+            // Black Widow: https://www.amazon.com/Black-Widow-Movie-Poster-Authenticity/dp/B08B4CFVTJ
+            // Guardians: https://www.amazon.com/Guardians-Galaxy-Movie-24x36-Poster/dp/B00LM3PI1U
+            let imageArray = ["blackpanther.jpg", "blackwidow.jpg", "captainamerica.jpg", "captainmarvel.jpg", "guardians.jpg", "shangchi.jpg", "ironman.jpg"];
+            let movieArray = ["Black Panther", "Black Widow", "Captain America", "Captain Marvel", "Guardians of the Galaxy", "Shang-Chi", "Iron Man"];
+            let yearArray = [2018, 2021, 2011, 2019, 2014, 2021, 2008]
+            let playerScore = 0
+            // Description: 
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
+            function displayRandomQuestion()
+            {
+                let arrayLength = movieArray.length
+                questionNumber = randomInt(0, arrayLength - 1);
+                let picture = formatImage(imageArray, questionNumber);
+                let question = formatQuestion(movieArray, questionNumber);
+                divIdPic.innerHTML = picture;
+                divIdQuestion.innerHTML = question;
+                divIdAnswer.innerHTML = "";
+            }
+            // Description:
+            // Citations:
+            // Input/Parameters:
+            // Output/Return:
+            function checkAnswer()
+            {
+                let submittedAnswer = txtIdAnswer.value;
+                let correctAnswer = yearArray[questionNumber];
+                let currentMovie = movieArray[questionNumber];
+                let output;
+                
+                if (submittedAnswer == correctAnswer)
+                {
+                    output = "You are correct " + currentMovie + " was released in " + correctAnswer + "<br>"
+                    playerScore = playerScore + 1
+                }
+                else
+                {
+                    output = "You are incorrect " + currentMovie + " was not released in " + submittedAnswer
+                }
+
+                divIdAnswer.innerHTML = output
+                divIdScore.innerHTML = "Player Score: " + playerScore
+                
+
+            }
+            // Description: Takes a list of images and outputs a random one
+            // Citations: None
+            // Input/Parameters: List of images
+            // Output/Return: Random image from the list and displays
+            function formatImage(inputArray, index)
+            {
+                let fileName = inputArray[index];
+
+                let output = "<img src='posters/" + fileName + " ' width=200 height=300>";
+                
+                return output;
+            }
+            // Description: Takes image along with the year it was released and displays
+            // Citations: None
+            // Input/Parameters: Index of image and the same index of the year
+            // Output/Return: Displays that image along with that year
+            function viewAnswerKey()
+            {
+                let displayOutput = "This is the full answer key. Refresh the page when you are done: <br>";
+
+                for (let i = 0; i < imageArray.length; i++)
+                {
+                    displayOutput += formatImage(imageArray, i);
+                    displayOutput += "<br>";
+                    displayOutput += yearArray[i];
+                    displayOutput += "<br> <br>";
+                }
+
+                document.getElementById('divIdFullAnswerKey').innerHTML = displayOutput;
+            }
+            // Description: Asks what year was random movie released
+            // Citations: None
+            // Input/Parameters: List of movie names
+            // Output/Return: What year was a random movie released
+            function formatQuestion(inputArray, index)
+            {
+                let item = inputArray[index];
+                let output = "<h2>In what year was " + item + " released? </h2>"
+
+                return output;
+            }
+            // Description: Return a random integer, n, such that min <= n <= max
+            // Citation: Mozilla Foundation
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+            // Input/Parameters: Two floating point numbers, min and max
+            // Output/Return: Returns a random integer between min and max
+            function randomInt(min, max) 
+            {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                
+                return Math.floor(Math.random() * (max - min + 1)) + min; 
+            }
+
+        </script>
+    </head>
+    <body onLoad="displayRandomQuestion()">
+            <h1>Marvel Movie Trivia</h1>
+            <p>Write the year in which the Marvel movie was released.</p>
+            <div id="divIdPic"></div>
+            <div id="divIdQuestion"></div>
+            <input type="text" id="txtIdAnswer" placeholder="Type your answer here">
+            <input type="button" value="Check Answer" onclick="checkAnswer()">
+            <input type="button" value="Next Question" onclick="displayRandomQuestion()">
+            <input type="button" value="View Answer Key" onclick="viewAnswerKey()">
+            <div id="divIdAnswer"></div>
+            <br>
+            <div id="divIdFullAnswerKey"></div>
+            <br>
+            <div id="divIdScore"></div>
+            <br>
+    </body>
+</html>

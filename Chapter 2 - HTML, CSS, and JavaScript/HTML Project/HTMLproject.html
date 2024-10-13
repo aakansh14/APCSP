@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Internet Interview</title>
+        <style>
+            body
+            {
+                text-align: center;
+                background: #63ADF2;
+                border-style:solid;
+                border-color: #F5FFC6;
+            }
+            h1
+            {
+                color: rgb(0, 0, 255);
+            }
+            h2
+            {
+                color: #2D3142;
+            }
+        </style>
+        <script> 
+            let checkboxnum = 0;
+            function submit()
+            // Description: This code gives a response based on since when they were on the internet, experiences with the internet, and how it has affected his/her life
+            // Citation: None
+            // Input/Parameters: First name, last name, the year they first accessed the internet, experiences with the internet, and what has affected his/her life.
+            // Output/Return: A response saying how long they have been on the internet, how long their experience text was, and if it has had a low, medium, or high impact on their life.
+            {
+                let firstname = document.getElementById("firstnameId").value;
+                let lastname = document.getElementById("lastnameId").value;
+                let years = 2023 - yearId.value
+                let text = document.getElementById("textAreaId").value;
+                let textLength = text.length
+                let check1 = document.getElementById("check1Id").checked
+                let check2 = document.getElementById("check2Id").checked
+                let check3 = document.getElementById("check3Id").checked
+                let check4 = document.getElementById("check4Id").checked
+                let check5 = document.getElementById("check5Id").checked
+                let check6 = document.getElementById("check6Id").checked
+                let check7 = document.getElementById("check7Id").checked
+                let check8 = document.getElementById("check8Id").checked
+                let check9 = document.getElementById("check9Id").checked
+                let exp;
+
+                if (check1)
+                {
+                    checkboxnum ++
+                }
+                if (check2)
+                {
+                    checkboxnum ++
+                }
+                if (check3)
+                {
+                    checkboxnum ++
+                }
+                if (check4)
+                {
+                    checkboxnum ++
+                }
+                if (check5)
+                {
+                    checkboxnum ++
+                }
+                if (check6)
+                {
+                    checkboxnum ++
+                }
+                if (check7)
+                {
+                    checkboxnum ++
+                }
+                if (check8)
+                {
+                    checkboxnum ++
+                }
+                if (check9)
+                {
+                    checkboxnum ++
+                }
+                if (checkboxnum <= 2)
+                {
+                    exp = "LOW"
+                }
+                else if (checkboxnum >=3 && checkboxnum <= 5)
+                {
+                    exp = "MEDIUM"
+                }
+                else if (checkboxnum > 5)
+                {
+                    exp = "HIGH"
+                }
+
+                let output = "";
+                output += "Hello " + firstname + " ";
+                output += lastname;
+                output += ", you have been on the internet for " + years + " years!" + "<br>"
+                output += "Your written response has " + textLength + " characters in it!" + "<br>"
+                output += "You have checked off " + checkboxnum + " item(s), indicating the internet has had a " + 
+                "<br>" + exp + "<br>" + " impact on your life."
+                document.getElementById('idOutputdiv').innerHTML = output;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Internet Interview</h1>
+        <h2>Please give your personal expierences with the internet from your childhood.</h2>
+        <div><img src="HTMLimages/internetimg.jpg" width="500" height="300"></div>
+        <h2>Basic Information</h2>
+        First Name: <input type="text" id="firstnameId" placeholder="First Name">
+        <br>
+        <br>
+        Last Name: <input type="text" id="lastnameId" placeholder="Last Name">
+        <br>
+        <br>
+        First Year You Accessed the Internet: <input type="text" id="yearId" placeholder="Year">
+        <h2>Questions</h2>
+        Briefly describe what you remember from your first experience with the internet:
+        <br>
+        <textarea id="textAreaId"rows="10" cols="50"></textarea>
+        <br>
+        <br>
+        Which of the following activities do you think have improved, or become easier since the invention of the internet?
+        <br>
+        <input type="checkbox" id="check1Id"> Keeping in touch with family and/or friends
+        <br>
+        <input type="checkbox" id="check2Id"> Organizing parties, dinners, or events
+        <br>
+        <input type="checkbox" id="check3Id"> Researching information on a particular topic
+        <br>
+        <input type="checkbox" id="check4Id"> Following current events
+        <br>
+        <input type="checkbox" id="check5Id"> Make a phone call (from work, home, hotel, or public place)
+        <br>
+        <input type="checkbox" id="check6Id"> Watching a movie
+        <br>
+        <input type="checkbox" id="check7Id"> Keeping track of finances
+        <br>
+        <input type="checkbox" id="check8Id"> Shopping for goods and services
+        <br>
+        <input type="checkbox" id="check9Id"> Other
+        <br>
+        <br>
+        <input type="button" value="Submit" onClick="submit()">
+        <div id='idOutputdiv'></div>
+    </body>
+</html>

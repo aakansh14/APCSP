@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>My First Website!</title>
+        <script>
+            function displayName()
+            {
+                let userName = idNameTextbox.value
+                let output = "Hello, " + userName + "! Welcome to my first website :)"
+                idOutputDiv.innerHTML = output;
+
+                let newImage = '<img src="Images/justin_herbert.jpeg" width="1000" height="700">'
+                idDivImage.innerHTML = newImage;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Welcome to my awesome webpage!</h1>
+        <h2>This is a smaller header!</h2>
+        <h6>This is the smallest header!</h6>
+        <div id="idDivImage">   <img src="Images/La chargers image.jpg" width="1000" height="600">   </div>
+        Please enter you name: <input type="text" placeholder="Name" id="idNameTextbox">
+        <br>
+        <br>
+        <input type="button" value="Submit" onClick="displayName()">
+        <div id="idOutputDiv"></div>
+    </body>
+</html>
